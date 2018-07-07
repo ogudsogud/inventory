@@ -1,0 +1,7 @@
+com\msg\data\service\PartsService.class
+com\msg\data\model\ErrCode.class
+com\msg\data\service\PartsServiceImpl$PartsRowMapp.class
+MainParts.class
+com\msg\data\controller\PartsController.class
+com\msg\data\model\PartsModel.class
+com\msg\data\service\PartsServiceImpl.class
