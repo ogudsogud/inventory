@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import javax.transaction.Transactional;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 /**
  * Created by Ogudsogud on 7/7/2018.
@@ -39,6 +40,14 @@ public class PartsServiceImpl implements PartsService {
 
             return partsModel;
         }
+    }
+
+    //untuk menampilkan data parts
+    @Override
+    public List<PartsModel> getDataParts() {
+        String sql = "SELECT * FROM mtr_parts";
+        RowMapper<PartsModel> rowMapper = new PartsRowMapp();
+        return this.jdbcTemplate.query(sql,rowMapper);
     }
 
     //untuk insert parts
@@ -73,4 +82,49 @@ public class PartsServiceImpl implements PartsService {
             return false;
         }
     }
+
+    //untuk mencari data parts berdasarkan parameter
+    @Override
+    public PartsModel getByPartNumb(String part_number) {
+        String sql = "SELECT * FROM mtr_parts WHERE part_number = ?";
+        RowMapper<PartsModel> rowMapper = new PartsRowMapp();
+        PartsModel partsModel = jdbcTemplate.queryForObject(sql, rowMapper, part_number);
+        return partsModel;
+    }
+
+    @Override
+         public PartsModel getByPartName(String part_name) {
+        String sql = "SELECT * FROM mtr_parts WHERE part_name = ?";
+        RowMapper<PartsModel> rowMapper = new PartsRowMapp();
+        PartsModel partsModel = jdbcTemplate.queryForObject(sql, rowMapper, part_name);
+        return partsModel;
+    }
+
+    @Override
+    public PartsModel getByBrandName(String brand_name) {
+        String sql = "SELECT * FROM mtr_parts WHERE brand_name = ?";
+        RowMapper<PartsModel> rowMapper = new PartsRowMapp();
+        PartsModel partsModel = jdbcTemplate.queryForObject(sql, rowMapper, brand_name);
+        return partsModel;
+    }
+
+//    @Override
+//    public User getByUserPassword(final String username, final String password) {
+//
+//        try {
+//            User user = this.jdbcTemplate.queryForObject("SELECT * FROM t_mtr_user WHERE username = ? and password = ?",
+//                    new Object[]{username, password},
+//                    new RowMapper<User>() {
+//                        public User mapRow(ResultSet rs, int rowNum) throws SQLException {
+//                            User user = new User();
+//                            user.setUsername(rs.getString(username));
+//                            user.setPassword(rs.getString(password));
+//                            return user;
+//                        }
+//                    });
+//            return user;
+//        }catch (EmptyResultDataAccessException e) {
+//            return null;
+//        }
+//    }
 }
