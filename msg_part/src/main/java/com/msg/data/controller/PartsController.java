@@ -51,5 +51,11 @@ public class PartsController {
         return new ResponseEntity<PartsModel>(partsModel, HttpStatus.OK);
     }
 
+    @RequestMapping(value = "/brand-name={brandname}", method = RequestMethod.GET)
+    public ResponseEntity<PartsModel> getByBrandName(@PathVariable("brandname") String brandname) {
+        PartsModel partsModel = partsService.getByBrandName(brandname);
+        return new ResponseEntity<PartsModel>(partsModel, HttpStatus.OK);
+    }
+
 
 }
