@@ -40,13 +40,13 @@ public class PartsController {
 
     //mancari data parts berdasarakan parameter
     @RequestMapping(value = "/parts-number={partnum}", method = RequestMethod.GET)
-    public ResponseEntity<PartsModel> getByPartNum(@PathVariable("id") String partnum) {
+    public ResponseEntity<PartsModel> getByPartNum(@PathVariable("partnum") String partnum) {
         PartsModel partsModel = partsService.getByPartNumb(partnum);
         return new ResponseEntity<PartsModel>(partsModel, HttpStatus.OK);
     }
 
     @RequestMapping(value = "/parts-name={partname}", method = RequestMethod.GET)
-    public ResponseEntity<PartsModel> getByPartName(@PathVariable("id") String partname) {
+    public ResponseEntity<PartsModel> getByPartName(@PathVariable("partname") String partname) {
         PartsModel partsModel = partsService.getByPartName(partname);
         return new ResponseEntity<PartsModel>(partsModel, HttpStatus.OK);
     }
