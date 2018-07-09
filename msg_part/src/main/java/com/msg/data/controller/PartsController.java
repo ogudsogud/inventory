@@ -22,22 +22,23 @@ public class PartsController {
     private PartsService partsService;
 
     //menampilkan data parts
-    @RequestMapping(value = "/get-data-parts", method = RequestMethod.GET)
+    @RequestMapping(value = "/get-new-parts", method = RequestMethod.GET)
     public ResponseEntity<List<PartsModel>> getDataParts(){
         List<PartsModel> list = partsService.getDataParts();
         return new ResponseEntity<List<PartsModel>>(list, HttpStatus.OK);
     }
 
-    //menambahkan data parts
-    @RequestMapping(value = "/insert", method = RequestMethod.POST)
+    //menambahkan data parts baru
+    @RequestMapping(value = "/insert-new-parts", method = RequestMethod.POST)
     public ResponseEntity<Void> createCluster(@RequestBody PartsModel partsModel, UriComponentsBuilder uriComponentsBuilder) {
         if (partsService.isPartsExist(partsModel.getPart_number()) == true) {
-            partsService.insertParts(partsModel);
+            partsService.insertPartsNew(partsModel);
             return new ResponseEntity(new ErrCode("201", "Data Part berhasil Disimpan"), HttpStatus.CREATED);
         }
         return  new ResponseEntity(new ErrCode("409", "Data Part sudah ada"), HttpStatus.CONFLICT);
     }
 
     //mancari data parts berdasarakan parameter
+
 
 }

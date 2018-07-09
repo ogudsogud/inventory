@@ -61,10 +61,7 @@ public class PartsServiceImpl implements PartsService {
                 partsModel.getBrand_name(),
                 partsModel.getQuantity(),
                 partsModel.getCreated_by(),
-//                partsModel.getCreated_on(),
                 partsModel.getUpdated_by()
-//                partsModel.getUpdated_on(),
-//                partsModel.getStatus()
  );
 
         return false;

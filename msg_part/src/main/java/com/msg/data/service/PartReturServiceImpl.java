@@ -58,9 +58,7 @@ public class PartReturServiceImpl implements PartReturService{
                 returModel.getDescription(),
                 returModel.getQuantity(),
                 returModel.getReturned_by(),
-                returModel.getReturned_on(),
-                returModel.getApproved_by(),
-                returModel.getApproved_on()
+                returModel.getApproved_by()
         );
         return false;
     }
