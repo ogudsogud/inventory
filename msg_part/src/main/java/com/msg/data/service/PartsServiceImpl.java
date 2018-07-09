@@ -84,27 +84,27 @@ public class PartsServiceImpl implements PartsService {
     //untuk mencari data parts berdasarkan parameter
     @Override
     public PartsModel getByPartNumb(String part_number) {
-        String sql = "SELECT * FROM mtr_parts WHERE part_number = ?";
+        String sql = "SELECT * FROM mtr_parts WHERE part_number LIKE ?";
         RowMapper<PartsModel> rowMapper = new PartsRowMapp();
         PartsModel partsModel = jdbcTemplate.queryForObject(sql, rowMapper, part_number);
         return partsModel;
     }
 
-    @Override
-         public PartsModel getByPartName(String part_name) {
-        String sql = "SELECT * FROM mtr_parts WHERE part_name = ?";
-        RowMapper<PartsModel> rowMapper = new PartsRowMapp();
-        PartsModel partsModel = jdbcTemplate.queryForObject(sql, rowMapper, part_name);
-        return partsModel;
-    }
-
-    @Override
-    public PartsModel getByBrandName(String brand_name) {
-        String sql = "SELECT * FROM mtr_parts WHERE brand_name = ?";
-        RowMapper<PartsModel> rowMapper = new PartsRowMapp();
-        PartsModel partsModel = jdbcTemplate.queryForObject(sql, rowMapper, brand_name);
-        return partsModel;
-    }
+//    @Override
+//         public PartsModel getByPartName(String part_name) {
+//        String sql = "SELECT * FROM mtr_parts WHERE part_name LIKE ?";
+//        RowMapper<PartsModel> rowMapper = new PartsRowMapp();
+//        PartsModel partsModel = jdbcTemplate.queryForObject(sql, rowMapper, part_name);
+//        return partsModel;
+//    }
+//
+//    @Override
+//    public PartsModel getByBrandName(String brand_name) {
+//        String sql = "SELECT * FROM mtr_parts WHERE brand_name LIKE ?";
+//        RowMapper<PartsModel> rowMapper = new PartsRowMapp();
+//        PartsModel partsModel = jdbcTemplate.queryForObject(sql, rowMapper, brand_name);
+//        return partsModel;
+//    }
 
 //    @Override
 //    public User getByUserPassword(final String username, final String password) {
