@@ -15,7 +15,7 @@ import java.util.List;
  * Created by Ogudsogud on 7/7/2018.
  */
 @RestController
-@RequestMapping("msg/part")
+@RequestMapping("msg/parts")
 public class PartsController {
 
     @Autowired
