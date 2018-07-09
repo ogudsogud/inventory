@@ -92,7 +92,7 @@ public class PartsServiceImpl implements PartsService {
          public PartsModel getByPartName(String part_name) {
         String sql = "SELECT * FROM mtr_parts WHERE part_name LIKE ?";
         RowMapper<PartsModel> rowMapper = new PartsRowMapp();
-        PartsModel partsModel = jdbcTemplate.queryForObject(sql, rowMapper, "%"+part_name+"%");
+        PartsModel partsModel = jdbcTemplate.queryForObject(sql, rowMapper, part_name);
         return partsModel;
     }
 
@@ -100,7 +100,7 @@ public class PartsServiceImpl implements PartsService {
     public PartsModel getByBrandName(String brand_name) {
         String sql = "SELECT * FROM mtr_parts WHERE brand_name LIKE ?";
         RowMapper<PartsModel> rowMapper = new PartsRowMapp();
-        PartsModel partsModel = jdbcTemplate.queryForObject(sql, rowMapper, "%"+brand_name+"%");
+        PartsModel partsModel = jdbcTemplate.queryForObject(sql, rowMapper, " % " + brand_name + " % ");
         return partsModel;
     }
 
