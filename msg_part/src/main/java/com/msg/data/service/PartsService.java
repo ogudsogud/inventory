@@ -11,7 +11,7 @@ public interface PartsService {
 
     List<PartsModel> getDataParts();
 
-    boolean insertParts(PartsModel partsModel);
+    boolean insertPartsNew(PartsModel partsModel);
 
     boolean isPartsExist(String part_number);
 

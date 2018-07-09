@@ -27,7 +27,6 @@ public class PartsServiceImpl implements PartsService {
         @Override
         public PartsModel mapRow(ResultSet rs, int i) throws SQLException {
             PartsModel partsModel = new PartsModel();
-            partsModel.setId_part(rs.getInt("id_part"));
             partsModel.setPart_name(rs.getString("part_name"));
             partsModel.setPart_number(rs.getString("part_number"));
             partsModel.setBrand_name(rs.getString("brand_name"));
@@ -50,15 +49,15 @@ public class PartsServiceImpl implements PartsService {
         return this.jdbcTemplate.query(sql,rowMapper);
     }
 
-    //untuk insert parts
+    //untuk insert parts baru
     @Override
-    public boolean insertParts(PartsModel partsModel) {
+    public boolean insertPartsNew(PartsModel partsModel) {
 
-        String sql = "INSERT INTO mtr_parts (part_name, part_number, brand_name, quantity, created_by, created_on, updated_by, updated_on,status)" +
+        String sql = "INSERT INTO mtr_parts (part_number, part_name, brand_name, quantity, created_by, created_on, updated_by, updated_on,status)" +
                 "VALUES (?,?,?,?,?,NOW(),?,NOW(),1)";
         jdbcTemplate.update(sql,
-                partsModel.getPart_name(),
                 partsModel.getPart_number(),
+                partsModel.getPart_name(),
                 partsModel.getBrand_name(),
                 partsModel.getQuantity(),
                 partsModel.getCreated_by(),
@@ -71,7 +70,7 @@ public class PartsServiceImpl implements PartsService {
         return false;
     }
 
-    //jika parts sudah ada
+    //jika insert parts baru sudah ada
     @Override
     public boolean isPartsExist(String part_number) {
         String sql = "SELECT count(*) from mtr_parts WHERE part_number = ? ";
@@ -82,6 +81,8 @@ public class PartsServiceImpl implements PartsService {
             return false;
         }
     }
+
+
 
     //untuk mencari data parts berdasarkan parameter
     @Override

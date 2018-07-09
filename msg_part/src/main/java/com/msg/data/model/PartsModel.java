@@ -1,15 +1,12 @@
 package com.msg.data.model;
 
-import java.util.Date;
-
 /**
  * Created by Ogudsogud on 7/7/2018.
  */
 public class PartsModel {
 
-    private int id_part;
-    private String part_name;
     private String part_number;
+    private String part_name;
     private String brand_name;
     private int quantity;
     private String created_by;
@@ -18,10 +15,9 @@ public class PartsModel {
     private String updated_on;
     private int status;
 
-    public PartsModel(int id_part, String part_name, String part_number, String brand_name, int quantity, String created_by, String created_on, String updated_by, String updated_on, int status) {
-        this.id_part = id_part;
-        this.part_name = part_name;
+    public PartsModel(String part_number, String part_name, String brand_name, int quantity, String created_by, String created_on, String updated_by, String updated_on, int status) {
         this.part_number = part_number;
+        this.part_name = part_name;
         this.brand_name = brand_name;
         this.quantity = quantity;
         this.created_by = created_by;
@@ -35,12 +31,12 @@ public class PartsModel {
 
     }
 
-    public int getId_part() {
-        return id_part;
+    public String getPart_number() {
+        return part_number;
     }
 
-    public void setId_part(int id_part) {
-        this.id_part = id_part;
+    public void setPart_number(String part_number) {
+        this.part_number = part_number;
     }
 
     public String getPart_name() {
@@ -49,14 +45,6 @@ public class PartsModel {
 
     public void setPart_name(String part_name) {
         this.part_name = part_name;
-    }
-
-    public String getPart_number() {
-        return part_number;
-    }
-
-    public void setPart_number(String part_number) {
-        this.part_number = part_number;
     }
 
     public String getBrand_name() {
