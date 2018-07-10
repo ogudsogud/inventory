@@ -3,7 +3,7 @@ package com.msg.data.model;
 /**
  * Created by yoga.wiguna on 09/07/2018.
  */
-public class PartReturModel {
+public class PartInModel {
 
     private String po_number;
     private String part_name;
@@ -16,7 +16,7 @@ public class PartReturModel {
     private String approved_by;
     private String approved_on;
 
-    public PartReturModel(String po_number, String part_name, String part_number, String brand_name, String description, int quantity, String returned_by, String returned_on, String approved_by, String approved_on) {
+    public PartInModel(String po_number, String part_name, String part_number, String brand_name, String description, int quantity, String returned_by, String returned_on, String approved_by, String approved_on) {
         this.po_number = po_number;
         this.part_name = part_name;
         this.part_number = part_number;
@@ -29,7 +29,7 @@ public class PartReturModel {
         this.approved_on = approved_on;
     }
 
-    public PartReturModel() {
+    public PartInModel() {
 
     }
 
