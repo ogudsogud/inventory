@@ -38,7 +38,7 @@ public class PartsController {
         return  new ResponseEntity(new ErrCode("409", "Data Part sudah ada"), HttpStatus.CONFLICT);
     }
 
-    //mancari data parts berdasarakan parameter
+    //mancari data parts berdasarkan parameter
     @RequestMapping(value = "/parts-number={partnum}", method = RequestMethod.GET)
     public ResponseEntity<PartsModel> getByPartNum(@PathVariable("partnum") String partnum) {
         PartsModel partsModel = partsService.getByPartNumb(partnum);

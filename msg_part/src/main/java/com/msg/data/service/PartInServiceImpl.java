@@ -66,14 +66,23 @@ public class PartInServiceImpl implements PartInService{
 
     //jika insert po-parts baru sudah ada
     @Override
-    public boolean isPartsExist(String part_number) {
+    public boolean isPartsInExist(String po_number) {
         String sql = "SELECT count(*) from trx_part_stock_in WHERE po_number = ?";
-        int count = jdbcTemplate.queryForObject(sql, Integer.class, part_number);
+        int count = jdbcTemplate.queryForObject(sql, Integer.class, po_number);
         if(count == 0) {
             return true;
         } else {
             return false;
         }
+    }
+
+    //untuk mencari data parts berdasarkan parameter
+    @Override
+    public PartInModel getByPoNumb(String po_number) {
+        String sql = "SELECT * FROM mtr_parts WHERE po_number = ?";
+        RowMapper<PartInModel> rowMapper = new PartsRowMapp();
+        PartInModel partInModel = jdbcTemplate.queryForObject(sql, rowMapper, po_number);
+        return partInModel;
     }
 
 }
