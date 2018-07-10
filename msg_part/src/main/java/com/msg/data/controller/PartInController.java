@@ -23,8 +23,8 @@ public class PartInController {
     @Autowired
     private PartInService partInService;
 
-    //menambahkan data po baru
-    @RequestMapping(value = "/insert-po", method = RequestMethod.POST)
+    //menambahkan data stock-in baru
+    @RequestMapping(value = "/insert-part-in", method = RequestMethod.POST)
     public ResponseEntity<Void> createCluster(@RequestBody PartInModel partInModel, UriComponentsBuilder uriComponentsBuilder) {
         if (partInService.isPartsInExist(partInModel.getPo_number()) == true) {
             partInService.insertPartsStock(partInModel);
@@ -34,7 +34,7 @@ public class PartInController {
     }
 
     //menampilkan data stock yg masuk
-    @RequestMapping(value = "/get-in-parts", method = RequestMethod.GET)
+    @RequestMapping(value = "/get-parts-in", method = RequestMethod.GET)
     public ResponseEntity<List<PartInModel>> getDataParts(){
         List<PartInModel> list = partInService.getPartsStockIn();
         return new ResponseEntity<List<PartInModel>>(list, HttpStatus.OK);

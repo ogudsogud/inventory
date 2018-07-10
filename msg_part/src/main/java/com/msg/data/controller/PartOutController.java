@@ -22,8 +22,8 @@ public class PartOutController {
     @Autowired
     private PartOutService partOutService;
 
-    //menambahkan data po baru
-    @RequestMapping(value = "/insert-po-out", method = RequestMethod.POST)
+    //menambahkan data stock-out baru
+    @RequestMapping(value = "/insert-part-out", method = RequestMethod.POST)
     public ResponseEntity<Void> createCluster(@RequestBody PartOutModel partOutModel, UriComponentsBuilder uriComponentsBuilder) {
         if (partOutService.isPartsOutExist(partOutModel.getPo_number()) == true) {
             partOutService.insertPartsOut(partOutModel);
@@ -32,7 +32,7 @@ public class PartOutController {
         return  new ResponseEntity(new ErrCode("409", "Data Stock Out sudah ada"), HttpStatus.CONFLICT);
     }
 
-    //menampilkan data stock yg masuk
+    //menampilkan data stock yg keluar
     @RequestMapping(value = "/get-out-parts", method = RequestMethod.GET)
     public ResponseEntity<List<PartOutModel>> getDataParts(){
         List<PartOutModel> list = partOutService.getPartsStockOut();
