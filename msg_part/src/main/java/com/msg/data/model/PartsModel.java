@@ -7,7 +7,6 @@ public class PartsModel {
 
     private String part_number;
     private String part_name;
-    private String brand_name;
     private int quantity;
     private String created_by;
     private String created_on;
@@ -15,10 +14,9 @@ public class PartsModel {
     private String updated_on;
     private int status;
 
-    public PartsModel(String part_number, String part_name, String brand_name, int quantity, String created_by, String created_on, String updated_by, String updated_on, int status) {
+    public PartsModel(String part_number, String part_name, int quantity, String created_by, String created_on, String updated_by, String updated_on, int status) {
         this.part_number = part_number;
         this.part_name = part_name;
-        this.brand_name = brand_name;
         this.quantity = quantity;
         this.created_by = created_by;
         this.created_on = created_on;
@@ -45,14 +43,6 @@ public class PartsModel {
 
     public void setPart_name(String part_name) {
         this.part_name = part_name;
-    }
-
-    public String getBrand_name() {
-        return brand_name;
-    }
-
-    public void setBrand_name(String brand_name) {
-        this.brand_name = brand_name;
     }
 
     public int getQuantity() {

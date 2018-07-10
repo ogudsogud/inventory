@@ -18,6 +18,4 @@ public interface PartsService {
     PartsModel getByPartNumb(String part_number);
 
     PartsModel getByPartName(String part_name);
-
-    PartsModel getByBrandName(String brand_name);
 }

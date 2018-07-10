@@ -53,8 +53,8 @@ public class PartInServiceImpl implements PartInService{
     @Override
     public boolean insertPartsStock(PartInModel partInModel) {
 
-        String sql = "INSERT INTO trx_part_stock_in (po_number, part_name, part_number, brand_name, description, quantity, returned_by, returned_on, approved_by, approved_on)" +
-                "VALUES (?,?,?,?,?,?,?,NOW(),?,NOW())";
+        String sql = "INSERT INTO trx_part_stock_in (po_number, part_name, part_number, brand_name, description, quantity, returned_by, returned_on, approved_by, approved_on, status)" +
+                "VALUES (?,?,?,?,?,?,?,NOW(),?,NOW(),1)";
         jdbcTemplate.update(sql,
                 partInModel.getPo_number(),
                 partInModel.getPart_name(),

@@ -29,7 +29,6 @@ public class PartsServiceImpl implements PartsService {
             PartsModel partsModel = new PartsModel();
             partsModel.setPart_name(rs.getString("part_name"));
             partsModel.setPart_number(rs.getString("part_number"));
-            partsModel.setBrand_name(rs.getString("brand_name"));
             partsModel.setQuantity(rs.getInt("quantity"));
             partsModel.setCreated_by(rs.getString("created_by"));
             partsModel.setCreated_on(rs.getString("created_on"));
@@ -53,12 +52,11 @@ public class PartsServiceImpl implements PartsService {
     @Override
     public boolean insertPartsNew(PartsModel partsModel) {
 
-        String sql = "INSERT INTO mtr_parts (part_number, part_name, brand_name, quantity, created_by, created_on, updated_by, updated_on,status)" +
+        String sql = "INSERT INTO mtr_parts (part_number, part_name, quantity, created_by, created_on, updated_by, updated_on,status)" +
                 "VALUES (?,?,?,?,?,NOW(),?,NOW(),1)";
         jdbcTemplate.update(sql,
                 partsModel.getPart_number(),
                 partsModel.getPart_name(),
-                partsModel.getBrand_name(),
                 partsModel.getQuantity(),
                 partsModel.getCreated_by(),
                 partsModel.getUpdated_by()
@@ -96,13 +94,6 @@ public class PartsServiceImpl implements PartsService {
         return partsModel;
     }
 
-    @Override
-    public PartsModel getByBrandName(String brand_name) {
-        String sql = "SELECT * FROM mtr_parts WHERE brand_name LIKE ?";
-        RowMapper<PartsModel> rowMapper = new PartsRowMapp();
-        PartsModel partsModel = jdbcTemplate.queryForObject(sql, rowMapper, " % " + brand_name + " % ");
-        return partsModel;
-    }
 
 //    @Override
 //    public User getByUserPassword(final String username, final String password) {
