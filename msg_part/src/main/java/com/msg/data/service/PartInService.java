@@ -16,4 +16,6 @@ public interface PartInService {
     boolean isPartsInExist(String po_number);
 
     PartInModel getByPoNumb(String po_number);
+
+    PartInModel getByPartNumb(String part_number);
 }

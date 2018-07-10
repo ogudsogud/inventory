@@ -30,8 +30,8 @@ public class PartInServiceImpl implements PartInService{
             partInModel.setPart_number(rs.getString("po_number"));
             partInModel.setPart_name(rs.getString("part_name"));
             partInModel.setPart_number(rs.getString("part_number"));
-            partInModel.setBrand_name(rs.getString("brand_name"));
-            partInModel.setBrand_name(rs.getString("description"));
+            partInModel.setTujuan(rs.getString("tujuan"));
+            partInModel.setDescription(rs.getString("description"));
             partInModel.setQuantity(rs.getInt("quantity"));
             partInModel.setReturned_by(rs.getString("returned_by"));
             partInModel.setReturned_on(rs.getString("returned_on"));
@@ -53,13 +53,13 @@ public class PartInServiceImpl implements PartInService{
     @Override
     public boolean insertPartsStock(PartInModel partInModel) {
 
-        String sql = "INSERT INTO trx_part_stock_in (po_number, part_name, part_number, brand_name, description, quantity, returned_by, returned_on, approved_by, approved_on, status)" +
+        String sql = "INSERT INTO trx_part_stock_in (po_number, part_name, part_number, tujuan, description, quantity, returned_by, returned_on, approved_by, approved_on, status)" +
                 "VALUES (?,?,?,?,?,?,?,NOW(),?,NOW(),1)";
         jdbcTemplate.update(sql,
                 partInModel.getPo_number(),
                 partInModel.getPart_name(),
                 partInModel.getPart_number(),
-                partInModel.getBrand_name(),
+                partInModel.getTujuan(),
                 partInModel.getDescription(),
                 partInModel.getQuantity(),
                 partInModel.getReturned_by(),
@@ -83,9 +83,17 @@ public class PartInServiceImpl implements PartInService{
     //untuk mencari data parts berdasarkan parameter
     @Override
     public PartInModel getByPoNumb(String po_number) {
-        String sql = "SELECT * FROM mtr_parts WHERE po_number = ?";
+        String sql = "SELECT * FROM trx_part_stock_in WHERE po_number = ?";
         RowMapper<PartInModel> rowMapper = new PartsRowMapp();
         PartInModel partInModel = jdbcTemplate.queryForObject(sql, rowMapper, po_number);
+        return partInModel;
+    }
+
+    @Override
+    public PartInModel getByPartNumb(String part_number) {
+        String sql = "SELECT * FROM trx_part_stock_in WHERE part_number = ?";
+        RowMapper<PartInModel> rowMapper = new PartsRowMapp();
+        PartInModel partInModel = jdbcTemplate.queryForObject(sql, rowMapper, part_number);
         return partInModel;
     }
 

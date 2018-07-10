@@ -8,7 +8,7 @@ public class PartInModel {
     private String po_number;
     private String part_name;
     private String part_number;
-    private String brand_name;
+    private String tujuan;
     private String description;
     private int quantity;
     private String returned_by;
@@ -16,11 +16,11 @@ public class PartInModel {
     private String approved_by;
     private String approved_on;
 
-    public PartInModel(String po_number, String part_name, String part_number, String brand_name, String description, int quantity, String returned_by, String returned_on, String approved_by, String approved_on) {
+    public PartInModel(String po_number, String part_name, String part_number, String tujuan, String description, int quantity, String returned_by, String returned_on, String approved_by, String approved_on) {
         this.po_number = po_number;
         this.part_name = part_name;
         this.part_number = part_number;
-        this.brand_name = brand_name;
+        this.tujuan = tujuan;
         this.description = description;
         this.quantity = quantity;
         this.returned_by = returned_by;
@@ -57,12 +57,12 @@ public class PartInModel {
         this.part_number = part_number;
     }
 
-    public String getBrand_name() {
-        return brand_name;
+    public String getTujuan() {
+        return tujuan;
     }
 
-    public void setBrand_name(String brand_name) {
-        this.brand_name = brand_name;
+    public void setTujuan(String tujuan) {
+        this.tujuan = tujuan;
     }
 
     public String getDescription() {
