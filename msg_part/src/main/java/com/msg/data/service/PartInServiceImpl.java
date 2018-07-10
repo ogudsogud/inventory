@@ -44,7 +44,7 @@ public class PartInServiceImpl implements PartInService{
     //untuk menampilkan data parts stock-in
     @Override
     public List<PartInModel> getPartsStockIn() {
-        String sql = "SELECT * FROM trx_part_in";
+        String sql = "SELECT * FROM trx_part_stock_in";
         RowMapper<PartInModel> rowMapper = new PartsRowMapp();
         return this.jdbcTemplate.query(sql,rowMapper);
     }

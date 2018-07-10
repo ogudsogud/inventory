@@ -31,6 +31,10 @@ public class PartOutModel {
         this.status = status;
     }
 
+    public PartOutModel() {
+
+    }
+
     public String getPo_number() {
         return po_number;
     }
