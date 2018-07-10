@@ -1,9 +1,9 @@
 package com.msg.data.model;
 
 /**
- * Created by yoga.wiguna on 09/07/2018.
+ * Created by yoga.wiguna on 10/07/2018.
  */
-public class PartInModel {
+public class PartOutModel {
 
     private String po_number;
     private String part_name;
@@ -11,29 +11,24 @@ public class PartInModel {
     private String tujuan;
     private String description;
     private int quantity;
-    private String returned_by;
-    private String returned_on;
+    private String requested_by;
+    private String requested_on;
     private String approved_by;
     private String approved_on;
     private int status;
 
-    public PartInModel(String po_number, String part_name, String part_number, String tujuan, String description, int quantity, String returned_by, String returned_on, String approved_by, String approved_on, int status) {
+    public PartOutModel(String po_number, String part_name, String part_number, String tujuan, String description, int quantity, String requested_by, String requested_on, String approved_by, String approved_on, int status) {
         this.po_number = po_number;
         this.part_name = part_name;
         this.part_number = part_number;
         this.tujuan = tujuan;
         this.description = description;
-
         this.quantity = quantity;
-        this.returned_by = returned_by;
-        this.returned_on = returned_on;
+        this.requested_by = requested_by;
+        this.requested_on = requested_on;
         this.approved_by = approved_by;
         this.approved_on = approved_on;
         this.status = status;
-    }
-
-    public PartInModel() {
-
     }
 
     public String getPo_number() {
@@ -84,20 +79,20 @@ public class PartInModel {
         this.quantity = quantity;
     }
 
-    public String getReturned_by() {
-        return returned_by;
+    public String getRequested_by() {
+        return requested_by;
     }
 
-    public void setReturned_by(String returned_by) {
-        this.returned_by = returned_by;
+    public void setRequested_by(String requested_by) {
+        this.requested_by = requested_by;
     }
 
-    public String getReturned_on() {
-        return returned_on;
+    public String getRequested_on() {
+        return requested_on;
     }
 
-    public void setReturned_on(String returned_on) {
-        this.returned_on = returned_on;
+    public void setRequested_on(String requested_on) {
+        this.requested_on = requested_on;
     }
 
     public String getApproved_by() {
