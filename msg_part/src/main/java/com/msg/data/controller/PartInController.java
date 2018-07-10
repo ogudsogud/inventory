@@ -30,7 +30,7 @@ public class PartInController {
             partInService.insertPartsStock(partInModel);
             return new ResponseEntity(new ErrCode("201", "Data PO berhasil Disimpan"), HttpStatus.CREATED);
         }
-        return  new ResponseEntity(new ErrCode("409", "Data PO sudah ada"), HttpStatus.CONFLICT);
+            return  new ResponseEntity(new ErrCode("409", "Data PO sudah ada"), HttpStatus.CONFLICT);
     }
 
     //menampilkan data stock yg masuk
