@@ -27,7 +27,7 @@ public class PartOutServiceImpl implements PartOutService {
         @Override
         public PartOutModel mapRow(ResultSet rs, int i) throws SQLException {
             PartOutModel partOutModel = new PartOutModel();
-            partOutModel.setPart_number(rs.getString("po_number"));
+            partOutModel.setPo_number(rs.getString("po_number"));
             partOutModel.setPart_name(rs.getString("part_name"));
             partOutModel.setPart_number(rs.getString("part_number"));
             partOutModel.setTujuan(rs.getString("tujuan"));
@@ -60,8 +60,8 @@ public class PartOutServiceImpl implements PartOutService {
                 partOutModel.getPart_name(),
                 partOutModel.getPart_number(),
                 partOutModel.getTujuan(),
-                partOutModel.getDescription(),
                 partOutModel.getQuantity(),
+                partOutModel.getDescription(),
                 partOutModel.getRequested_by(),
                 partOutModel.getApproved_by()
         );
