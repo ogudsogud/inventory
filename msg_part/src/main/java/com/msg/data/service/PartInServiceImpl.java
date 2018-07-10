@@ -5,7 +5,9 @@ import com.msg.data.model.PartInModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Repository;
 
+import javax.transaction.Transactional;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
@@ -13,6 +15,8 @@ import java.util.List;
 /**
  * Created by yoga.wiguna on 09/07/2018.
  */
+@Transactional
+@Repository
 public class PartInServiceImpl implements PartInService{
 
     @Autowired

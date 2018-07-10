@@ -35,7 +35,7 @@ public class PartsController {
             partsService.insertPartsNew(partsModel);
             return new ResponseEntity(new ErrCode("201", "Data Part berhasil Disimpan"), HttpStatus.CREATED);
         }
-        return  new ResponseEntity(new ErrCode("409", "Data Part sudah ada"), HttpStatus.CONFLICT);
+            return  new ResponseEntity(new ErrCode("409", "Data Part sudah ada"), HttpStatus.CONFLICT);
     }
 
     //mancari data parts berdasarkan parameter
