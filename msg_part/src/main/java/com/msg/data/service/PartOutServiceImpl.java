@@ -37,6 +37,7 @@ public class PartOutServiceImpl implements PartOutService {
             partOutModel.setRequested_on(rs.getString("requested_on"));
             partOutModel.setApproved_by(rs.getString("approved_by"));
             partOutModel.setApproved_on(rs.getString("approved_on"));
+            partOutModel.setStatus(rs.getInt("status"));
             return partOutModel;
         }
     }
@@ -60,8 +61,8 @@ public class PartOutServiceImpl implements PartOutService {
                 partOutModel.getPart_name(),
                 partOutModel.getPart_number(),
                 partOutModel.getTujuan(),
-                partOutModel.getQuantity(),
                 partOutModel.getDescription(),
+                partOutModel.getQuantity(),
                 partOutModel.getRequested_by(),
                 partOutModel.getApproved_by()
         );
