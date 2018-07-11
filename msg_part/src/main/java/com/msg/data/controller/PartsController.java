@@ -24,6 +24,13 @@ public class PartsController {
     //menampilkan data parts
     @RequestMapping(value = "/get-new-parts", method = RequestMethod.GET)
     public ResponseEntity<List<PartsModel>> getDataParts(){
+
+//        ModelAndView modelAndView = new ModelAndView();
+//        List<PartsModel> list = partsService.getDataParts();
+//        modelAndView.addObject("part_list_master", list);
+//        modelAndView.setViewName("part_list_master");
+//        return modelAndView;
+
         List<PartsModel> list = partsService.getDataParts();
         return new ResponseEntity<List<PartsModel>>(list, HttpStatus.OK);
     }
@@ -50,6 +57,5 @@ public class PartsController {
         PartsModel partsModel = partsService.getByPartName(partname);
         return new ResponseEntity<PartsModel>(partsModel, HttpStatus.OK);
     }
-
 
 }
