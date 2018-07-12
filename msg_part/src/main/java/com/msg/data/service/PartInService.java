@@ -13,9 +13,9 @@ public interface PartInService {
 
     boolean insertPartsStock(PartInModel partInModel);
 
-    boolean isPartsInExist(String po_number);
+    boolean isPartsInExist(String ticket_no);
 
-    PartInModel getByPoNumb(String po_number);
+    PartInModel getByPoNumb(String ticket_no);
 
     PartInModel getByPartNumb(String part_number);
 }

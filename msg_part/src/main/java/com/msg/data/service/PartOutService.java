@@ -14,9 +14,9 @@ public interface PartOutService {
 
     boolean insertPartsOut(PartOutModel partOutModel);
 
-    boolean isPartsOutExist(String po_number);
+    boolean isPartsOutExist(String ticket_no);
 
-    PartOutModel getByPoNumb(String po_number);
+    PartOutModel getByPoNumb(String ticket_no);
 
     PartOutModel getByPartNumb(String part_number);
 }

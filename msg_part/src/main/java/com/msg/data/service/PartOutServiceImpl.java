@@ -83,10 +83,10 @@ public class PartOutServiceImpl implements PartOutService {
 
     //untuk mencari data parts berdasarkan parameter
     @Override
-    public PartOutModel getByPoNumb(String po_number) {
+    public PartOutModel getByPoNumb(String ticket_no) {
         String sql = "SELECT * FROM trx_part_stock_out WHERE ticket_no = ?";
         RowMapper<PartOutModel> rowMapper = new PartsRowMapp();
-        PartOutModel partOutModel = jdbcTemplate.queryForObject(sql, rowMapper, po_number);
+        PartOutModel partOutModel = jdbcTemplate.queryForObject(sql, rowMapper, ticket_no);
         return partOutModel;
     }
 
