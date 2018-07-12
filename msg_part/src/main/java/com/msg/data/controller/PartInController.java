@@ -26,7 +26,7 @@ public class PartInController {
     //menambahkan data stock-in baru
     @RequestMapping(value = "/insert-part-in", method = RequestMethod.POST)
     public ResponseEntity<Void> createCluster(@RequestBody PartInModel partInModel, UriComponentsBuilder uriComponentsBuilder) {
-        if (partInService.isPartsInExist(partInModel.getPo_number()) == true) {
+        if (partInService.isPartsInExist(partInModel.getTicket_no()) == true) {
             partInService.insertPartsStock(partInModel);
             return new ResponseEntity(new ErrCode("201", "Data PO berhasil Disimpan"), HttpStatus.CREATED);
         }
