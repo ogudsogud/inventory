@@ -27,7 +27,7 @@ public class PartOutServiceImpl implements PartOutService {
         @Override
         public PartOutModel mapRow(ResultSet rs, int i) throws SQLException {
             PartOutModel partOutModel = new PartOutModel();
-            partOutModel.setPo_number(rs.getString("po_number"));
+            partOutModel.setTicket_no(rs.getString("ticket_no"));
             partOutModel.setPart_name(rs.getString("part_name"));
             partOutModel.setPart_number(rs.getString("part_number"));
             partOutModel.setTujuan(rs.getString("tujuan"));
@@ -54,10 +54,10 @@ public class PartOutServiceImpl implements PartOutService {
     @Override
     public boolean insertPartsOut(PartOutModel partOutModel) {
 
-        String sql = "INSERT INTO trx_part_stock_out (po_number, part_name, part_number, tujuan, description, quantity, requested_by, requested_on, approved_by, approved_on, status)" +
+        String sql = "INSERT INTO trx_part_stock_out (ticket_no, part_name, part_number, tujuan, description, quantity, requested_by, requested_on, approved_by, approved_on, status)" +
                 "VALUES (?,?,?,?,?,?,?,NOW(),?,NOW(),1)";
         jdbcTemplate.update(sql,
-                partOutModel.getPo_number(),
+                partOutModel.getTicket_no(),
                 partOutModel.getPart_name(),
                 partOutModel.getPart_number(),
                 partOutModel.getTujuan(),

@@ -5,7 +5,7 @@ package com.msg.data.model;
  */
 public class PartInModel {
 
-    private String po_number;
+    private String ticket_no;
     private String part_name;
     private String part_number;
     private String tujuan;
@@ -17,8 +17,8 @@ public class PartInModel {
     private String approved_on;
     private int status;
 
-    public PartInModel(String po_number, String part_name, String part_number, String tujuan, String description, int quantity, String returned_by, String returned_on, String approved_by, String approved_on, int status) {
-        this.po_number = po_number;
+    public PartInModel(String ticket_no, String part_name, String part_number, String tujuan, String description, int quantity, String returned_by, String returned_on, String approved_by, String approved_on, int status) {
+        this.ticket_no = ticket_no;
         this.part_name = part_name;
         this.part_number = part_number;
         this.tujuan = tujuan;
@@ -36,12 +36,12 @@ public class PartInModel {
 
     }
 
-    public String getPo_number() {
-        return po_number;
+    public String getTicket_no() {
+        return ticket_no;
     }
 
-    public void setPo_number(String po_number) {
-        this.po_number = po_number;
+    public void setTicket_no(String ticket_no) {
+        this.ticket_no = ticket_no;
     }
 
     public String getPart_name() {

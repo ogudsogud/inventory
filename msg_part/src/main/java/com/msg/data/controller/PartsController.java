@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.util.List;
@@ -15,24 +16,26 @@ import java.util.List;
  * Created by Ogudsogud on 7/7/2018.
  */
 @RestController
-@RequestMapping("msg/parts")
+@RequestMapping("/msg-parts")
 public class PartsController {
 
     @Autowired
     private PartsService partsService;
 
     //menampilkan data parts
-    @RequestMapping(value = "/get-new-parts", method = RequestMethod.GET)
-    public ResponseEntity<List<PartsModel>> getDataParts(){
+    @RequestMapping(value = "/list-new-parts", method = RequestMethod.GET)
+//    public ResponseEntity<List<PartsModel>> getDataParts(){
 
-//        ModelAndView modelAndView = new ModelAndView();
-//        List<PartsModel> list = partsService.getDataParts();
-//        modelAndView.addObject("part_list_master", list);
-//        modelAndView.setViewName("part_list_master");
-//        return modelAndView;
-
+        public ModelAndView getModelAndView(){
+        ModelAndView modelAndView = new ModelAndView();
         List<PartsModel> list = partsService.getDataParts();
-        return new ResponseEntity<List<PartsModel>>(list, HttpStatus.OK);
+
+        modelAndView.addObject("part_list_master", list);
+        modelAndView.setViewName("part_list_master");
+        return modelAndView;
+
+//        List<PartsModel> list = partsService.getDataParts();
+//        return new ResponseEntity<List<PartsModel>>(list, HttpStatus.OK);
     }
 
     //menambahkan data parts baru
