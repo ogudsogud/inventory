@@ -72,7 +72,7 @@ public class PartOutServiceImpl implements PartOutService {
     //jika insert parts-out sudah ada
     @Override
     public boolean isPartsOutExist(String po_number) {
-        String sql = "SELECT count(*) from trx_part_stock_out WHERE po_number = ?";
+        String sql = "SELECT count(*) from trx_part_stock_out WHERE ticket_no = ?";
         int count = jdbcTemplate.queryForObject(sql, Integer.class, po_number);
         if(count == 0) {
             return true;
@@ -84,7 +84,7 @@ public class PartOutServiceImpl implements PartOutService {
     //untuk mencari data parts berdasarkan parameter
     @Override
     public PartOutModel getByPoNumb(String po_number) {
-        String sql = "SELECT * FROM trx_part_stock_out WHERE po_number = ?";
+        String sql = "SELECT * FROM trx_part_stock_out WHERE ticket_no = ?";
         RowMapper<PartOutModel> rowMapper = new PartsRowMapp();
         PartOutModel partOutModel = jdbcTemplate.queryForObject(sql, rowMapper, po_number);
         return partOutModel;
