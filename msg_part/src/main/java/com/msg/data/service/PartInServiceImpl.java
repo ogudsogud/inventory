@@ -35,6 +35,7 @@ public class PartInServiceImpl implements PartInService{
             partInModel.setQuantity(rs.getInt("quantity"));
             partInModel.setReturned_by(rs.getString("returned_by"));
             partInModel.setReturned_on(rs.getString("returned_on"));
+            partInModel.setBad_part(rs.getString("bad_part"));
             partInModel.setApproved_by(rs.getString("approved_by"));
             partInModel.setApproved_on(rs.getString("approved_on"));
             return partInModel;
@@ -53,8 +54,10 @@ public class PartInServiceImpl implements PartInService{
     @Override
     public boolean insertPartsStock(PartInModel partInModel) {
 
-        String sql = "INSERT INTO trx_part_stock_in (ticket_no, part_name, part_number, tujuan, description, quantity, returned_by, returned_on, approved_by, approved_on, status)" +
-                "VALUES (?,?,?,?,?,?,?,NOW(),?,NOW(),1)";
+        String sql = "INSERT INTO trx_part_stock_in (ticket_no, part_name, " +
+                "part_number, tujuan, description, quantity, returned_by, " +
+                "returned_on, bad_part, approved_by, approved_on, status)" +
+                "VALUES (?,?,?,?,?,?,?,NOW(),?,?,NOW(),1)";
         jdbcTemplate.update(sql,
                 partInModel.getTicket_no(),
                 partInModel.getPart_name(),
@@ -63,6 +66,7 @@ public class PartInServiceImpl implements PartInService{
                 partInModel.getDescription(),
                 partInModel.getQuantity(),
                 partInModel.getReturned_by(),
+                partInModel.getBad_part(),
                 partInModel.getApproved_by()
         );
         return false;
