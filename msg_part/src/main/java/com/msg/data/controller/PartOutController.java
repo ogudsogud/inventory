@@ -25,7 +25,7 @@ public class PartOutController {
     //menambahkan data stock-out baru
     @RequestMapping(value = "/insert-part-out", method = RequestMethod.POST)
     public ResponseEntity<Void> createCluster(@RequestBody PartOutModel partOutModel, UriComponentsBuilder uriComponentsBuilder) {
-        if (partOutService.isPartsOutExist(partOutModel.getPo_number()) == true) {
+        if (partOutService.isPartsOutExist(partOutModel.getTicket_no()) == true) {
             partOutService.insertPartsOut(partOutModel);
             return new ResponseEntity(new ErrCode("201", "Data Stock Out berhasil Disimpan"), HttpStatus.CREATED);
         }
