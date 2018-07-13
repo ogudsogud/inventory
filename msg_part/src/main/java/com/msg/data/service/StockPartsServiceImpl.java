@@ -53,9 +53,11 @@ public class StockPartsServiceImpl implements StockPartsService {
 
     //untuk insert unit parts
     @Override
-    public boolean insertUnitPartsNew(StockPartsModel unitPartsModel) {
+    public boolean insertStockPartsNew(StockPartsModel unitPartsModel) {
 
-        String sql = "INSERT INTO mtr_unit_parts (part_number,unit_name, part_name, spesification, quantity, created_by, created_on, updated_by, updated_on,status)" +
+        String sql = "INSERT INTO mtr_unit_parts (part_number," +
+                "unit_name, part_name, spesification, quantity, " +
+                "created_by, created_on, updated_by, updated_on,status)" +
                 "VALUES (?,?,?,?,?,?,NOW(),?,NOW(),1)";
         jdbcTemplate.update(sql,
                 unitPartsModel.getPart_number(),
@@ -72,7 +74,7 @@ public class StockPartsServiceImpl implements StockPartsService {
 
     //jika insert parts baru sudah ada
     @Override
-    public boolean isPartsExist(String part_number) {
+    public boolean isStockPartsExist(String part_number) {
         String sql = "SELECT count(*) from mtr_unit_parts WHERE part_number = ? ";
         int count = jdbcTemplate.queryForObject(sql, Integer.class, part_number);
         if(count == 0) {
@@ -84,7 +86,7 @@ public class StockPartsServiceImpl implements StockPartsService {
 
     //untuk mencari data parts berdasarkan parameter
     @Override
-    public StockPartsModel getByUnitPartNumb(String part_number) {
+    public StockPartsModel getByStockPartNumb(String part_number) {
         String sql = "SELECT * FROM mtr_stock_parts WHERE part_number = ?";
         RowMapper<StockPartsModel> rowMapper = new PartsRowMapp();
         StockPartsModel stockPartsModel = jdbcTemplate.queryForObject(sql, rowMapper, part_number);
@@ -92,7 +94,7 @@ public class StockPartsServiceImpl implements StockPartsService {
     }
 
     @Override
-         public StockPartsModel getByUnitPartName(String part_name) {
+         public StockPartsModel getByStockPartName(String part_name) {
         String sql = "SELECT * FROM mtr_stock_parts WHERE part_name LIKE ?";
         RowMapper<StockPartsModel> rowMapper = new PartsRowMapp();
         StockPartsModel stockPartsModel = jdbcTemplate.queryForObject(sql, rowMapper, part_name);

@@ -9,18 +9,13 @@ import java.util.List;
  */
 public interface StockPartsService {
 
-
-    //untuk menampilkan data parts
     List<StockPartsModel> getDataParts();
 
-    //untuk insert unit parts
-    boolean insertUnitPartsNew(StockPartsModel stockPartsModel);
+    boolean insertStockPartsNew(StockPartsModel stockPartsModel);
 
-    //jika insert parts baru sudah ada
-    boolean isPartsExist(String part_number);
+    boolean isStockPartsExist(String part_number);
 
-    //untuk mencari data parts berdasarkan parameter
-    StockPartsModel getByUnitPartNumb(String part_number);
+    StockPartsModel getByStockPartNumb(String part_number);
 
-    StockPartsModel getByUnitPartName(String part_name);
+    StockPartsModel getByStockPartName(String part_name);
 }
