@@ -45,7 +45,7 @@ public class StockPartsServiceImpl implements StockPartsService {
 
     //untuk menampilkan data parts
     @Override
-    public List<StockPartsModel> getDataParts() {
+    public List<StockPartsModel> getDataStockParts() {
         String sql = "SELECT * FROM mtr_stock_parts";
         RowMapper<StockPartsModel> rowMapper = new PartsRowMapp();
         return this.jdbcTemplate.query(sql,rowMapper);

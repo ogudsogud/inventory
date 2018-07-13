@@ -28,14 +28,14 @@ public class StockPartsController {
 
         public ModelAndView getModelAndView(){
         ModelAndView modelAndView = new ModelAndView();
-        List<StockPartsModel> list = stockPartsService.getDataParts();
+        List<StockPartsModel> list = stockPartsService.getDataStockParts();
 
         modelAndView.addObject("part_list_master", list);
         modelAndView.setViewName("part_list_master");
         return modelAndView;
 
-//        List<PartsModel> list = partsService.getDataParts();
-//        return new ResponseEntity<List<PartsModel>>(list, HttpStatus.OK);
+//        List<StockPartsModel> list = stockPartsService.getDataParts();
+//        return new ResponseEntity<List<StockPartsModel>>(list, HttpStatus.OK);
     }
 
     //menambahkan data parts baru

@@ -9,7 +9,7 @@ import java.util.List;
  */
 public interface StockPartsService {
 
-    List<StockPartsModel> getDataParts();
+    List<StockPartsModel> getDataStockParts();
 
     boolean insertStockPartsNew(StockPartsModel stockPartsModel);
 
