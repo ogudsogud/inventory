@@ -42,7 +42,6 @@ public class UnitPartsModel {
     }
 
     public UnitPartsModel() {
-
     }
 
 
