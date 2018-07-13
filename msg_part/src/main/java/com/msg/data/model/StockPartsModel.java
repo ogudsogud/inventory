@@ -3,7 +3,7 @@ package com.msg.data.model;
 /**
  * Created by Ogudsogud on 7/7/2018.
  */
-public class UnitPartsModel {
+public class StockPartsModel {
 
     private String id_unit_parts;
     private String part_number;
@@ -17,7 +17,7 @@ public class UnitPartsModel {
     private String updated_on;
     private int status;
 
-    public UnitPartsModel(String id_unit_parts,
+    public StockPartsModel(String id_unit_parts,
                           String part_number,
                           String unit_name,
                           String part_name,
@@ -41,7 +41,7 @@ public class UnitPartsModel {
         this.status = status;
     }
 
-    public UnitPartsModel() {
+    public StockPartsModel() {
     }
 
 
