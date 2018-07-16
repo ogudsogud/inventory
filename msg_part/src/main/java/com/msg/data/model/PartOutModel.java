@@ -17,7 +17,10 @@ public class PartOutModel {
     private String approved_on;
     private int status;
 
-    public PartOutModel(String ticket_no, String part_name, String part_number, String tujuan, String description, int quantity, String requested_by, String requested_on, String approved_by, String approved_on, int status) {
+    public PartOutModel(String ticket_no, String part_name, String part_number,
+                        String tujuan, String description, int quantity,
+                        String requested_by, String requested_on,
+                        String approved_by, String approved_on, int status) {
         this.ticket_no = ticket_no;
         this.part_name = part_name;
         this.part_number = part_number;

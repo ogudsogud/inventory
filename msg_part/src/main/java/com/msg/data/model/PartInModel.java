@@ -18,7 +18,10 @@ public class PartInModel {
     private String approved_on;
     private int status;
 
-    public PartInModel(String ticket_no, String part_name, String part_number, String tujuan, String description, int quantity, String returned_by, String returned_on, String bad_part ,String approved_by, String approved_on, int status) {
+    public PartInModel(String ticket_no, String part_name, String part_number,
+                       String tujuan, String description, int quantity,
+                       String returned_by, String returned_on, String bad_part ,
+                       String approved_by, String approved_on, int status) {
         this.ticket_no = ticket_no;
         this.part_name = part_name;
         this.part_number = part_number;

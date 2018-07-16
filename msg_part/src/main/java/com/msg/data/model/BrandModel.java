@@ -1,23 +1,25 @@
 package com.msg.data.model;
 
 /**
- * Created by yoga.wiguna on 13/07/2018.
+ * Created by yoga.wiguna on 16/07/2018.
  */
-public class UnitPartsModel {
+public class BrandModel {
 
-    private int id_unit_parts;
-    private String unit_parts_name;
+    private int id_brand;
+    private String brand_name;
+    private String base_country;
     private String created_by;
     private String created_on;
     private String updated_by;
     private String updated_on;
     private int status;
 
-    public UnitPartsModel(int id_unit_parts, String unit_parts_name,
-                          String created_by, String created_on,
-                          String updated_by, String updated_on, int status) {
-        this.id_unit_parts = id_unit_parts;
-        this.unit_parts_name = unit_parts_name;
+    public BrandModel(int id_brand, String brand_name, String base_country,
+                      String created_by, String created_on,
+                      String updated_by, String updated_on, int status) {
+        this.id_brand = id_brand;
+        this.brand_name = brand_name;
+        this.base_country = base_country;
         this.created_by = created_by;
         this.created_on = created_on;
         this.updated_by = updated_by;
@@ -25,20 +27,28 @@ public class UnitPartsModel {
         this.status = status;
     }
 
-    public int getId_unit_parts() {
-        return id_unit_parts;
+    public int getId_brand() {
+        return id_brand;
     }
 
-    public void setId_unit_parts(int id_unit_parts) {
-        this.id_unit_parts = id_unit_parts;
+    public void setId_brand(int id_brand) {
+        this.id_brand = id_brand;
     }
 
-    public String getUnit_parts_name() {
-        return unit_parts_name;
+    public String getBrand_name() {
+        return brand_name;
     }
 
-    public void setUnit_parts_name(String unit_parts_name) {
-        this.unit_parts_name = unit_parts_name;
+    public void setBrand_name(String brand_name) {
+        this.brand_name = brand_name;
+    }
+
+    public String getBase_country() {
+        return base_country;
+    }
+
+    public void setBase_country(String base_country) {
+        this.base_country = base_country;
     }
 
     public String getCreated_by() {

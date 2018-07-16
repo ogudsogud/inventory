@@ -54,7 +54,9 @@ public class PartOutServiceImpl implements PartOutService {
     @Override
     public boolean insertPartsOut(PartOutModel partOutModel) {
 
-        String sql = "INSERT INTO trx_part_stock_out (ticket_no, part_name, part_number, tujuan, description, quantity, requested_by, requested_on, approved_by, approved_on, status)" +
+        String sql = "INSERT INTO trx_part_stock_out (ticket_no, part_name, part_number, " +
+                "tujuan, description, quantity, requested_by, requested_on, approved_by, " +
+                "approved_on, status)" +
                 "VALUES (?,?,?,?,?,?,?,NOW(),?,NOW(),1)";
         jdbcTemplate.update(sql,
                 partOutModel.getTicket_no(),
