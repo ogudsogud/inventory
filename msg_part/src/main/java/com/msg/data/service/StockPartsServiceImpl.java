@@ -27,16 +27,13 @@ public class StockPartsServiceImpl implements StockPartsService {
         @Override
         public StockPartsModel mapRow(ResultSet rs, int i) throws SQLException {
             StockPartsModel stockPartsModel = new StockPartsModel();
+            stockPartsModel.setId_stock_parts(rs.getInt("id_unit_parts"));
             stockPartsModel.setId_unit_parts(rs.getString("id_unit_parts"));
-            stockPartsModel.setPart_number(rs.getString("part_number"));
-            stockPartsModel.setUnit_name(rs.getString("unit_name"));
+            stockPartsModel.setUnit_parts_name(rs.getString("unit_parts_name"));
             stockPartsModel.setPart_name(rs.getString("part_name"));
             stockPartsModel.setSpesification(rs.getString("spesification"));
+            stockPartsModel.setBad_part(rs.getString("bad_part"));
             stockPartsModel.setQuantity(rs.getInt("quantity"));
-            stockPartsModel.setCreated_by(rs.getString("created_by"));
-            stockPartsModel.setCreated_on(rs.getString("created_on"));
-            stockPartsModel.setUpdated_by(rs.getString("updated_by"));
-            stockPartsModel.setUpdated_on(rs.getString("updated_on"));
             stockPartsModel.setStatus(rs.getInt("status"));
 
             return stockPartsModel;
@@ -53,21 +50,21 @@ public class StockPartsServiceImpl implements StockPartsService {
 
     //untuk insert unit parts
     @Override
-    public boolean insertStockPartsNew(StockPartsModel unitPartsModel) {
+    public boolean insertStockPartsNew(StockPartsModel stockPartsModel) {
 
-        String sql = "INSERT INTO mtr_unit_parts (part_number," +
-                "unit_name, part_name, spesification, quantity, " +
-                "created_by, created_on, updated_by, updated_on,status)" +
-                "VALUES (?,?,?,?,?,?,NOW(),?,NOW(),1)";
+        String sql = "INSERT INTO mtr_stock_parts (id_stock_parts, id_unit_parts,  part_number, " +
+                "unit_parts_name, part_name, bad_part, spesification, quantity, status)" +
+                "VALUES (?,?,?,?,?,?,?,?,1)";
         jdbcTemplate.update(sql,
-                unitPartsModel.getPart_number(),
-                unitPartsModel.getUnit_name(),
-                unitPartsModel.getPart_name(),
-                unitPartsModel.getSpesification(),
-                unitPartsModel.getQuantity(),
-                unitPartsModel.getCreated_by(),
-                unitPartsModel.getUpdated_by()
- );
+                stockPartsModel.getId_stock_parts(),
+                stockPartsModel.getId_unit_parts(),
+                stockPartsModel.getPart_number(),
+                stockPartsModel.getUnit_parts_name(),
+                stockPartsModel.getPart_name(),
+                stockPartsModel.getBad_part(),
+                stockPartsModel.getSpesification(),
+                stockPartsModel.getQuantity(),
+                stockPartsModel.getStatus());
 
         return false;
     }
@@ -75,7 +72,7 @@ public class StockPartsServiceImpl implements StockPartsService {
     //jika insert parts baru sudah ada
     @Override
     public boolean isStockPartsExist(String part_number) {
-        String sql = "SELECT count(*) from mtr_unit_parts WHERE part_number = ? ";
+        String sql = "SELECT count(*) from mtr_stock_parts WHERE part_number = ? ";
         int count = jdbcTemplate.queryForObject(sql, Integer.class, part_number);
         if(count == 0) {
             return true;
@@ -86,7 +83,7 @@ public class StockPartsServiceImpl implements StockPartsService {
 
     //untuk mencari data parts berdasarkan parameter
     @Override
-    public StockPartsModel getByStockPartNumb(String part_number) {
+    public StockPartsModel getPartNumb(String part_number) {
         String sql = "SELECT * FROM mtr_stock_parts WHERE part_number = ?";
         RowMapper<StockPartsModel> rowMapper = new PartsRowMapp();
         StockPartsModel stockPartsModel = jdbcTemplate.queryForObject(sql, rowMapper, part_number);

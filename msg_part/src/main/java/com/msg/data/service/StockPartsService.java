@@ -15,7 +15,7 @@ public interface StockPartsService {
 
     boolean isStockPartsExist(String part_number);
 
-    StockPartsModel getByStockPartNumb(String part_number);
+    StockPartsModel getPartNumb(String part_number);
 
     StockPartsModel getByStockPartName(String part_name);
 }

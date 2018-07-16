@@ -3,25 +3,26 @@ package com.msg.data.model;
 /**
  * Created by yoga.wiguna on 16/07/2018.
  */
-public class UnitInstitutionModel {
+public class UserManModel {
 
-    private int id_unit_institution;
-    private String id_institution;
-    private String unit_name;
-    private String address;
+    private int id_privilage;
+    private String id_user_group;
+    private String id_user;
+    private String access;
     private String created_by;
     private String created_on;
     private String updated_by;
     private String updated_on;
     private int status;
 
-    public UnitInstitutionModel(int id_unit_institution, String id_institution, String unit_name,
-                                String address, String created_by, String created_on,
-                                String updated_by, String updated_on, int status) {
-        this.id_unit_institution = id_unit_institution;
-        this.id_institution = id_institution;
-        this.unit_name = unit_name;
-        this.address = address;
+    public UserManModel(int id_privilage, String id_user_group,
+                        String id_user, String access,
+                        String created_by, String created_on,
+                        String updated_by, String updated_on, int status) {
+        this.id_privilage = id_privilage;
+        this.id_user_group = id_user_group;
+        this.id_user = id_user;
+        this.access = access;
         this.created_by = created_by;
         this.created_on = created_on;
         this.updated_by = updated_by;
@@ -29,36 +30,36 @@ public class UnitInstitutionModel {
         this.status = status;
     }
 
-    public int getId_unit_institution() {
-        return id_unit_institution;
+    public int getId_privilage() {
+        return id_privilage;
     }
 
-    public void setId_unit_institution(int id_unit_institution) {
-        this.id_unit_institution = id_unit_institution;
+    public void setId_privilage(int id_privilage) {
+        this.id_privilage = id_privilage;
     }
 
-    public String getId_institution() {
-        return id_institution;
+    public String getId_user_group() {
+        return id_user_group;
     }
 
-    public void setId_institution(String id_institution) {
-        this.id_institution = id_institution;
+    public void setId_user_group(String id_user_group) {
+        this.id_user_group = id_user_group;
     }
 
-    public String getUnit_name() {
-        return unit_name;
+    public String getId_user() {
+        return id_user;
     }
 
-    public void setUnit_name(String unit_name) {
-        this.unit_name = unit_name;
+    public void setId_user(String id_user) {
+        this.id_user = id_user;
     }
 
-    public String getAddress() {
-        return address;
+    public String getAccess() {
+        return access;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public void setAccess(String access) {
+        this.access = access;
     }
 
     public String getCreated_by() {

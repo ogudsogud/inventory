@@ -3,25 +3,28 @@ package com.msg.data.model;
 /**
  * Created by yoga.wiguna on 16/07/2018.
  */
-public class UnitInstitutionModel {
+public class UserModel {
 
-    private int id_unit_institution;
-    private String id_institution;
-    private String unit_name;
-    private String address;
+    private String nik;
+    private String name;
+    private String position;
+    private String email;
+    private String password;
     private String created_by;
     private String created_on;
     private String updated_by;
     private String updated_on;
     private int status;
 
-    public UnitInstitutionModel(int id_unit_institution, String id_institution, String unit_name,
-                                String address, String created_by, String created_on,
-                                String updated_by, String updated_on, int status) {
-        this.id_unit_institution = id_unit_institution;
-        this.id_institution = id_institution;
-        this.unit_name = unit_name;
-        this.address = address;
+    public UserModel(String nik, String name, String position,
+                     String email, String password,
+                     String created_by, String created_on,
+                     String updated_by, String updated_on, int status) {
+        this.nik = nik;
+        this.name = name;
+        this.position = position;
+        this.email = email;
+        this.password = password;
         this.created_by = created_by;
         this.created_on = created_on;
         this.updated_by = updated_by;
@@ -29,36 +32,44 @@ public class UnitInstitutionModel {
         this.status = status;
     }
 
-    public int getId_unit_institution() {
-        return id_unit_institution;
+    public String getNik() {
+        return nik;
     }
 
-    public void setId_unit_institution(int id_unit_institution) {
-        this.id_unit_institution = id_unit_institution;
+    public void setNik(String nik) {
+        this.nik = nik;
     }
 
-    public String getId_institution() {
-        return id_institution;
+    public String getName() {
+        return name;
     }
 
-    public void setId_institution(String id_institution) {
-        this.id_institution = id_institution;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getUnit_name() {
-        return unit_name;
+    public String getPosition() {
+        return position;
     }
 
-    public void setUnit_name(String unit_name) {
-        this.unit_name = unit_name;
+    public void setPosition(String position) {
+        this.position = position;
     }
 
-    public String getAddress() {
-        return address;
+    public String getEmail() {
+        return email;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getCreated_by() {

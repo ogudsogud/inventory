@@ -4,46 +4,42 @@ package com.msg.data.model;
  * Created by Ogudsogud on 7/7/2018.
  */
 public class StockPartsModel {
-
+    private int id_stock_parts;
     private String id_unit_parts;
     private String part_number;
-    private String unit_name;
+    private String unit_parts_name;
     private String part_name;
+    private String bad_part;
     private String spesification;
     private int quantity;
-    private String created_by;
-    private String created_on;
-    private String updated_by;
-    private String updated_on;
     private int status;
 
-    public StockPartsModel(String id_unit_parts,
-                          String part_number,
-                          String unit_name,
-                          String part_name,
-                          String spesification,
-                          int quantity,
-                          String created_by,
-                          String created_on,
-                          String updated_by,
-                          String updated_on,
-                          int status) {
+
+    public StockPartsModel(int id_stock_parts, String id_unit_parts,
+                           String part_number, String unit_parts_name,
+                           String part_name, String bad_part, String spesification, int quantity,
+                           int status) {
+        this.id_stock_parts = id_stock_parts;
         this.id_unit_parts = id_unit_parts;
         this.part_number = part_number;
-        this.unit_name = unit_name;
+        this.unit_parts_name = unit_parts_name;
         this.part_name = part_name;
+        this.bad_part = bad_part;
         this.spesification = spesification;
         this.quantity = quantity;
-        this.created_by = created_by;
-        this.created_on = created_on;
-        this.updated_by = updated_by;
-        this.updated_on = updated_on;
         this.status = status;
     }
 
     public StockPartsModel() {
     }
 
+    public int getId_stock_parts() {
+        return id_stock_parts;
+    }
+
+    public void setId_stock_parts(int id_stock_parts) {
+        this.id_stock_parts = id_stock_parts;
+    }
 
     public String getId_unit_parts() {
         return id_unit_parts;
@@ -61,12 +57,12 @@ public class StockPartsModel {
         this.part_number = part_number;
     }
 
-    public String getUnit_name() {
-        return unit_name;
+    public String getUnit_parts_name() {
+        return unit_parts_name;
     }
 
-    public void setUnit_name(String unit_name) {
-        this.unit_name = unit_name;
+    public void setUnit_parts_name(String unit_parts_name) {
+        this.unit_parts_name = unit_parts_name;
     }
 
     public String getPart_name() {
@@ -75,6 +71,14 @@ public class StockPartsModel {
 
     public void setPart_name(String part_name) {
         this.part_name = part_name;
+    }
+
+    public String getBad_part() {
+        return bad_part;
+    }
+
+    public void setBad_part(String bad_part) {
+        this.bad_part = bad_part;
     }
 
     public String getSpesification() {
@@ -91,38 +95,6 @@ public class StockPartsModel {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
-    }
-
-    public String getCreated_by() {
-        return created_by;
-    }
-
-    public void setCreated_by(String created_by) {
-        this.created_by = created_by;
-    }
-
-    public String getCreated_on() {
-        return created_on;
-    }
-
-    public void setCreated_on(String created_on) {
-        this.created_on = created_on;
-    }
-
-    public String getUpdated_by() {
-        return updated_by;
-    }
-
-    public void setUpdated_by(String updated_by) {
-        this.updated_by = updated_by;
-    }
-
-    public String getUpdated_on() {
-        return updated_on;
-    }
-
-    public void setUpdated_on(String updated_on) {
-        this.updated_on = updated_on;
     }
 
     public int getStatus() {
