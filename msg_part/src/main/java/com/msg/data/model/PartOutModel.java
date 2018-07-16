@@ -5,10 +5,13 @@ package com.msg.data.model;
  */
 public class PartOutModel {
 
+    private int id_stock_parts;
+    private int id_unit_institution;
     private String ticket_no;
     private String part_name;
     private String part_number;
-    private String tujuan;
+    private String institution_name;
+    private String unit_name;
     private String description;
     private int quantity;
     private String requested_by;
@@ -17,14 +20,18 @@ public class PartOutModel {
     private String approved_on;
     private int status;
 
-    public PartOutModel(String ticket_no, String part_name, String part_number,
-                        String tujuan, String description, int quantity,
+    public PartOutModel(int id_stock_parts, int id_unit_institution, String ticket_no, String part_name, String part_number,
+                        String institution_name, String unit_name, String description, int quantity,
                         String requested_by, String requested_on,
                         String approved_by, String approved_on, int status) {
+
+        this.id_stock_parts = id_stock_parts;
+        this.id_unit_institution = id_unit_institution;
         this.ticket_no = ticket_no;
         this.part_name = part_name;
         this.part_number = part_number;
-        this.tujuan = tujuan;
+        this.institution_name = institution_name;
+        this.unit_name = unit_name;
         this.description = description;
         this.quantity = quantity;
         this.requested_by = requested_by;
@@ -36,6 +43,22 @@ public class PartOutModel {
 
     public PartOutModel() {
 
+    }
+
+    public int getId_stock_parts() {
+        return id_stock_parts;
+    }
+
+    public void setId_stock_parts(int id_stock_parts) {
+        this.id_stock_parts = id_stock_parts;
+    }
+
+    public int getId_unit_institution() {
+        return id_unit_institution;
+    }
+
+    public void setId_unit_institution(int id_unit_institution) {
+        this.id_unit_institution = id_unit_institution;
     }
 
     public String getTicket_no() {
@@ -62,12 +85,21 @@ public class PartOutModel {
         this.part_number = part_number;
     }
 
-    public String getTujuan() {
-        return tujuan;
+
+    public String getInstitution_name() {
+        return institution_name;
     }
 
-    public void setTujuan(String tujuan) {
-        this.tujuan = tujuan;
+    public void setInstitution_name(String institution_name) {
+        this.institution_name = institution_name;
+    }
+
+    public String getUnit_name() {
+        return unit_name;
+    }
+
+    public void setUnit_name(String unit_name) {
+        this.unit_name = unit_name;
     }
 
     public String getDescription() {

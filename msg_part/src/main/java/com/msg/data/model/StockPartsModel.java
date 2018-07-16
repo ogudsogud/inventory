@@ -6,24 +6,28 @@ package com.msg.data.model;
 public class StockPartsModel {
     private int id_stock_parts;
     private String id_unit_parts;
+    private String id_brand;
     private String part_number;
     private String unit_parts_name;
     private String part_name;
+    private String brand_name;
     private String bad_part;
     private String spesification;
     private int quantity;
     private int status;
 
 
-    public StockPartsModel(int id_stock_parts, String id_unit_parts,
+    public StockPartsModel(int id_stock_parts, String id_unit_parts, String id_brand,
                            String part_number, String unit_parts_name,
-                           String part_name, String bad_part, String spesification, int quantity,
-                           int status) {
+                           String part_name, String brand_name, String bad_part,
+                           String spesification, int quantity, int status) {
         this.id_stock_parts = id_stock_parts;
         this.id_unit_parts = id_unit_parts;
+        this.id_brand = id_brand;
         this.part_number = part_number;
         this.unit_parts_name = unit_parts_name;
         this.part_name = part_name;
+        this.brand_name = brand_name;
         this.bad_part = bad_part;
         this.spesification = spesification;
         this.quantity = quantity;
@@ -53,6 +57,14 @@ public class StockPartsModel {
         return part_number;
     }
 
+    public String getId_brand() {
+        return id_brand;
+    }
+
+    public void setId_brand(String id_brand) {
+        this.id_brand = id_brand;
+    }
+
     public void setPart_number(String part_number) {
         this.part_number = part_number;
     }
@@ -71,6 +83,14 @@ public class StockPartsModel {
 
     public void setPart_name(String part_name) {
         this.part_name = part_name;
+    }
+
+    public String getBrand_name() {
+        return brand_name;
+    }
+
+    public void setBrand_name(String brand_name) {
+        this.brand_name = brand_name;
     }
 
     public String getBad_part() {
