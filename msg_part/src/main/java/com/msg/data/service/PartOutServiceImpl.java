@@ -28,11 +28,15 @@ public class PartOutServiceImpl implements PartOutService {
         public PartOutModel mapRow(ResultSet rs, int i) throws SQLException {
             PartOutModel partOutModel = new PartOutModel();
             partOutModel.setTicket_no(rs.getString("ticket_no"));
+            partOutModel.setPart_name(rs.getString("id_unit_parts"));
+            partOutModel.setPart_name(rs.getString("id_unit_institution"));
+            partOutModel.setPart_name(rs.getString("id_part_number"));
             partOutModel.setPart_name(rs.getString("part_name"));
-            partOutModel.setPart_number(rs.getString("part_number"));
-            partOutModel.setTujuan(rs.getString("tujuan"));
+            partOutModel.setPart_name(rs.getString("institution_name"));
+            partOutModel.setIns_unit_name(rs.getString("ins_unit_name"));
+            partOutModel.setUnit_parts_name(rs.getString("unit_parts_name"));
             partOutModel.setDescription(rs.getString("description"));
-            partOutModel.setQuantity(rs.getInt("quantity"));
+            partOutModel.setQuantity_unit(rs.getInt("quantity_unit"));
             partOutModel.setRequested_by(rs.getString("requested_by"));
             partOutModel.setRequested_on(rs.getString("requested_on"));
             partOutModel.setApproved_by(rs.getString("approved_by"));
@@ -54,19 +58,53 @@ public class PartOutServiceImpl implements PartOutService {
     @Override
     public boolean insertPartsOut(PartOutModel partOutModel) {
 
-        String sql = "INSERT INTO trx_part_stock_out (ticket_no, part_name, part_number, " +
-                "tujuan, description, quantity, requested_by, requested_on, approved_by, " +
-                "approved_on, status)" +
-                "VALUES (?,?,?,?,?,?,?,NOW(),?,NOW(),1)";
+        String sql = "INSERT INTO trx_part_stock_out (" +
+                "ticket_no," +
+                "id_unit_parts," +
+                "id_unit_institution, " +
+                "id_part_number, " +
+                "part_name, " +
+                "institution_name, " +
+                "ins_unit_name,  " +
+                "unit_parts_name, " +
+                "description, " +
+                "quantity_unit, " +
+                "requested_by, " +
+                "requested_on, " +
+                "approved_by, " +
+                "approved_on, " +
+                "status) " +
+
+                "VALUES (    ?," +
+                            "(SELECT id_unit_parts FROM mtr_unit_parts WHERE id_unit_parts = ? )," +
+                            "(SELECT id_unit_institution FROM mtr_unit_institution WHERE id_unit_institution = ?)," +
+                            "?," +
+                            "(SELECT part_name FROM mtr_parts WHERE id_part_number = ? )," +
+                            "(SELECT institution_name FROM mtr_unit_institution WHERE id_unit_institution = "+partOutModel.getId_unit_institution()+")," +
+                            "(SELECT ins_unit_name FROM mtr_unit_institution WHERE id_unit_institution = "+partOutModel.getId_unit_institution()+")," +
+                            "(SELECT unit_parts_name FROM mtr_unit_parts WHERE id_unit_parts = "+partOutModel.getId_unit_parts()+")," +
+                            "?," +
+                            "?," +
+                            "?," +
+                            "(SELECT NOW())," +
+                            "?," +
+                            "(SELECT NOW())," +
+                            "1)";
+
         jdbcTemplate.update(sql,
                 partOutModel.getTicket_no(),
+                partOutModel.getId_unit_parts(),
+                partOutModel.getId_unit_institution(),
+                partOutModel.getId_part_number(),
                 partOutModel.getPart_name(),
-                partOutModel.getPart_number(),
-                partOutModel.getTujuan(),
+//                partOutModel.getInstitution_name(),
+//                partOutModel.getIns_unit_name(),
+//                partOutModel.getUnit_parts_name(),
                 partOutModel.getDescription(),
-                partOutModel.getQuantity(),
+                partOutModel.getQuantity_unit(),
                 partOutModel.getRequested_by(),
                 partOutModel.getApproved_by()
+//                partOutModel.getStatus()
         );
         return false;
     }

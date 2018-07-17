@@ -25,6 +25,10 @@ public class UnitPartsModel {
         this.status = status;
     }
 
+    public UnitPartsModel() {
+
+    }
+
     public int getId_unit_parts() {
         return id_unit_parts;
     }

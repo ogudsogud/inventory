@@ -5,35 +5,37 @@ package com.msg.data.model;
  */
 public class PartOutModel {
 
+    private String ticket_no;
     private int id_unit_parts;
     private int id_unit_institution;
-    private String ticket_no;
+    private String id_part_number;
     private String part_name;
-    private String part_number;
     private String institution_name;
-    private String unit_name;
+    private String ins_unit_name;
+    private String unit_parts_name;
     private String description;
-    private int quantity;
+    private int quantity_unit;
     private String requested_by;
     private String requested_on;
     private String approved_by;
     private String approved_on;
     private int status;
 
-    public PartOutModel(int id_unit_parts, int id_unit_institution, String ticket_no, String part_name, String part_number,
-                        String institution_name, String unit_name, String description, int quantity,
-                        String requested_by, String requested_on,
-                        String approved_by, String approved_on, int status) {
 
+    public PartOutModel(String ticket_no, int id_unit_parts, int id_unit_institution, String id_part_number,
+                        String part_name, String institution_name, String ins_unit_name, String unit_parts_name,
+                        String description, int quantity_unit, String requested_by, String requested_on,
+                        String approved_by, String approved_on, int status) {
+        this.ticket_no = ticket_no;
         this.id_unit_parts = id_unit_parts;
         this.id_unit_institution = id_unit_institution;
-        this.ticket_no = ticket_no;
+        this.id_part_number = id_part_number;
         this.part_name = part_name;
-        this.part_number = part_number;
         this.institution_name = institution_name;
-        this.unit_name = unit_name;
+        this.ins_unit_name = ins_unit_name;
+        this.unit_parts_name = unit_parts_name;
         this.description = description;
-        this.quantity = quantity;
+        this.quantity_unit = quantity_unit;
         this.requested_by = requested_by;
         this.requested_on = requested_on;
         this.approved_by = approved_by;
@@ -43,6 +45,15 @@ public class PartOutModel {
 
     public PartOutModel() {
 
+    }
+
+
+    public String getTicket_no() {
+        return ticket_no;
+    }
+
+    public void setTicket_no(String ticket_no) {
+        this.ticket_no = ticket_no;
     }
 
     public int getId_unit_parts() {
@@ -61,12 +72,12 @@ public class PartOutModel {
         this.id_unit_institution = id_unit_institution;
     }
 
-    public String getTicket_no() {
-        return ticket_no;
+    public String getId_part_number() {
+        return id_part_number;
     }
 
-    public void setTicket_no(String ticket_no) {
-        this.ticket_no = ticket_no;
+    public void setId_part_number(String id_part_number) {
+        this.id_part_number = id_part_number;
     }
 
     public String getPart_name() {
@@ -77,15 +88,6 @@ public class PartOutModel {
         this.part_name = part_name;
     }
 
-    public String getPart_number() {
-        return part_number;
-    }
-
-    public void setPart_number(String part_number) {
-        this.part_number = part_number;
-    }
-
-
     public String getInstitution_name() {
         return institution_name;
     }
@@ -94,12 +96,20 @@ public class PartOutModel {
         this.institution_name = institution_name;
     }
 
-    public String getUnit_name() {
-        return unit_name;
+    public String getIns_unit_name() {
+        return ins_unit_name;
     }
 
-    public void setUnit_name(String unit_name) {
-        this.unit_name = unit_name;
+    public void setIns_unit_name(String ins_unit_name) {
+        this.ins_unit_name = ins_unit_name;
+    }
+
+    public String getUnit_parts_name() {
+        return unit_parts_name;
+    }
+
+    public void setUnit_parts_name(String unit_parts_name) {
+        this.unit_parts_name = unit_parts_name;
     }
 
     public String getDescription() {
@@ -110,12 +120,12 @@ public class PartOutModel {
         this.description = description;
     }
 
-    public int getQuantity() {
-        return quantity;
+    public int getQuantity_unit() {
+        return quantity_unit;
     }
 
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
+    public void setQuantity_unit(int quantity_unit) {
+        this.quantity_unit = quantity_unit;
     }
 
     public String getRequested_by() {
