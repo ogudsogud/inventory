@@ -19,13 +19,15 @@ public class PartOutModel {
     private String requested_on;
     private String approved_by;
     private String approved_on;
+    private String updated_by;
+    private String updated_on;
     private int status;
 
 
     public PartOutModel(String ticket_no, int id_unit_parts, int id_unit_institution, String id_part_number,
                         String part_name, String institution_name, String ins_unit_name, String unit_parts_name,
                         String description, int quantity_unit, String requested_by, String requested_on,
-                        String approved_by, String approved_on, int status) {
+                        String approved_by, String approved_on, String updated_by, String updated_on, int status) {
         this.ticket_no = ticket_no;
         this.id_unit_parts = id_unit_parts;
         this.id_unit_institution = id_unit_institution;
@@ -40,6 +42,8 @@ public class PartOutModel {
         this.requested_on = requested_on;
         this.approved_by = approved_by;
         this.approved_on = approved_on;
+        this.updated_by = updated_by;
+        this.updated_on = updated_on;
         this.status = status;
     }
 
@@ -158,6 +162,22 @@ public class PartOutModel {
 
     public void setApproved_on(String approved_on) {
         this.approved_on = approved_on;
+    }
+
+    public String getUpdated_by() {
+        return updated_by;
+    }
+
+    public void setUpdated_by(String updated_by) {
+        this.updated_by = updated_by;
+    }
+
+    public String getUpdated_on() {
+        return updated_on;
+    }
+
+    public void setUpdated_on(String updated_on) {
+        this.updated_on = updated_on;
     }
 
     public int getStatus() {
