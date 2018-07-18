@@ -27,17 +27,22 @@ public class PartInServiceImpl implements PartInService{
         @Override
         public PartInModel mapRow(ResultSet rs, int i) throws SQLException {
             PartInModel partInModel = new PartInModel();
-            partInModel.setPart_number(rs.getString("ticket_no"));
+            partInModel.setTicket_no(rs.getString("ticket_no"));
+            partInModel.setId_unit_parts(rs.getString("id_unit_parts"));
+            partInModel.setId_unit_institution(rs.getString("id_unit_institution"));
+            partInModel.setId_part_number(rs.getString("id_part_number"));
             partInModel.setPart_name(rs.getString("part_name"));
-            partInModel.setPart_number(rs.getString("part_number"));
-            partInModel.setTujuan(rs.getString("tujuan"));
+            partInModel.setInstitution_name(rs.getString("institution_name"));
+            partInModel.setIns_unit_name(rs.getString("ins_unit_name"));
+            partInModel.setUnit_parts_name(rs.getString("unit_parts_name"));
             partInModel.setDescription(rs.getString("description"));
-            partInModel.setQuantity(rs.getInt("quantity"));
+            partInModel.setQuantity_unit(rs.getInt("quantity_unit"));
+            partInModel.setBad_part(rs.getString("bad_part"));
             partInModel.setReturned_by(rs.getString("returned_by"));
             partInModel.setReturned_on(rs.getString("returned_on"));
-            partInModel.setBad_part(rs.getString("bad_part"));
             partInModel.setApproved_by(rs.getString("approved_by"));
             partInModel.setApproved_on(rs.getString("approved_on"));
+            partInModel.setStatus(rs.getInt("status"));
             return partInModel;
         }
     }
@@ -54,20 +59,56 @@ public class PartInServiceImpl implements PartInService{
     @Override
     public boolean insertPartsStock(PartInModel partInModel) {
 
-        String sql = "INSERT INTO trx_part_stock_in (ticket_no, part_name, " +
-                "part_number, tujuan, description, quantity, returned_by, " +
-                "returned_on, bad_part, approved_by, approved_on, status)" +
-                "VALUES (?,?,?,?,?,?,?,NOW(),?,?,NOW(),1)";
+        String sql = "INSERT INTO trx_part_stock_in (" +
+                "                ticket_no," +
+                "                id_unit_parts," +
+                "                id_unit_institution," +
+                "                id_part_number," +
+                "                part_name," +
+                "                institution_name," +
+                "                ins_unit_name," +
+                "                unit_parts_name," +
+                "                description," +
+                "                quantity_unit," +
+                "                bad_part," +
+                "                returned_by," +
+                "                returned_on," +
+                "                approved_by," +
+                "                approved_on," +
+                "                status)" +
+                "                VALUES    ( ?," +
+                "                            (SELECT id_unit_parts FROM mtr_stok_unit_parts WHERE id_unit_parts = ? )," +
+                "                            (SELECT id_unit_institution FROM mtr_unit_institution WHERE id_unit_institution = ?)," +
+                "                            ?," +
+                "                            (SELECT part_name FROM mtr_parts WHERE id_part_number = ? )," +
+                "                            (SELECT institution_name FROM mtr_unit_institution WHERE id_unit_institution = "+partInModel.getId_unit_institution()+")," +
+                "                            (SELECT ins_unit_name FROM mtr_unit_institution WHERE id_unit_institution = "+partInModel.getId_unit_institution()+")," +
+                "                            (SELECT unit_parts_name FROM mtr_stok_unit_parts WHERE id_unit_parts = "+partInModel.getId_unit_parts()+")," +
+                "                            ?," +
+                "                            ?," +
+                "                            ?," +
+                "                            ?," +
+                "                            (SELECT NOW())," +
+                "                            ?," +
+                "                            (SELECT NOW())," +
+                "                            1)";
         jdbcTemplate.update(sql,
                 partInModel.getTicket_no(),
-                partInModel.getPart_name(),
-                partInModel.getPart_number(),
-                partInModel.getTujuan(),
+                partInModel.getId_unit_parts(),
+                partInModel.getId_unit_institution(),
+                partInModel.getId_part_number(),
+//                partInModel.getPart_name(),
+//                partInModel.getInstitution_name(),
+//                partInModel.getIns_unit_name(),
+//                partInModel.getUnit_parts_name(),
                 partInModel.getDescription(),
-                partInModel.getQuantity(),
-                partInModel.getReturned_by(),
+                partInModel.getQuantity_unit(),
                 partInModel.getBad_part(),
+                partInModel.getReturned_by(),
+//                partInModel.getReturned_on(),
                 partInModel.getApproved_by()
+//                partInModel.getApproved_on(),
+//                partInModel.getStatus()
         );
         return false;
     }
@@ -87,7 +128,7 @@ public class PartInServiceImpl implements PartInService{
     //untuk mencari data parts berdasarkan parameter
     @Override
     public PartInModel getByPoNumb(String ticket_no) {
-        String sql = "SELECT * FROM trx_part_stock_in WHERE ticket_no = ?";
+            String sql = "SELECT * FROM trx_part_stock_in WHERE ticket_no = ?";
         RowMapper<PartInModel> rowMapper = new PartsRowMapp();
         PartInModel partInModel = jdbcTemplate.queryForObject(sql, rowMapper, ticket_no);
         return partInModel;

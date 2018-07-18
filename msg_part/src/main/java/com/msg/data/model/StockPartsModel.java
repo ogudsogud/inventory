@@ -17,10 +17,10 @@ public class StockPartsModel {
     private String created_on;
     private String updated_by;
     private String updated_on;
-    private String status;
+    private int status;
 
 
-    public StockPartsModel(String id_unit_parts, String id_brand, String unit_parts_name, String id_part_number, String part_name, String brand_name, String spesification, String bad_part, int quantity_unit, String created_by, String created_on, String updated_by, String updated_on, String status) {
+    public StockPartsModel(String id_unit_parts, String id_brand, String unit_parts_name, String id_part_number, String part_name, String brand_name, String spesification, String bad_part, int quantity_unit, String created_by, String created_on, String updated_by, String updated_on, int status) {
         this.id_unit_parts = id_unit_parts;
         this.id_brand = id_brand;
         this.unit_parts_name = unit_parts_name;
@@ -146,11 +146,11 @@ public class StockPartsModel {
         this.updated_on = updated_on;
     }
 
-    public String getStatus() {
+    public int getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(int status) {
         this.status = status;
     }
 }

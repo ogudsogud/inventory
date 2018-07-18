@@ -27,13 +27,19 @@ public class StockPartsServiceImpl implements StockPartsService {
         @Override
         public StockPartsModel mapRow(ResultSet rs, int i) throws SQLException {
             StockPartsModel stockPartsModel = new StockPartsModel();
-            stockPartsModel.setId_stock_parts(rs.getInt("id_unit_parts"));
             stockPartsModel.setId_unit_parts(rs.getString("id_unit_parts"));
+            stockPartsModel.setId_brand(rs.getString("id_brand"));
             stockPartsModel.setUnit_parts_name(rs.getString("unit_parts_name"));
+            stockPartsModel.setId_part_number(rs.getString("id_part_number"));
             stockPartsModel.setPart_name(rs.getString("part_name"));
-            stockPartsModel.setSpesification(rs.getString("spesification"));
+            stockPartsModel.setBrand_name(rs.getString("brand_name"));
+            stockPartsModel.setSpesification(rs.getString("specification"));
             stockPartsModel.setBad_part(rs.getString("bad_part"));
-            stockPartsModel.setQuantity(rs.getInt("quantity"));
+            stockPartsModel.setQuantity_unit(rs.getInt("quantity_unit"));
+            stockPartsModel.setCreated_by(rs.getString("created_by"));
+            stockPartsModel.setCreated_on(rs.getString("created_on"));
+            stockPartsModel.setUpdated_by(rs.getString("updated_by"));
+            stockPartsModel.setUpdated_on(rs.getString("updated_on"));
             stockPartsModel.setStatus(rs.getInt("status"));
 
             return stockPartsModel;
@@ -52,19 +58,38 @@ public class StockPartsServiceImpl implements StockPartsService {
     @Override
     public boolean insertStockPartsNew(StockPartsModel stockPartsModel) {
 
-        String sql = "INSERT INTO mtr_stock_parts (id_stock_parts, id_unit_parts,  part_number, " +
-                "unit_parts_name, part_name, bad_part, spesification, quantity, status)" +
-                "VALUES (?,?,?,?,?,?,?,?,1)";
+        String sql = "INSERT INTO mtr_stock_parts (" +
+                "                id_unit_parts," +
+                "                id_brand," +
+                "                unit_parts_name," +
+                "                id_part_number," +
+                "                part_name," +
+                "                brand_name," +
+                "                specification," +
+                "                bad_part," +
+                "                quantity_unit," +
+                "                created_by," +
+                "                created_on," +
+                "                updated_by," +
+                "                updated_on," +
+                "                status)" +
+                "                VALUES ( ?,?,?,?,?,?,?,?,?,?,NOW(),?,NOW(),1)";
         jdbcTemplate.update(sql,
-                stockPartsModel.getId_stock_parts(),
                 stockPartsModel.getId_unit_parts(),
-                stockPartsModel.getPart_number(),
+                stockPartsModel.getId_brand(),
                 stockPartsModel.getUnit_parts_name(),
+                stockPartsModel.getId_part_number(),
                 stockPartsModel.getPart_name(),
-                stockPartsModel.getBad_part(),
+                stockPartsModel.getBrand_name(),
                 stockPartsModel.getSpesification(),
-                stockPartsModel.getQuantity(),
-                stockPartsModel.getStatus());
+                stockPartsModel.getBad_part(),
+                stockPartsModel.getQuantity_unit(),
+                stockPartsModel.getCreated_by(),
+//                stockPartsModel.getCreated_on(),
+                stockPartsModel.getUpdated_by()
+//                stockPartsModel.getUpdated_on(),
+//                stockPartsModel.getStatus()
+ );
 
         return false;
     }

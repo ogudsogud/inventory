@@ -76,13 +76,13 @@ public class PartOutServiceImpl implements PartOutService {
                 "status) " +
 
                 "VALUES (    ?," +
-                            "(SELECT id_unit_parts FROM mtr_unit_parts WHERE id_unit_parts = ? )," +
+                            "(SELECT id_unit_parts FROM mtr_stok_unit_parts WHERE id_unit_parts = ? )," +
                             "(SELECT id_unit_institution FROM mtr_unit_institution WHERE id_unit_institution = ?)," +
                             "?," +
-                            "(SELECT part_name FROM mtr_parts WHERE id_part_number = ? )," +
+                            "(SELECT part_name FROM mtr_stok_parts WHERE id_part_number = ? )," +
                             "(SELECT institution_name FROM mtr_unit_institution WHERE id_unit_institution = "+partOutModel.getId_unit_institution()+")," +
                             "(SELECT ins_unit_name FROM mtr_unit_institution WHERE id_unit_institution = "+partOutModel.getId_unit_institution()+")," +
-                            "(SELECT unit_parts_name FROM mtr_unit_parts WHERE id_unit_parts = "+partOutModel.getId_unit_parts()+")," +
+                            "(SELECT unit_parts_name FROM mtr_stok_unit_parts WHERE id_unit_parts = "+partOutModel.getId_unit_parts()+")," +
                             "?," +
                             "?," +
                             "?," +
