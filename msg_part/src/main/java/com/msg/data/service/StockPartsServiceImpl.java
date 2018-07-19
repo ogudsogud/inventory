@@ -96,9 +96,9 @@ public class StockPartsServiceImpl implements StockPartsService {
 
     //jika insert parts baru sudah ada
     @Override
-    public boolean isStockPartsExist(String part_number) {
-        String sql = "SELECT count(*) from mtr_stock_parts WHERE part_number = ? ";
-        int count = jdbcTemplate.queryForObject(sql, Integer.class, part_number);
+    public boolean isStockPartsExist(String id_part_number) {
+        String sql = "SELECT count(*) from mtr_stock_parts WHERE id_part_number = ? ";
+        int count = jdbcTemplate.queryForObject(sql, Integer.class, id_part_number);
         if(count == 0) {
             return true;
         } else {
@@ -108,10 +108,10 @@ public class StockPartsServiceImpl implements StockPartsService {
 
     //untuk mencari data parts berdasarkan parameter
     @Override
-    public StockPartsModel getPartNumb(String part_number) {
-        String sql = "SELECT * FROM mtr_stock_parts WHERE part_number = ?";
+    public StockPartsModel getPartNumb(String id_part_number) {
+        String sql = "SELECT * FROM mtr_stock_parts WHERE id_part_number = ?";
         RowMapper<StockPartsModel> rowMapper = new PartsRowMapp();
-        StockPartsModel stockPartsModel = jdbcTemplate.queryForObject(sql, rowMapper, part_number);
+        StockPartsModel stockPartsModel = jdbcTemplate.queryForObject(sql, rowMapper, id_part_number);
         return stockPartsModel;
     }
 

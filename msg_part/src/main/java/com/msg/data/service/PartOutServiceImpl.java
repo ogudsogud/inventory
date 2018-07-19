@@ -41,6 +41,8 @@ public class PartOutServiceImpl implements PartOutService {
             partOutModel.setRequested_on(rs.getString("requested_on"));
             partOutModel.setApproved_by(rs.getString("approved_by"));
             partOutModel.setApproved_on(rs.getString("approved_on"));
+            partOutModel.setUpdated_by(rs.getString("updated_by"));
+            partOutModel.setUpdated_on(rs.getString("updated_on"));
             partOutModel.setStatus(rs.getInt("status"));
             return partOutModel;
         }
@@ -73,37 +75,28 @@ public class PartOutServiceImpl implements PartOutService {
                 "requested_on, " +
                 "approved_by, " +
                 "approved_on, " +
+                "updated_by, " +
+                "updated_on, " +
                 "status) " +
 
-                "VALUES (    ?," +
-                            "(SELECT id_unit_parts FROM mtr_stok_unit_parts WHERE id_unit_parts = ? )," +
-                            "(SELECT id_unit_institution FROM mtr_unit_institution WHERE id_unit_institution = ?)," +
-                            "?," +
-                            "(SELECT part_name FROM mtr_stok_parts WHERE id_part_number = ? )," +
-                            "(SELECT institution_name FROM mtr_unit_institution WHERE id_unit_institution = "+partOutModel.getId_unit_institution()+")," +
-                            "(SELECT ins_unit_name FROM mtr_unit_institution WHERE id_unit_institution = "+partOutModel.getId_unit_institution()+")," +
-                            "(SELECT unit_parts_name FROM mtr_stok_unit_parts WHERE id_unit_parts = "+partOutModel.getId_unit_parts()+")," +
-                            "?," +
-                            "?," +
-                            "?," +
-                            "(SELECT NOW())," +
-                            "?," +
-                            "(SELECT NOW())," +
-                            "1)";
-
+                "VALUES (    ?, ?,?,?,?,?,?,?,?,?,?,(SELECT NOW()),?,(SELECT NOW()),?,(SELECT NOW()),1)";
         jdbcTemplate.update(sql,
                 partOutModel.getTicket_no(),
                 partOutModel.getId_unit_parts(),
                 partOutModel.getId_unit_institution(),
                 partOutModel.getId_part_number(),
                 partOutModel.getPart_name(),
-//                partOutModel.getInstitution_name(),
-//                partOutModel.getIns_unit_name(),
-//                partOutModel.getUnit_parts_name(),
+                partOutModel.getInstitution_name(),
+                partOutModel.getIns_unit_name(),
+                partOutModel.getUnit_parts_name(),
                 partOutModel.getDescription(),
                 partOutModel.getQuantity_unit(),
                 partOutModel.getRequested_by(),
-                partOutModel.getApproved_by()
+//                partOutModel.getRequested_on(),
+                partOutModel.getApproved_by(),
+//                partOutModel.getApproved_on(),
+                partOutModel.getUpdated_by()
+//                partOutModel.getUpdated_on()
 //                partOutModel.getStatus()
         );
         return false;

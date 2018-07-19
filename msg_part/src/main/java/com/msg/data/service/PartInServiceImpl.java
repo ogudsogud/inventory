@@ -60,47 +60,32 @@ public class PartInServiceImpl implements PartInService{
     public boolean insertPartsStock(PartInModel partInModel) {
 
         String sql = "INSERT INTO trx_part_stock_in (" +
-                "                ticket_no," +
-                "                id_unit_parts," +
-                "                id_unit_institution," +
-                "                id_part_number," +
-                "                part_name," +
-                "                institution_name," +
-                "                ins_unit_name," +
-                "                unit_parts_name," +
-                "                description," +
-                "                quantity_unit," +
-                "                bad_part," +
-                "                returned_by," +
-                "                returned_on," +
-                "                approved_by," +
-                "                approved_on," +
-                "                status)" +
-                "                VALUES    ( ?," +
-                "                            (SELECT id_unit_parts FROM mtr_stok_unit_parts WHERE id_unit_parts = ? )," +
-                "                            (SELECT id_unit_institution FROM mtr_unit_institution WHERE id_unit_institution = ?)," +
-                "                            ?," +
-                "                            (SELECT part_name FROM mtr_parts WHERE id_part_number = ? )," +
-                "                            (SELECT institution_name FROM mtr_unit_institution WHERE id_unit_institution = "+partInModel.getId_unit_institution()+")," +
-                "                            (SELECT ins_unit_name FROM mtr_unit_institution WHERE id_unit_institution = "+partInModel.getId_unit_institution()+")," +
-                "                            (SELECT unit_parts_name FROM mtr_stok_unit_parts WHERE id_unit_parts = "+partInModel.getId_unit_parts()+")," +
-                "                            ?," +
-                "                            ?," +
-                "                            ?," +
-                "                            ?," +
-                "                            (SELECT NOW())," +
-                "                            ?," +
-                "                            (SELECT NOW())," +
-                "                            1)";
+                                "ticket_no," +
+                                "id_unit_parts," +
+                                "id_unit_institution," +
+                                "id_part_number," +
+                                "part_name," +
+                                "institution_name," +
+                                "ins_unit_name," +
+                                "unit_parts_name," +
+                                "description," +
+                                "quantity_unit," +
+                                "bad_part," +
+                                "returned_by," +
+                                "returned_on," +
+                                "approved_by," +
+                                "approved_on," +
+                                "status)" +
+                        "VALUES (?,?,?,?,,,,?,?,?,?,(SELECT NOW()),?,(SELECT NOW()),1)";
         jdbcTemplate.update(sql,
                 partInModel.getTicket_no(),
                 partInModel.getId_unit_parts(),
                 partInModel.getId_unit_institution(),
                 partInModel.getId_part_number(),
-//                partInModel.getPart_name(),
-//                partInModel.getInstitution_name(),
-//                partInModel.getIns_unit_name(),
-//                partInModel.getUnit_parts_name(),
+                partInModel.getPart_name(),
+                partInModel.getInstitution_name(),
+                partInModel.getIns_unit_name(),
+                partInModel.getUnit_parts_name(),
                 partInModel.getDescription(),
                 partInModel.getQuantity_unit(),
                 partInModel.getBad_part(),
