@@ -26,11 +26,9 @@ public class StockPartsController {
     //menampilkan data parts
     @RequestMapping(value = "/part-list", method = RequestMethod.GET)
 //    public ResponseEntity<List<StockPartsModel>> getDataParts(){
-
-        public ModelAndView getModelAndView(){
+    public ModelAndView getModelAndView(){
         ModelAndView modelAndView = new ModelAndView();
         List<StockPartsModel> list = stockPartsService.getDataStockParts();
-
         modelAndView.addObject("partlist", list);
         modelAndView.setViewName("partlist");
         return modelAndView;
@@ -47,27 +45,25 @@ public class StockPartsController {
 //            return new ResponseEntity(new ErrCode("201", "Data Part berhasil Disimpan"), HttpStatus.CREATED);
 //        }
 //            return  new ResponseEntity(new ErrCode("409", "Data Part sudah ada"), HttpStatus.CONFLICT);
-        public ModelAndView addEmployee() {
-            ModelAndView model = new ModelAndView();
-
-            StockPartsModel stockPartsModel = new StockPartsModel();
-            model.addObject("partForm", stockPartsModel);
-
-            model.setViewName("partlist_form");
-            return model;
+    public ModelAndView TambahStockPart() {
+        ModelAndView modelAndView = new ModelAndView();
+        StockPartsModel stockPartsModel = new StockPartsModel();
+        modelAndView.addObject("partForm", stockPartsModel);
+        modelAndView.setViewName("partlist_form");
+        return modelAndView;
     }
 
     //mancari data parts berdasarkan parameter
     @RequestMapping(value = "/parts-number={partnum}", method = RequestMethod.GET)
     public ResponseEntity<StockPartsModel> getByPartNum(@PathVariable("partnum") String partnum) {
-        StockPartsModel stockPartsModel = stockPartsService.getPartNumb(partnum);
+        StockPartsModel stockPartsModel = stockPartsService.getByIdPartNumb(partnum);
         return new ResponseEntity<StockPartsModel>(stockPartsModel, HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/parts-name={partname}", method = RequestMethod.GET)
-    public ResponseEntity<StockPartsModel> getByPartName(@PathVariable("partname") String partname) {
-        StockPartsModel stockPartsModel = stockPartsService.getByStockPartName(partname);
-        return new ResponseEntity<StockPartsModel>(stockPartsModel, HttpStatus.OK);
-    }
+//    @RequestMapping(value = "/parts-name={partname}", method = RequestMethod.GET)
+//    public ResponseEntity<StockPartsModel> getByPartName(@PathVariable("partname") String partname) {
+//        StockPartsModel stockPartsModel = stockPartsService.getByStockPartName(partname);
+//        return new ResponseEntity<StockPartsModel>(stockPartsModel, HttpStatus.OK);
+//    }
 
 }

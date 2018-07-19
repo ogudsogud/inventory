@@ -15,7 +15,11 @@ public interface StockPartsService {
 
     boolean isStockPartsExist(String id_part_number);
 
-    StockPartsModel getPartNumb(String id_part_number);
+    StockPartsModel getByIdUnit(String id_unit_parts);
 
-    StockPartsModel getByStockPartName(String part_name);
+    StockPartsModel getByIdBrand(String id_brand);
+
+    StockPartsModel getByIdPartNumb(String id_part_number);
+
+    void updatePart(StockPartsModel stockPartsModel);
 }

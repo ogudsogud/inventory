@@ -4,13 +4,14 @@ package com.msg.data.model;
  * Created by Ogudsogud on 7/7/2018.
  */
 public class StockPartsModel {
+    private int id_mtr_stocks_parts;
     private String id_unit_parts;
     private String id_brand;
     private String unit_parts_name;
     private String id_part_number;
     private String part_name;
     private String brand_name;
-    private String spesification;
+    private String specification;
     private String bad_part;
     private int quantity_unit;
     private String created_by;
@@ -20,14 +21,15 @@ public class StockPartsModel {
     private int status;
 
 
-    public StockPartsModel(String id_unit_parts, String id_brand, String unit_parts_name, String id_part_number, String part_name, String brand_name, String spesification, String bad_part, int quantity_unit, String created_by, String created_on, String updated_by, String updated_on, int status) {
+    public StockPartsModel(int id_mtr_stocks_parts, String id_unit_parts, String id_brand, String unit_parts_name, String id_part_number, String part_name, String brand_name, String specification, String bad_part, int quantity_unit, String created_by, String created_on, String updated_by, String updated_on, int status) {
+        this.id_mtr_stocks_parts = id_mtr_stocks_parts;
         this.id_unit_parts = id_unit_parts;
         this.id_brand = id_brand;
         this.unit_parts_name = unit_parts_name;
         this.id_part_number = id_part_number;
         this.part_name = part_name;
         this.brand_name = brand_name;
-        this.spesification = spesification;
+        this.specification = specification;
         this.bad_part = bad_part;
         this.quantity_unit = quantity_unit;
         this.updated_by = created_by;
@@ -40,6 +42,14 @@ public class StockPartsModel {
     public StockPartsModel() {
     }
 
+
+    public int getId_mtr_stocks_parts() {
+        return id_mtr_stocks_parts;
+    }
+
+    public void setId_mtr_stocks_parts(int id_mtr_stocks_parts) {
+        this.id_mtr_stocks_parts = id_mtr_stocks_parts;
+    }
 
     public String getId_unit_parts() {
         return id_unit_parts;
@@ -89,12 +99,12 @@ public class StockPartsModel {
         this.brand_name = brand_name;
     }
 
-    public String getSpesification() {
-        return spesification;
+    public String getSpecification() {
+        return specification;
     }
 
-    public void setSpesification(String spesification) {
-        this.spesification = spesification;
+    public void setSpecification(String specification) {
+        this.specification = specification;
     }
 
     public String getBad_part() {
@@ -112,7 +122,6 @@ public class StockPartsModel {
     public void setQuantity_unit(int quantity_unit) {
         this.quantity_unit = quantity_unit;
     }
-
 
     public String getCreated_by() {
         return created_by;

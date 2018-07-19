@@ -33,7 +33,7 @@ public class StockPartsServiceImpl implements StockPartsService {
             stockPartsModel.setId_part_number(rs.getString("id_part_number"));
             stockPartsModel.setPart_name(rs.getString("part_name"));
             stockPartsModel.setBrand_name(rs.getString("brand_name"));
-            stockPartsModel.setSpesification(rs.getString("specification"));
+            stockPartsModel.setSpecification(rs.getString("specification"));
             stockPartsModel.setBad_part(rs.getString("bad_part"));
             stockPartsModel.setQuantity_unit(rs.getInt("quantity_unit"));
             stockPartsModel.setCreated_by(rs.getString("created_by"));
@@ -81,7 +81,7 @@ public class StockPartsServiceImpl implements StockPartsService {
                 stockPartsModel.getId_part_number(),
                 stockPartsModel.getPart_name(),
                 stockPartsModel.getBrand_name(),
-                stockPartsModel.getSpesification(),
+                stockPartsModel.getSpecification(),
                 stockPartsModel.getBad_part(),
                 stockPartsModel.getQuantity_unit(),
                 stockPartsModel.getCreated_by(),
@@ -107,21 +107,69 @@ public class StockPartsServiceImpl implements StockPartsService {
     }
 
     //untuk mencari data parts berdasarkan parameter
+
     @Override
-    public StockPartsModel getPartNumb(String id_part_number) {
+    public StockPartsModel getByIdUnit(String id_unit_parts) {
+        String sql = "SELECT * FROM mtr_stock_parts WHERE id_unit_parts = ?";
+        RowMapper<StockPartsModel> rowMapper = new PartsRowMapp();
+        StockPartsModel stockPartsModel = jdbcTemplate.queryForObject(sql, rowMapper, id_unit_parts);
+        return stockPartsModel;
+    }
+
+    @Override
+    public StockPartsModel getByIdBrand(String id_brand) {
+        String sql = "SELECT * FROM mtr_stock_parts WHERE id_brand = ?";
+        RowMapper<StockPartsModel> rowMapper = new PartsRowMapp();
+        StockPartsModel stockPartsModel = jdbcTemplate.queryForObject(sql, rowMapper, id_brand);
+        return stockPartsModel;
+    }
+
+    @Override
+    public StockPartsModel getByIdPartNumb(String id_part_number) {
         String sql = "SELECT * FROM mtr_stock_parts WHERE id_part_number = ?";
         RowMapper<StockPartsModel> rowMapper = new PartsRowMapp();
         StockPartsModel stockPartsModel = jdbcTemplate.queryForObject(sql, rowMapper, id_part_number);
         return stockPartsModel;
     }
 
+
+    //untuk update data parts
+
     @Override
-         public StockPartsModel getByStockPartName(String part_name) {
-        String sql = "SELECT * FROM mtr_stock_parts WHERE part_name LIKE ?";
-        RowMapper<StockPartsModel> rowMapper = new PartsRowMapp();
-        StockPartsModel stockPartsModel = jdbcTemplate.queryForObject(sql, rowMapper, part_name);
-        return stockPartsModel;
+    public void updatePart(StockPartsModel stockPartsModel) {
+        String sql = "UPDATE mtr_stock_parts SET " +
+                "id_unit_parts = ?, " +
+                "id_brand = ?, " +
+                "unit_parts_name = ?, " +
+                "id_part_number = ? , " +
+                "part_name = ?, " +
+                "brand_name = ?, " +
+                "specification = ?, " +
+                "bad_part = ?, " +
+                "quantity_unit = ?, " +
+//                "created_by = ?, " +
+//                "created_on = now(), " +
+                "updated_by = ?, " +
+                "updated_on = now() WHERE " +
+                "id_mtr_stocks_parts = ?";
+        jdbcTemplate.update(sql,
+                stockPartsModel.getId_unit_parts(),
+                stockPartsModel.getId_brand(),
+                stockPartsModel.getUnit_parts_name(),
+                stockPartsModel.getId_part_number(),
+                stockPartsModel.getPart_name(),
+                stockPartsModel.getBrand_name(),
+                stockPartsModel.getSpecification(),
+                stockPartsModel.getBad_part(),
+                stockPartsModel.getQuantity_unit(),
+//                stockPartsModel.getCreated_by(),
+//                stockPartsModel.getCreated_on(),
+                stockPartsModel.getUpdated_by(),
+//                stockPartsModel.getUpdated_on(),
+                stockPartsModel.getStatus(),
+                stockPartsModel.getId_mtr_stocks_parts());
     }
+
 
 
 //    @Override

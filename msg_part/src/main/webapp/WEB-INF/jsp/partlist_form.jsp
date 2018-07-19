@@ -23,8 +23,8 @@
 </head>
 <body>
 <div class="container">
-  <spring:url value="/employee/save" var="saveURL" />
-  <h2>Employee</h2>
+  <spring:url value="/msg/save" var="saveURL" />
+  <h2>PART LIST</h2>
   <form:form modelAttribute="partForm" method="post" action="${saveURL }" cssClass="form">
     <form:hidden path="id_unit_parts"/>
     <div class="form-group">
@@ -44,8 +44,8 @@
       <form:input path="brand_name" cssClass="form-control" id="brand_name" />
     </div>
     <div class="form-group">
-      <lable for="spesification">Spesifikasi</lable>
-      <form:input path="spesification" cssClass="form-control" id="spesification" />
+      <lable for="specification">Spesifikasi</lable>
+      <form:input path="specification" cssClass="form-control" id="specification" />
     </div>
     <button type="submit" class="btn btn-primary">Save</button>
   </form:form>
