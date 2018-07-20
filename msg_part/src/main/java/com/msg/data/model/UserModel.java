@@ -32,6 +32,10 @@ public class UserModel {
         this.status = status;
     }
 
+    public UserModel() {
+
+    }
+
     public String getNik() {
         return nik;
     }

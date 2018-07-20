@@ -13,7 +13,6 @@ public interface UnitPartsService {
 
     void updateUnitPart(UnitPartsModel unitPartsModel);
 
-    //untuk menampilkan data unit
     List<UnitPartsModel> getDataUnit();
 
     UnitPartsModel getByIdUnitPart(String id_unit_parts);

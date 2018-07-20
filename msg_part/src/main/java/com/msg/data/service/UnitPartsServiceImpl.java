@@ -29,7 +29,7 @@ public class UnitPartsServiceImpl implements UnitPartsService {
             UnitPartsModel unitPartsModel = new UnitPartsModel();
             unitPartsModel.setId_unit_parts(rs.getInt("id_unit_parts"));
             unitPartsModel.setUnit_parts_name(rs.getString("unit_parts_name"));
-            unitPartsModel.setQuantity_unit(rs.getInt("id_unit_parts"));
+            unitPartsModel.setQuantity_unit(rs.getInt("quantity_unit"));
             unitPartsModel.setCreated_by(rs.getString("created_by"));
             unitPartsModel.setCreated_on(rs.getString("created_on"));
             unitPartsModel.setUpdated_by(rs.getString("updated_by"));
@@ -74,7 +74,6 @@ public class UnitPartsServiceImpl implements UnitPartsService {
     public void updateUnitPart(UnitPartsModel unitPartsModel) {
         String sql = "UPDATE mtr_stock_unit_parts SET " +
                 "unit_parts_name = ?, " +
-                "bad_parts = ?, " +
                 "quantity_unit = ?, " +
 //                "created_by = ?, " +
 //                "created_on = now(), " +
@@ -83,7 +82,6 @@ public class UnitPartsServiceImpl implements UnitPartsService {
                 "id_unit_parts = ?";
         jdbcTemplate.update(sql,
                 unitPartsModel.getUnit_parts_name(),
-                unitPartsModel.getBad_parts(),
                 unitPartsModel.getQuantity_unit(),
 //                unitPartsModel.getCreated_by(),
 //                unitPartsModel.getCreated_on(),
