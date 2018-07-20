@@ -1,4 +1,5 @@
 com\msg\data\model\BrandModel.class
+com\msg\data\service\UserService.class
 com\msg\data\service\UnitPartsServiceImpl$PartsRowMapp.class
 com\msg\data\model\StockPartsModel.class
 com\msg\data\controller\StockPartsController.class
@@ -14,6 +15,7 @@ com\msg\data\service\StockPartsServiceImpl.class
 com\msg\data\service\UnitPartsService.class
 com\msg\data\model\UnitPartsModel.class
 com\msg\data\service\PartOutService.class
+com\msg\data\service\UserServiceImpl$PartsRowMapp.class
 MainParts.class
 com\msg\data\service\PartOutServiceImpl$PartsRowMapp.class
 com\msg\data\model\UserGroupModel.class
@@ -22,6 +24,8 @@ com\msg\data\model\InstitutionModel.class
 com\msg\data\model\PartInModel.class
 com\msg\data\model\UserModel.class
 com\msg\data\controller\PartInController.class
+com\msg\data\service\UserServiceImpl.class
 com\msg\data\model\PartOutModel.class
 com\msg\data\service\UnitPartsServiceImpl.class
 com\msg\data\service\PartOutServiceImpl.class
+com\msg\data\service\UserServiceImpl$1.class
