@@ -19,4 +19,6 @@ public interface PartOutService {
     PartOutModel getByPoNumb(String ticket_no);
 
     PartOutModel getByPartNumb(String part_number);
+
+    void deleteByTicket(String ticket_no);
 }

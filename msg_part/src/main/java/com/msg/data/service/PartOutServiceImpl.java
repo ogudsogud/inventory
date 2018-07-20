@@ -51,7 +51,7 @@ public class PartOutServiceImpl implements PartOutService {
     //untuk menampilkan data parts stock-out
     @Override
     public List<PartOutModel> getPartsStockOut() {
-        String sql = "SELECT * FROM trx_part_stock_out";
+        String sql = "SELECT * FROM trx_part_stock_out WHERE status = 1";
         RowMapper<PartOutModel> rowMapper = new PartsRowMapp();
         return this.jdbcTemplate.query(sql,rowMapper);
     }
@@ -129,6 +129,13 @@ public class PartOutServiceImpl implements PartOutService {
         RowMapper<PartOutModel> rowMapper = new PartsRowMapp();
         PartOutModel partOutModel = jdbcTemplate.queryForObject(sql, rowMapper, part_number);
         return partOutModel;
+    }
+
+    //menghapus data part yg keluar
+    @Override
+    public void deleteByTicket(String ticket_no) {
+        String sql = "UPDATE trx_part_stock_out SET status = 0 WHERE ticket_no = ?";
+        jdbcTemplate.update(sql, ticket_no);
     }
 
 }

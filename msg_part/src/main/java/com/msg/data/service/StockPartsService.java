@@ -22,4 +22,6 @@ public interface StockPartsService {
     StockPartsModel getByIdPartNumb(String id_part_number);
 
     void updatePart(StockPartsModel stockPartsModel);
+
+    void deleteByIdStok(String id_stocks_parts);
 }

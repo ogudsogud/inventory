@@ -49,7 +49,7 @@ public class StockPartsServiceImpl implements StockPartsService {
     //untuk menampilkan data parts
     @Override
     public List<StockPartsModel> getDataStockParts() {
-        String sql = "SELECT * FROM mtr_stock_parts";
+        String sql = "SELECT * FROM mtr_stock_parts WHERE status = 1";
         RowMapper<StockPartsModel> rowMapper = new PartsRowMapp();
         return this.jdbcTemplate.query(sql,rowMapper);
     }
@@ -167,28 +167,13 @@ public class StockPartsServiceImpl implements StockPartsService {
                 stockPartsModel.getUpdated_by(),
 //                stockPartsModel.getUpdated_on(),
                 stockPartsModel.getStatus(),
-                stockPartsModel.getId_mtr_stocks_parts());
+                stockPartsModel.getId_stocks_parts());
     }
 
-
-
-//    @Override
-//    public User getByUserPassword(final String username, final String password) {
-//
-//        try {
-//            User user = this.jdbcTemplate.queryForObject("SELECT * FROM t_mtr_user WHERE username = ? and password = ?",
-//                    new Object[]{username, password},
-//                    new RowMapper<User>() {
-//                        public User mapRow(ResultSet rs, int rowNum) throws SQLException {
-//                            User user = new User();
-//                            user.setUsername(rs.getString(username));
-//                            user.setPassword(rs.getString(password));
-//                            return user;
-//                        }
-//                    });
-//            return user;
-//        }catch (EmptyResultDataAccessException e) {
-//            return null;
-//        }
-//    }
+    //menghapus Stok part
+    @Override
+    public void deleteByIdStok(String id_stocks_parts) {
+        String sql = "UPDATE mtr_stock_parts SET status = 0 where id_stocks_parts = ?";
+        jdbcTemplate.update(sql, id_stocks_parts);
+    }
 }

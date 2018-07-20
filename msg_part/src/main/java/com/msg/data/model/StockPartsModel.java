@@ -4,7 +4,7 @@ package com.msg.data.model;
  * Created by Ogudsogud on 7/7/2018.
  */
 public class StockPartsModel {
-    private int id_mtr_stocks_parts;
+    private int id_stocks_parts;
     private String id_unit_parts;
     private String id_brand;
     private String unit_parts_name;
@@ -21,8 +21,8 @@ public class StockPartsModel {
     private int status;
 
 
-    public StockPartsModel(int id_mtr_stocks_parts, String id_unit_parts, String id_brand, String unit_parts_name, String id_part_number, String part_name, String brand_name, String specification, String bad_part, int quantity_unit, String created_by, String created_on, String updated_by, String updated_on, int status) {
-        this.id_mtr_stocks_parts = id_mtr_stocks_parts;
+    public StockPartsModel(int id_stocks_parts, String id_unit_parts, String id_brand, String unit_parts_name, String id_part_number, String part_name, String brand_name, String specification, String bad_part, int quantity_unit, String created_by, String created_on, String updated_by, String updated_on, int status) {
+        this.id_stocks_parts = id_stocks_parts;
         this.id_unit_parts = id_unit_parts;
         this.id_brand = id_brand;
         this.unit_parts_name = unit_parts_name;
@@ -43,12 +43,12 @@ public class StockPartsModel {
     }
 
 
-    public int getId_mtr_stocks_parts() {
-        return id_mtr_stocks_parts;
+    public int getId_stocks_parts() {
+        return id_stocks_parts;
     }
 
-    public void setId_mtr_stocks_parts(int id_mtr_stocks_parts) {
-        this.id_mtr_stocks_parts = id_mtr_stocks_parts;
+    public void setId_stocks_parts(int id_stocks_parts) {
+        this.id_stocks_parts = id_stocks_parts;
     }
 
     public String getId_unit_parts() {
