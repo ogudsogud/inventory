@@ -45,7 +45,6 @@ public class UnitPartsServiceImpl implements UnitPartsService {
         public boolean insertUnitParts(UnitPartsModel partsModel) {
 
             String sql = "INSERT INTO mtr_stock_unit_parts (" +
-                    "                id_unit_parts," +
                     "                unit_parts_name," +
                     "                quantity_unit," +
                     "                created_by," +
@@ -53,9 +52,8 @@ public class UnitPartsServiceImpl implements UnitPartsService {
                     "                updated_by," +
                     "                updated_on," +
                     "                status)" +
-                    "                VALUES ( ?,?,?,?,NOW(),?,NOW(),1)";
+                    "                VALUES ( ?,?,?,NOW(),?,NOW(),1)";
             jdbcTemplate.update(sql,
-                    partsModel.getId_unit_parts(),
                     partsModel.getUnit_parts_name(),
                     partsModel.getQuantity_unit(),
                     partsModel.getCreated_by(),
@@ -68,8 +66,15 @@ public class UnitPartsServiceImpl implements UnitPartsService {
             return false;
         }
 
-    //untuk update data unit
+    //untuk mencari nama unit di combo
+    @Override
+    public List<UnitPartsModel> getUnitName() {
+        String sql = "SELECT * FROM mtr_stock_unit_parts WHERE status = 1";
+        RowMapper<UnitPartsModel> rowMapper = new PartsRowMapp();
+        return this.jdbcTemplate.query(sql,rowMapper);
+    }
 
+    //untuk update data unit
     @Override
     public void updateUnitPart(UnitPartsModel unitPartsModel) {
         String sql = "UPDATE mtr_stock_unit_parts SET " +

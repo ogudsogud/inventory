@@ -33,6 +33,10 @@ public class UnitPartsModel {
 
     }
 
+    public UnitPartsModel(int id_brand, String brand_name) {
+
+    }
+
     public int getId_unit_parts() {
         return id_unit_parts;
     }

@@ -27,6 +27,9 @@ public class BrandModel {
         this.status = status;
     }
 
+    public BrandModel() {
+    }
+
     public int getId_brand() {
         return id_brand;
     }

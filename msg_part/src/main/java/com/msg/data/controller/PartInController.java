@@ -42,8 +42,8 @@ public class PartInController {
 
     //mancari data parts berdasarkan parameter
     @RequestMapping(value = "/po-number={po}", method = RequestMethod.GET)
-    public ResponseEntity<PartInModel> getByPartNum(@PathVariable("partnum") String po) {
-        PartInModel partInModel = partInService.getByPoNumb(po);
+    public ResponseEntity<PartInModel> getByPartNum(@PathVariable("partnum") String ticket_no) {
+        PartInModel partInModel = partInService.getTicketNo(ticket_no);
         return new ResponseEntity<PartInModel>(partInModel, HttpStatus.OK);
     }
 

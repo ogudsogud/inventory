@@ -11,6 +11,8 @@ public interface UnitPartsService {
 
     boolean insertUnitParts(UnitPartsModel partsModel);
 
+    List<UnitPartsModel> getUnitName();
+
     void updateUnitPart(UnitPartsModel unitPartsModel);
 
     List<UnitPartsModel> getDataUnit();
