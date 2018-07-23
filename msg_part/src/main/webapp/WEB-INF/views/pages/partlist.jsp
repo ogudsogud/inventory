@@ -14,15 +14,12 @@
 </head>
 <body>
 <div class="container">
-  <spring:url value="/employee/save" var="saveURL" />
   <h2>Part List</h2>
   <table class="table table-striped">
     <thead>
     <tr>
-      <%--<th scope="row">ID Parts</th>--%>
-      <%--<th scope="row">ID Brand</th>--%>
-        <th scope="row">Nama Part Unit</th>
         <th scope="row">ID Part Number</th>
+        <th scope="row">Nama Part Unit</th>
         <th scope="row">Nama Parts</th>
         <th scope="row">Nama Brand</th>
         <th scope="row">Spesifikasi</th>
@@ -36,17 +33,14 @@
     </tr>
     </thead>
     <tbody>
-    <c:forEach items="${stockpartlist }" var="msg" >
+    <c:forEach items="${partList }" var="msg" >
       <tr>
-        <%--<td>${msg.id_unit_parts}</td>--%>
-        <%--<td>${msg.id_brand}</td>--%>
-          <td>${msg.unit_parts_name }</td>
           <td>${msg.id_part_number }</td>
+          <td>${msg.unit_parts_name }</td>
           <td>${msg.part_name }</td>
           <td>${msg.brand_name }</td>
           <td>${msg.specification }</td>
           <td>${msg.bad_part }</td>
-          <td>${msg.quantity_unit }</td>
           <td>${msg.created_by }</td>
           <td>${msg.created_on }</td>
           <td>${msg.updated_by }</td>
@@ -54,18 +48,18 @@
 
 
         <td>
-          <spring:url value="/msg/update/${msg.id_unit_parts }" var="updateURL" />
+          <spring:url value="/msg/parts-update/${msg.id_mtr_parts }" var="updateURL" />
           <a class="btn btn-primary" href="${updateURL }" role="button">Update</a>
         </td>
         <td>
-          <spring:url value="/msg/delete/${msg.id_unit_parts }" var="deleteURL" />
+          <spring:url value="/msg/parts-delete/${msg.id_mtr_parts }" var="deleteURL" />
           <a class="btn btn-primary" href="${deleteURL }" role="button">Delete</a>
         </td>
       </tr>
     </c:forEach>
     </tbody>
   </table>
-  <spring:url value="/msg/insert-new-parts" var="addURL" />
+  <spring:url value="/msg/parts-add" var="addURL" />
   <a class="btn btn-primary" href="${addURL }" role="button">TAMBAH PARTS</a>
 </div>
 </body>

@@ -13,7 +13,7 @@ public interface PartsService {
 
     boolean insertPartsNew(PartsModel partsModel);
 
-    boolean isStockPartsExist(String id_part_number);
+    boolean isPartsExist(String id_part_number);
 
     PartsModel getByUnitName(String unit_parts_name);
 
@@ -21,5 +21,5 @@ public interface PartsService {
 
     void updatePart(PartsModel partsModel);
 
-    void deleteByIdStok(String id_mtr_parts);
+    void deleteById(String id_mtr_parts);
 }

@@ -20,28 +20,65 @@ public class PartsController {
     @Autowired
     private PartsService partsService;
 
-    @RequestMapping(value="/insert-new-parts", method=RequestMethod.POST)
-    public ModelAndView saveOrUpdate(@ModelAttribute("partform") PartsModel partsModel) {
-        if(partsModel.getId_part_number() != null) {
 
-            System.out.println("Data Part Number Sudah ada");
-        } else {
-            partsService.insertPartsNew(partsModel);
-        }
+    @RequestMapping(value="/parts-add", method=RequestMethod.GET)
+    public ModelAndView addParts() {
+        ModelAndView model = new ModelAndView();
 
-        return new ModelAndView("redirect:/msg/part-list");
+        PartsModel partsModel = new PartsModel();
+        model.addObject("partForm", partsModel);
+
+        model.setViewName("partform");
+        return model;
     }
 
+
+    @RequestMapping(value="/parts-save", method=RequestMethod.POST)
+    public ModelAndView saveOrUpdate(@ModelAttribute("partForm") PartsModel partsModel) {
+        if(partsService.isPartsExist(partsModel.getId_part_number()) == true) {
+
+            partsService.insertPartsNew(partsModel);
+
+        } else {
+            System.out.println("Data Part Number Sudah ada");
+        }
+
+        return new ModelAndView("redirect:/msg/parts-list");
+    }
+
+
+
     //menampilkan data parts
-    @RequestMapping(value = "/part-list", method = RequestMethod.GET)
+    @RequestMapping(value = "/parts-list", method = RequestMethod.GET)
     public ModelAndView getModelAndView(){
         ModelAndView modelAndView = new ModelAndView();
         List<PartsModel> list = partsService.getDataParts();
-        modelAndView.addObject("stockpartlist", list);
-        modelAndView.setViewName("stockpartlist");
+        modelAndView.addObject("partList", list);
+        modelAndView.setViewName("partlist");
         return modelAndView;
 
     }
+
+    @RequestMapping(value="/parts-update/{id_mtr_parts}", method=RequestMethod.GET)
+    public ModelAndView editParts(@PathVariable String id_mtr_parts) {
+        ModelAndView model = new ModelAndView();
+
+        PartsModel partsModel = partsService.getByIdPartNumb(id_mtr_parts);
+        model.addObject("partForm", partsModel);
+
+        model.setViewName("partform");
+        return model;
+    }
+
+
+    @RequestMapping(value="/parts-delete/{parts_number}", method=RequestMethod.GET)
+    public ModelAndView deleteEmployee(@PathVariable("parts_number") String id_mtr_parts) {
+        partsService.deleteById(id_mtr_parts);
+
+        return new ModelAndView("redirect:/msg/parts-list");
+    }
+
+
 
     //mancari data parts berdasarkan parameter
     @RequestMapping(value = "/parts-number={partnum}", method = RequestMethod.GET)

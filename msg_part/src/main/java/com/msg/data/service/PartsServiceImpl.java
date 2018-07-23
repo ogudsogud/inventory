@@ -73,7 +73,6 @@ public class PartsServiceImpl implements PartsService {
 
 
 
-    //untuk insert unit parts
     @Override
     public boolean insertPartsNew(PartsModel partsModel) {
 
@@ -84,16 +83,16 @@ public class PartsServiceImpl implements PartsService {
                 "                brand_name," +
                 "                specification," +
                 "                bad_part," +
-                "                quantity_unit," +
+//                "                quantity_unit," +
                 "                created_by," +
                 "                created_on," +
                 "                updated_by," +
                 "                updated_on," +
                 "                status)" +
-                "                VALUES ( ?,?,?,?,?,?,?,?,NOW(),?,NOW(),1)";
+                "                VALUES ( ?,?,?,?,?,?,?,NOW(),?,NOW(),1)";
         jdbcTemplate.update(sql,
-                partsModel.getUnit_parts_name(),
                 partsModel.getId_part_number(),
+                partsModel.getUnit_parts_name(),
                 partsModel.getPart_name(),
                 partsModel.getBrand_name(),
                 partsModel.getSpecification(),
@@ -109,10 +108,8 @@ public class PartsServiceImpl implements PartsService {
     }
 
 
-
-    //jika insert parts baru sudah ada
     @Override
-    public boolean isStockPartsExist(String id_part_number) {
+    public boolean isPartsExist(String id_part_number) {
         String sql = "SELECT count(*) from mtr_parts WHERE id_part_number = ? ";
         int count = jdbcTemplate.queryForObject(sql, Integer.class, id_part_number);
         if(count == 0) {
@@ -122,7 +119,6 @@ public class PartsServiceImpl implements PartsService {
         }
     }
 
-    //untuk mencari data parts berdasarkan parameter
     @Override
     public PartsModel getByUnitName(String unit_parts_name) {
         String sql = "SELECT * FROM mtr_parts WHERE unit_parts_name = ?";
@@ -142,9 +138,6 @@ public class PartsServiceImpl implements PartsService {
 
 
 
-
-
-    //untuk update data parts
     @Override
     public void updatePart(PartsModel partsModel) {
         String sql = "UPDATE mtr_parts SET " +
@@ -174,9 +167,8 @@ public class PartsServiceImpl implements PartsService {
                 partsModel.getId_mtr_parts());
     }
 
-    //menghapus Stok part
     @Override
-    public void deleteByIdStok(String id_mtr_parts) {
+    public void deleteById(String id_mtr_parts) {
         String sql = "UPDATE mtr_parts SET status = 0 where id_mtr_parts = ?";
         jdbcTemplate.update(sql, id_mtr_parts);
     }

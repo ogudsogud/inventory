@@ -1,8 +1,8 @@
 package com.msg.data.controller;
 
 import com.msg.data.model.ErrCode;
-import com.msg.data.model.PartOutModel;
-import com.msg.data.service.PartOutService;
+import com.msg.data.model.TrxPartOutModel;
+import com.msg.data.service.TrxPartOutService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,14 +17,14 @@ import java.util.List;
 
 @RestController
 @RequestMapping("msg/parts/stock-out")
-public class PartOutController {
+public class TrxPartOutController {
 
     @Autowired
-    private PartOutService partOutService;
+    private TrxPartOutService partOutService;
 
     //menambahkan data stock-out baru
     @RequestMapping(value = "/insert-part-out", method = RequestMethod.POST)
-    public ResponseEntity<Void> createCluster(@RequestBody PartOutModel partOutModel, UriComponentsBuilder uriComponentsBuilder) {
+    public ResponseEntity<Void> createCluster(@RequestBody TrxPartOutModel partOutModel, UriComponentsBuilder uriComponentsBuilder) {
         if (partOutService.isPartsOutExist(partOutModel.getTicket_no()) == true) {
             partOutService.insertPartsOut(partOutModel);
             return new ResponseEntity(new ErrCode("201", "Data Stock Out berhasil Disimpan"), HttpStatus.CREATED);
@@ -34,16 +34,16 @@ public class PartOutController {
 
     //menampilkan data stock yg keluar
     @RequestMapping(value = "/get-out-parts", method = RequestMethod.GET)
-    public ResponseEntity<List<PartOutModel>> getDataParts(){
-        List<PartOutModel> list = partOutService.getPartsStockOut();
-        return new ResponseEntity<List<PartOutModel>>(list, HttpStatus.OK);
+    public ResponseEntity<List<TrxPartOutModel>> getDataParts(){
+        List<TrxPartOutModel> list = partOutService.getPartsStockOut();
+        return new ResponseEntity<List<TrxPartOutModel>>(list, HttpStatus.OK);
     }
 
     //mancari data parts berdasarkan parameter
     @RequestMapping(value = "/po-number={po}", method = RequestMethod.GET)
-    public ResponseEntity<PartOutModel> getByPartNum(@PathVariable("partnum") String po) {
-        PartOutModel partInModel = partOutService.getByPoNumb(po);
-        return new ResponseEntity<PartOutModel>(partInModel, HttpStatus.OK);
+    public ResponseEntity<TrxPartOutModel> getByPartNum(@PathVariable("partnum") String po) {
+        TrxPartOutModel partOutModelModel = partOutService.getByPoNumb(po);
+        return new ResponseEntity<TrxPartOutModel>(partOutModelModel, HttpStatus.OK);
     }
 
 }

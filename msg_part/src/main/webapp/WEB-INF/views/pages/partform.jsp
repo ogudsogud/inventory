@@ -5,7 +5,11 @@
   Time: 16:02
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page language="java" import="java.sql.*" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1" %>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1" %>
+<%@ page import="java.sql.Connection" %>
+<%@ page import="java.sql.DriverManager" %>
+<%@ page import="java.sql.ResultSet" %>
+<%@ page import="java.sql.Statement" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
@@ -23,14 +27,14 @@
 </head>
 <body>
 <%ResultSet resultset = null;%>
-<%Connection connection = DriverManager.getConnection("jdbc:mysql://localhost/msg_parts?user=root&password=");%>
+<%Connection connection = DriverManager.getConnection("jdbc:mysql://localhost/msg_parts?user=root&password=msg123");%>
 <%Statement statement = connection.createStatement();%>
 
 <div class="container">
-  <spring:url value="/msg/new-parts" var="tambahparts" />
+  <spring:url value="/msg/parts-save" var="saveParts" />
   <h2>PARTS LIST</h2>
-  <form:form modelAttribute="partrorm" method="post" action="${tambahparts }" cssClass="form">
-    <form:hidden path="id_unit_parts"/>
+  <form:form modelAttribute="partForm" method="post" action="${saveParts }" cssClass="form">
+    <form:hidden path="id_mtr_parts"/>
 
     <div class="form-group">
       <lable for="part_name">Id Part Number</lable>
@@ -45,10 +49,12 @@
 
               resultset =statement.executeQuery("SELECT unit_parts_name from mtr_stock_unit_parts") ;
           %>
-            <select class="form-control select2me no-first-option" name="unit_type">
+            <select class="form-control select2me no-first-option" name="unit_parts_name">
              <option value="">Pilih...
-              <%  while(resultset.next()){ %>
-              <option><%= resultset.getString(1)%></option>
+              <%  while(resultset.next()){
+              String unitName = resultset.getString(1);
+              %>
+              <option value="unit_parts_name"><%= unitName%></option>
                 <% } %>
              </option>
             </select>
@@ -71,10 +77,12 @@
         try{
           resultset = statement.executeQuery("SELECT brand_name FROM mtr_brand") ;
       %>
-      <select class="form-control select2me no-first-option" name="nama_brand">
+      <select class="form-control select2me no-first-option" name="brand_name">
         <option value="">Pilih...
-              <%  while(resultset.next()){ %>
-        <option><%= resultset.getString(1)%></option>
+              <%  while(resultset.next()){
+              String brandName =  resultset.getString(1);
+              %>
+        <option ><%= brandName%></option>
         <% } %>
         </option>
       </select>
@@ -83,7 +91,7 @@
           out.println("wrong entry"+e);
         }
       %>
-      <i class="error-icon fa fa-warning tooltips" data-container="body" data-placement="top" data-original-title="Tipe Unit belum dipilih" style="margin-right: 13px"></i>
+      <i class="error-icon fa fa-warning tooltips" data-container="body" data-placement="top" data-original-title="Nama Brand belum dipilih" style="margin-right: 13px"></i>
     </div>
 
     <div class="form-group">
