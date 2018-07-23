@@ -63,16 +63,16 @@ public class PartsController {
     public ModelAndView editParts(@PathVariable String id_mtr_parts) {
         ModelAndView model = new ModelAndView();
 
-        PartsModel partsModel = partsService.getByIdPartNumb(id_mtr_parts);
-        model.addObject("partForm", partsModel);
+        PartsModel partsModel = partsService.getByIdPart(id_mtr_parts);
+        model.addObject("partUpdate", partsModel);
 
-        model.setViewName("partform");
+        model.setViewName("partupdate");
         return model;
     }
 
 
-    @RequestMapping(value="/parts-delete/{parts_number}", method=RequestMethod.GET)
-    public ModelAndView deleteEmployee(@PathVariable("parts_number") String id_mtr_parts) {
+    @RequestMapping(value="/parts-delete/{id_mtr_parts}", method=RequestMethod.GET)
+    public ModelAndView deleteEmployee(@PathVariable("id_mtr_parts") String id_mtr_parts) {
         partsService.deleteById(id_mtr_parts);
 
         return new ModelAndView("redirect:/msg/parts-list");

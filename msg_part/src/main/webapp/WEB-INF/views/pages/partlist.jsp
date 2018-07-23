@@ -18,13 +18,13 @@
   <table class="table table-striped">
     <thead>
     <tr>
-        <th scope="row">ID Part Number</th>
+        <th scope="row">ID</th>
+        <th scope="row">Part Number</th>
         <th scope="row">Nama Part Unit</th>
         <th scope="row">Nama Parts</th>
         <th scope="row">Nama Brand</th>
         <th scope="row">Spesifikasi</th>
         <th scope="row">Bad Part</th>
-        <th scope="row">Jumlah</th>
         <th scope="row">Created By</th>
         <th scope="row">Created on</th>
         <th scope="row">Updated By</th>
@@ -35,6 +35,7 @@
     <tbody>
     <c:forEach items="${partList }" var="msg" >
       <tr>
+          <td>${msg.id_mtr_parts }</td>
           <td>${msg.id_part_number }</td>
           <td>${msg.unit_parts_name }</td>
           <td>${msg.part_name }</td>

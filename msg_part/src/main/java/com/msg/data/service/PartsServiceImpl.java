@@ -137,6 +137,15 @@ public class PartsServiceImpl implements PartsService {
     }
 
 
+    @Override
+    public PartsModel getByIdPart(String id_mtr_parts) {
+        String sql = "SELECT * FROM mtr_parts WHERE id_mtr_parts = ?";
+        RowMapper<PartsModel> rowMapper = new PartsRowMapp();
+        PartsModel partsModel = jdbcTemplate.queryForObject(sql, rowMapper, id_mtr_parts);
+        return partsModel;
+    }
+
+
 
     @Override
     public void updatePart(PartsModel partsModel) {
