@@ -31,15 +31,15 @@
 <%Statement statement = connection.createStatement();%>
 
 <div class="container">
-  <spring:url value="/msg/parts-update/{id_mtr_parts}" var="updateURL" />
+  <spring:url value="/msg/parts-update/{id_mtr_parts}" var="updateParts" />
   <h2>UPDATE PARTS</h2>
-  <form:form modelAttribute="partUpdate" method="post" action="${updateURL }" cssClass="updateform">
+  <form:form modelAttribute="partUpdate" method="post" action="${updateParts }" cssClass="form">
     <form:hidden path="id_mtr_parts"/>
 
-    <div class="form-group">
-      <lable for="id_part_number">Id Part Number</lable>
-      <form:input path="id_part_number" cssClass="form-control" id="id_part_number" />
-    </div>
+    <%--<div class="form-group">--%>
+      <%--<lable for="id_part_number">Id Part Number</lable>--%>
+      <%--<form:input path="id_part_number" cssClass="form-control" id="id_part_number" />--%>
+    <%--</div>--%>
 
     <div class="form-group select-validation">
       <label class="control-label">Unit Kategori</label>

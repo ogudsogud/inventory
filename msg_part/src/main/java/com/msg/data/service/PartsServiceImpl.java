@@ -150,7 +150,7 @@ public class PartsServiceImpl implements PartsService {
     @Override
     public void updatePart(PartsModel partsModel) {
         String sql = "UPDATE mtr_parts SET " +
-                "id_part_number = ? , " +
+//                "id_part_number = ? , " +
                 "unit_parts_name = ?, " +
                 "part_name = ?, " +
                 "brand_name = ?, " +
@@ -162,7 +162,7 @@ public class PartsServiceImpl implements PartsService {
                 "updated_on = now() WHERE " +
                 "id_mtr_parts = ?";
         jdbcTemplate.update(sql,
-                partsModel.getId_part_number(),
+//                partsModel.getId_part_number(),
                 partsModel.getUnit_parts_name(),
                 partsModel.getPart_name(),
                 partsModel.getBrand_name(),
