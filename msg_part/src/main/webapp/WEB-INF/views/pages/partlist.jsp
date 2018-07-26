@@ -18,13 +18,13 @@
   <table class="table table-striped">
     <thead>
     <tr>
-        <th scope="row">ID</th>
+        <%--<th scope="row">ID</th>--%>
         <th scope="row">Part Number</th>
         <th scope="row">Nama Part Unit</th>
         <th scope="row">Nama Parts</th>
         <th scope="row">Nama Brand</th>
         <th scope="row">Spesifikasi</th>
-        <th scope="row">Bad Part</th>
+        <%--<th scope="row">Bad Part</th>--%>
         <th scope="row">Created By</th>
         <th scope="row">Created on</th>
         <th scope="row">Updated By</th>
@@ -35,13 +35,13 @@
     <tbody>
     <c:forEach items="${partList }" var="msg" >
       <tr>
-          <td>${msg.id_mtr_parts }</td>
+          <%--<td>${msg.id_mtr_parts }</td>--%>
           <td>${msg.id_part_number }</td>
           <td>${msg.unit_parts_name }</td>
           <td>${msg.part_name }</td>
           <td>${msg.brand_name }</td>
           <td>${msg.specification }</td>
-          <td>${msg.bad_part }</td>
+          <%--<td>${msg.bad_part }</td>--%>
           <td>${msg.created_by }</td>
           <td>${msg.created_on }</td>
           <td>${msg.updated_by }</td>
@@ -49,11 +49,11 @@
 
 
         <td>
-          <spring:url value="/msg/parts-update/${msg.id_mtr_parts }" var="updateURL" />
+          <spring:url value="/msg/parts-update/${msg.id_part_number }" var="updateURL" />
           <a class="btn btn-primary" href="${updateURL }" role="button">Update</a>
         </td>
         <td>
-          <spring:url value="/msg/parts-delete/${msg.id_mtr_parts }" var="deleteURL" />
+          <spring:url value="/msg/parts-delete/${msg.id_part_number }" var="deleteURL" />
           <a class="btn btn-primary" href="${deleteURL }" role="button">Delete</a>
         </td>
       </tr>

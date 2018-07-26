@@ -5,6 +5,7 @@ package com.msg.data.model;
  */
 public class UserModel {
 
+    private int id_mtr_user;
     private String nik;
     private String name;
     private String position;
@@ -16,10 +17,11 @@ public class UserModel {
     private String updated_on;
     private int status;
 
-    public UserModel(String nik, String name, String position,
+    public UserModel(int id_mtr_user, String nik, String name, String position,
                      String email, String password,
                      String created_by, String created_on,
                      String updated_by, String updated_on, int status) {
+        this.id_mtr_user = id_mtr_user;
         this.nik = nik;
         this.name = name;
         this.position = position;
@@ -34,6 +36,14 @@ public class UserModel {
 
     public UserModel() {
 
+    }
+
+    public int getId_mtr_user() {
+        return id_mtr_user;
+    }
+
+    public void setId_mtr_user(int id_mtr_user) {
+        this.id_mtr_user = id_mtr_user;
     }
 
     public String getNik() {

@@ -34,7 +34,7 @@ public class PartsController {
 
 
     @RequestMapping(value="/parts-save", method=RequestMethod.POST)
-    public ModelAndView saveOrUpdate(@ModelAttribute("partForm") PartsModel partsModel) {
+    public ModelAndView saveNew(@ModelAttribute("partForm") PartsModel partsModel) {
         if(partsService.isPartsExist(partsModel.getId_part_number()) == true) {
 
             partsService.insertPartsNew(partsModel);
@@ -43,6 +43,13 @@ public class PartsController {
             System.out.println("Data Part Number Sudah ada");
         }
 
+        return new ModelAndView("redirect:/msg/parts-list");
+    }
+
+
+    @RequestMapping(value="/save-update", method=RequestMethod.POST)
+    public ModelAndView saveUpdate(@ModelAttribute("partUpdate") PartsModel partsModel) {
+        partsService.updatePart(partsModel);
         return new ModelAndView("redirect:/msg/parts-list");
     }
 
@@ -59,21 +66,21 @@ public class PartsController {
 
     }
 
-    @RequestMapping(value="/parts-update/{id_mtr_parts}", method=RequestMethod.GET)
-    public ModelAndView editParts(@PathVariable String id_mtr_parts) {
+    @RequestMapping(value="/parts-update/{id_parts_number}", method=RequestMethod.GET)
+    public ModelAndView editParts(PartsModel partsModel) {
         ModelAndView model = new ModelAndView();
 
-        PartsModel partsModel = partsService.getByIdPart(id_mtr_parts);
         model.addObject("partUpdate", partsModel);
 
         model.setViewName("partupdate");
+
         return model;
     }
 
 
-    @RequestMapping(value="/parts-delete/{id_mtr_parts}", method=RequestMethod.GET)
-    public ModelAndView deleteEmployee(@PathVariable("id_mtr_parts") String id_mtr_parts) {
-        partsService.deleteById(id_mtr_parts);
+    @RequestMapping(value="/parts-delete/{id_parts_number}", method=RequestMethod.GET)
+    public ModelAndView deleteEmployee(@PathVariable("id_parts_number") String id_parts_number) {
+        partsService.deletePartNumber(id_parts_number);
 
         return new ModelAndView("redirect:/msg/parts-list");
     }

@@ -37,7 +37,7 @@
     <form:hidden path="id_mtr_parts"/>
 
     <div class="form-group">
-      <lable for="id_part_number">Id Part Number</lable>
+      <lable for="id_part_number">Part Number</lable>
       <form:input path="id_part_number" cssClass="form-control" id="id_part_number" />
     </div>
 
@@ -99,14 +99,14 @@
       <form:input path="specification" cssClass="form-text" id="specification" />
     </div>
 
-    <div class="form-group">
-      <lable for="bad_part">Bad Part</lable>
-      <select class="form-control select2me no-first-option" name="bad_part">
-        <option value="">Pilih...</option>
-      <option value="NO">NO</option>
-      <option value="YES">YES</option>
-      </select>
-    </div>
+    <%--<div class="form-group">--%>
+      <%--<lable for="bad_part">Bad Part</lable>--%>
+      <%--<select class="form-control select2me no-first-option" name="bad_part">--%>
+        <%--<option value="">Pilih...</option>--%>
+      <%--<option value="NO">NO</option>--%>
+      <%--<option value="YES">YES</option>--%>
+      <%--</select>--%>
+    <%--</div>--%>
 
 
     <div class="form-group">

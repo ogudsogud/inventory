@@ -33,7 +33,7 @@ public class PartsServiceImpl implements PartsService {
             partsModel.setPart_name(rs.getString("part_name"));
             partsModel.setBrand_name(rs.getString("brand_name"));
             partsModel.setSpecification(rs.getString("specification"));
-            partsModel.setBad_part(rs.getString("bad_part"));
+//            partsModel.setBad_part(rs.getString("bad_part"));
             partsModel.setCreated_by(rs.getString("created_by"));
             partsModel.setCreated_on(rs.getString("created_on"));
             partsModel.setUpdated_by(rs.getString("updated_by"));
@@ -82,21 +82,21 @@ public class PartsServiceImpl implements PartsService {
                 "                part_name," +
                 "                brand_name," +
                 "                specification," +
-                "                bad_part," +
+//                "                bad_part," +
 //                "                quantity_unit," +
                 "                created_by," +
                 "                created_on," +
                 "                updated_by," +
                 "                updated_on," +
                 "                status)" +
-                "                VALUES ( ?,?,?,?,?,?,?,NOW(),?,NOW(),1)";
+                "                VALUES ( ?,?,?,?,?,?,NOW(),?,NOW(),1)";
         jdbcTemplate.update(sql,
                 partsModel.getId_part_number(),
                 partsModel.getUnit_parts_name(),
                 partsModel.getPart_name(),
                 partsModel.getBrand_name(),
                 partsModel.getSpecification(),
-                partsModel.getBad_part(),
+//                partsModel.getBad_part(),
                 partsModel.getCreated_by(),
 //                stockPartsModel.getCreated_on(),
                 partsModel.getUpdated_by()
@@ -112,11 +112,7 @@ public class PartsServiceImpl implements PartsService {
     public boolean isPartsExist(String id_part_number) {
         String sql = "SELECT count(*) from mtr_parts WHERE id_part_number = ? ";
         int count = jdbcTemplate.queryForObject(sql, Integer.class, id_part_number);
-        if(count == 0) {
-            return true;
-        } else {
-            return false;
-        }
+        return count == 0;
     }
 
     @Override
@@ -155,30 +151,31 @@ public class PartsServiceImpl implements PartsService {
                 "part_name = ?, " +
                 "brand_name = ?, " +
                 "specification = ?, " +
-                "bad_part = ?, " +
+//                "bad_part = ?, " +
 //                "created_by = ?, " +
 //                "created_on = now(), " +
                 "updated_by = ?, " +
                 "updated_on = now() WHERE " +
-                "id_mtr_parts = ?";
+                "id_part_number = ?";
         jdbcTemplate.update(sql,
-//                partsModel.getId_part_number(),
+
                 partsModel.getUnit_parts_name(),
                 partsModel.getPart_name(),
                 partsModel.getBrand_name(),
                 partsModel.getSpecification(),
-                partsModel.getBad_part(),
+//                partsModel.getBad_part(),
 //                stockPartsModel.getCreated_by(),
 //                stockPartsModel.getCreated_on(),
                 partsModel.getUpdated_by(),
 //                stockPartsModel.getUpdated_on(),
 //                partsModel.getStatus(),
-                partsModel.getId_mtr_parts());
+//                partsModel.getId_mtr_parts(),
+                partsModel.getId_part_number());
     }
 
     @Override
-    public void deleteById(String id_mtr_parts) {
-        String sql = "UPDATE mtr_parts SET status = 0 where id_mtr_parts = ?";
-        jdbcTemplate.update(sql, id_mtr_parts);
+    public void deletePartNumber(String id_part_number) {
+        String sql = "UPDATE mtr_parts SET status = 0 where id_part_number = ?";
+        jdbcTemplate.update(sql, id_part_number);
     }
 }

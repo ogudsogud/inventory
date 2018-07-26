@@ -3,21 +3,21 @@ package com.msg.data.model;
 /**
  * Created by yoga.wiguna on 16/07/2018.
  */
-public class UserGroupModel {
+public class UserRoleModel {
 
-    private String id_user_group;
-    private String user_gruop_name;
+    private int id_role;
+    private String role_access;
     private String created_by;
     private String created_on;
     private String updated_by;
     private String updated_on;
     private int status;
 
-    public UserGroupModel(String id_user_group, String user_gruop_name,
+    public UserRoleModel(int id_role, String role_access,
                           String created_by, String created_on,
                           String updated_by, String updated_on, int status) {
-        this.id_user_group = id_user_group;
-        this.user_gruop_name = user_gruop_name;
+        this.id_role = id_role;
+        this.role_access = role_access;
         this.created_by = created_by;
         this.created_on = created_on;
         this.updated_by = updated_by;
@@ -25,20 +25,25 @@ public class UserGroupModel {
         this.status = status;
     }
 
-    public String getId_user_group() {
-        return id_user_group;
+    public UserRoleModel() {
+
     }
 
-    public void setId_user_group(String id_user_group) {
-        this.id_user_group = id_user_group;
+
+    public int getId_role() {
+        return id_role;
     }
 
-    public String getUser_gruop_name() {
-        return user_gruop_name;
+    public void setId_role(int id_role) {
+        this.id_role = id_role;
     }
 
-    public void setUser_gruop_name(String user_gruop_name) {
-        this.user_gruop_name = user_gruop_name;
+    public String getRole_access() {
+        return role_access;
+    }
+
+    public void setRole_access(String role_access) {
+        this.role_access = role_access;
     }
 
     public String getCreated_by() {

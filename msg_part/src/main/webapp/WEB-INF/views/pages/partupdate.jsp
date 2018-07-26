@@ -31,10 +31,10 @@
 <%Statement statement = connection.createStatement();%>
 
 <div class="container">
-  <spring:url value="/msg/parts-update/{id_mtr_parts}" var="updateParts" />
+  <spring:url value="/msg/save-update" var="partUpdate" />
   <h2>UPDATE PARTS</h2>
   <form:form modelAttribute="partUpdate" method="post" action="${updateParts }" cssClass="form">
-    <form:hidden path="id_mtr_parts"/>
+    <form:hidden path="id_part_number"/>
 
     <%--<div class="form-group">--%>
       <%--<lable for="id_part_number">Id Part Number</lable>--%>
@@ -54,7 +54,7 @@
               <%  while(resultset.next()){
               String unitName = resultset.getString(1);
               %>
-        <option><%= unitName%></option>
+        <option value="<%= unitName%>"><%= unitName%></option>
         <% } %>
         </option>
       </select>
@@ -78,11 +78,11 @@
           resultset = statement.executeQuery("SELECT brand_name FROM mtr_brand") ;
       %>
       <select class="form-control select2me no-first-option" name="brand_name">
-        <option value="">Pilih...
+        <option value="brand_name">Pilih...
               <%  while(resultset.next()){
               String brandName =  resultset.getString(1);
               %>
-        <option ><%= brandName%></option>
+        <option value="<%= brandName%>"><%= brandName%></option>
         <% } %>
         </option>
       </select>
@@ -96,18 +96,17 @@
 
     <div class="form-group">
       <lable for="specification">Spesifikasi</lable>
-      <form:input path="specification" cssClass="form-text" id="specification" />
+      <form:input path="specification" cssClass="form-text" id="specification"/>
     </div>
 
-    <div class="form-group">
-      <lable for="bad_part">Bad Part</lable>
-      <select class="form-control select2me no-first-option" name="bad_part">
-        <option value="">Pilih...</option>
-        <option value="NO">NO</option>
-        <option value="YES">YES</option>
-      </select>
-    </div>
-
+    <%--<div class="form-group">--%>
+      <%--<lable for="bad_part">Bad Part</lable>--%>
+      <%--<select class="form-control select2me no-first-option" name="bad_part">--%>
+        <%--<option value="">Pilih...</option>--%>
+        <%--<option value="NO">NO</option>--%>
+        <%--<option value="YES">YES</option>--%>
+      <%--</select>--%>
+    <%--</div>--%>
 
     <div class="form-group">
       <lable for="updated_by">Updated By</lable>

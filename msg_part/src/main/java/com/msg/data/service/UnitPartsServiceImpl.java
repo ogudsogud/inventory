@@ -40,7 +40,6 @@ public class UnitPartsServiceImpl implements UnitPartsService {
         }
     }
 
-        //untuk insert unit parts
         @Override
         public boolean insertUnitParts(UnitPartsModel partsModel) {
 
@@ -66,7 +65,6 @@ public class UnitPartsServiceImpl implements UnitPartsService {
             return false;
         }
 
-    //untuk mencari nama unit di combo
     @Override
     public List<UnitPartsModel> getUnitName() {
         String sql = "SELECT * FROM mtr_stock_unit_parts WHERE status = 1";
@@ -74,7 +72,7 @@ public class UnitPartsServiceImpl implements UnitPartsService {
         return this.jdbcTemplate.query(sql,rowMapper);
     }
 
-    //untuk update data unit
+
     @Override
     public void updateUnitPart(UnitPartsModel unitPartsModel) {
         String sql = "UPDATE mtr_stock_unit_parts SET " +
@@ -96,7 +94,6 @@ public class UnitPartsServiceImpl implements UnitPartsService {
     }
 
 
-    //untuk menampilkan data unit
     @Override
     public List<UnitPartsModel> getDataUnit() {
         String sql = "SELECT * FROM mtr_stock_unit_parts WHERE status = 1";
