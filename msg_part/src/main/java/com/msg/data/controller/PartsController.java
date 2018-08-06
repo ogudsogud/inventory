@@ -14,7 +14,7 @@ import java.util.List;
  * Created by Ogudsogud on 7/7/2018.
  */
 @RestController
-@RequestMapping("/msg")
+@RequestMapping("/stock")
 public class PartsController {
 
     @Autowired
@@ -55,15 +55,22 @@ public class PartsController {
 
 
 
-    //menampilkan data parts
-    @RequestMapping(value = "/parts-list", method = RequestMethod.GET)
-    public ModelAndView getModelAndView(){
-        ModelAndView modelAndView = new ModelAndView();
-        List<PartsModel> list = partsService.getDataParts();
-        modelAndView.addObject("partList", list);
-        modelAndView.setViewName("partlist");
-        return modelAndView;
+//    //menampilkan data parts
+//    @RequestMapping(value = "/parts-list", method = RequestMethod.GET)
+//    public ModelAndView getModelAndView(){
+//        ModelAndView modelAndView = new ModelAndView();
+//        List<PartsModel> list = partsService.getDataParts();
+//        modelAndView.addObject("partList", list);
+//        modelAndView.setViewName("partlist");
+//        return modelAndView;
+//
+//    }
 
+
+    @RequestMapping("/getallparts")
+    public ResponseEntity<List<PartsModel>> getAllPrts(){
+        List<PartsModel> list = partsService.getDataParts();
+        return new ResponseEntity<List<PartsModel>>(list, HttpStatus.OK);
     }
 
     @RequestMapping(value="/parts-update/{id_parts_number}", method=RequestMethod.GET)
