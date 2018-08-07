@@ -20,7 +20,7 @@
 <html>
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-  <title>PARTS FORM MSG</title>
+  <title>UPDATE PARTS MSG</title>
   <link href="http://localhost:8080/webjars/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" />
   <script src="http://localhost:8080/webjars/bootstrap/4.0.0/js/bootstrap.min.js" ></script>
   <script src="http://localhost:8080/webjars/jquery/3.0.0/js/jquery.min.js" ></script>
@@ -31,39 +31,39 @@
 <%Statement statement = connection.createStatement();%>
 
 <div class="container">
-  <spring:url value="/msg/parts-save" var="saveParts" />
-  <h2>PARTS FORM</h2>
-  <form:form modelAttribute="partForm" method="post" action="${saveParts }" cssClass="partform">
-    <form:hidden path="id_mtr_parts"/>
+  <spring:url value="/stock/save-update" var="partUpdate" />
+  <h2>UPDATE PARTS</h2>
+  <form:form modelAttribute="partUpdate" method="get" action="${updateURL }" cssClass="form">
+    <form:hidden path="id_part_number"/>
 
-    <div class="form-group">
-      <lable for="id_part_number">Part Number</lable>
-      <form:input path="id_part_number" cssClass="form-control" id="id_part_number" />
-    </div>
+    <%--<div class="form-group">--%>
+      <%--<lable for="id_part_number">Id Part Number</lable>--%>
+      <%--<form:input path="id_part_number" cssClass="form-control" id="id_part_number" />--%>
+    <%--</div>--%>
 
     <div class="form-group select-validation">
       <label class="control-label">Unit Kategori</label>
 
-          <%
-            try{
+      <%
+        try{
 
-              resultset =statement.executeQuery("SELECT unit_parts_name from mtr_stock_unit_parts") ;
-          %>
-            <select class="form-control select2me no-first-option" name="unit_parts_name">
-             <option value="">Pilih...
+          resultset =statement.executeQuery("SELECT unit_parts_name from mtr_stock_unit_parts") ;
+      %>
+      <select class="form-control select2me no-first-option" name="unit_parts_name">
+        <option value="">Pilih...
               <%  while(resultset.next()){
               String unitName = resultset.getString(1);
               %>
-              <option><%= unitName%></option>
-                <% } %>
-             </option>
-            </select>
-          <%
-            }  catch(Exception e) {
-              out.println("wrong entry"+e);
-            }
-          %>
-        <i class="error-icon fa fa-warning tooltips" data-container="body" data-placement="top" data-original-title="Tipe Unit belum dipilih" style="margin-right: 13px"></i>
+        <option value="<%= unitName%>"><%= unitName%></option>
+        <% } %>
+        </option>
+      </select>
+      <%
+        }  catch(Exception e) {
+          out.println("wrong entry"+e);
+        }
+      %>
+      <i class="error-icon fa fa-warning tooltips" data-container="body" data-placement="top" data-original-title="Tipe Unit belum dipilih" style="margin-right: 13px"></i>
     </div>
 
     <div class="form-group">
@@ -78,11 +78,11 @@
           resultset = statement.executeQuery("SELECT brand_name FROM mtr_brand") ;
       %>
       <select class="form-control select2me no-first-option" name="brand_name">
-        <option value="">Pilih...
+        <option value="brand_name">Pilih...
               <%  while(resultset.next()){
               String brandName =  resultset.getString(1);
               %>
-        <option ><%= brandName%></option>
+        <option value="<%= brandName%>"><%= brandName%></option>
         <% } %>
         </option>
       </select>
@@ -96,25 +96,24 @@
 
     <div class="form-group">
       <lable for="specification">Spesifikasi</lable>
-      <form:input path="specification" cssClass="form-text" id="specification" />
+      <form:input path="specification" cssClass="form-text" id="specification"/>
     </div>
 
     <%--<div class="form-group">--%>
       <%--<lable for="bad_part">Bad Part</lable>--%>
       <%--<select class="form-control select2me no-first-option" name="bad_part">--%>
         <%--<option value="">Pilih...</option>--%>
-      <%--<option value="NO">NO</option>--%>
-      <%--<option value="YES">YES</option>--%>
+        <%--<option value="NO">NO</option>--%>
+        <%--<option value="YES">YES</option>--%>
       <%--</select>--%>
     <%--</div>--%>
 
-
     <div class="form-group">
-      <lable for="created_by">Created By</lable>
+      <lable for="updated_by">Updated By</lable>
       <form:input path="created_by" cssClass="form-text" id="created_by" />
     </div>
 
-    <button type="submit" class="btn btn-primary">Save</button>
+    <button type="submit" class="btn btn-primary">Update</button>
   </form:form>
 </div>
 </body>

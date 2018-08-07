@@ -24,11 +24,9 @@ public class PartsController {
     @RequestMapping(value="/parts-add", method=RequestMethod.GET)
     public ModelAndView addParts() {
         ModelAndView model = new ModelAndView();
-
         PartsModel partsModel = new PartsModel();
         model.addObject("partForm", partsModel);
-
-        model.setViewName("partform");
+        model.setViewName("part_form");
         return model;
     }
 
@@ -36,42 +34,39 @@ public class PartsController {
     @RequestMapping(value="/parts-save", method=RequestMethod.POST)
     public ModelAndView saveNew(@ModelAttribute("partForm") PartsModel partsModel) {
         if(partsService.isPartsExist(partsModel.getId_part_number()) == true) {
-
             partsService.insertPartsNew(partsModel);
-
         } else {
             System.out.println("Data Part Number Sudah ada");
         }
-
-        return new ModelAndView("redirect:/msg/parts-list");
+        return new ModelAndView("redirect:/stock/parts-list");
     }
 
 
     @RequestMapping(value="/save-update", method=RequestMethod.POST)
     public ModelAndView saveUpdate(@ModelAttribute("partUpdate") PartsModel partsModel) {
         partsService.updatePart(partsModel);
-        return new ModelAndView("redirect:/msg/parts-list");
+        return new ModelAndView("redirect:/stock/parts-list");
     }
 
 
 
-//    //menampilkan data parts
-//    @RequestMapping(value = "/parts-list", method = RequestMethod.GET)
-//    public ModelAndView getModelAndView(){
-//        ModelAndView modelAndView = new ModelAndView();
-//        List<PartsModel> list = partsService.getDataParts();
-//        modelAndView.addObject("partList", list);
-//        modelAndView.setViewName("partlist");
-//        return modelAndView;
-//
-//    }
-
-
-    @RequestMapping("/getallparts")
-    public ResponseEntity<List<PartsModel>> getAllPrts(){
+    //menampilkan data parts
+    @RequestMapping(value = "/parts-list", method = RequestMethod.GET)
+    public ModelAndView getModelAndView(){
+        ModelAndView modelAndView = new ModelAndView();
         List<PartsModel> list = partsService.getDataParts();
-        return new ResponseEntity<List<PartsModel>>(list, HttpStatus.OK);
+        modelAndView.addObject("partList", list);
+        modelAndView.setViewName("part_list");
+        return modelAndView;
+
     }
+
+
+//    @RequestMapping("/getallparts")
+//    public ResponseEntity<List<PartsModel>> getAllPrts(){
+//        List<PartsModel> list = partsService.getDataParts();
+//        return new ResponseEntity<List<PartsModel>>(list, HttpStatus.OK);
+//    }
 
     @RequestMapping(value="/parts-update/{id_parts_number}", method=RequestMethod.GET)
     public ModelAndView editParts(PartsModel partsModel) {
@@ -79,7 +74,7 @@ public class PartsController {
 
         model.addObject("partUpdate", partsModel);
 
-        model.setViewName("partupdate");
+        model.setViewName("part_update");
 
         return model;
     }
@@ -89,7 +84,7 @@ public class PartsController {
     public ModelAndView deleteEmployee(@PathVariable("id_parts_number") String id_parts_number) {
         partsService.deletePartNumber(id_parts_number);
 
-        return new ModelAndView("redirect:/msg/parts-list");
+        return new ModelAndView("redirect:/stock/parts-list");
     }
 
 

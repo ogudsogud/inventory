@@ -59,8 +59,8 @@ public class TrxPartInServiceImpl implements TrxPartInService{
 
         String sql = "INSERT INTO trx_part_stock_in (" +
                                 "ticket_no," +
-                                "id_unit_parts," +
-                                "id_unit_institution," +
+//                                "id_unit_parts," +
+//                                "id_unit_institution," +
                                 "id_part_number," +
                                 "part_name," +
                                 "institution_name," +
@@ -74,7 +74,7 @@ public class TrxPartInServiceImpl implements TrxPartInService{
                                 "approved_by," +
                                 "approved_on," +
                                 "status)" +
-                        "VALUES (?,?,?,?,,,,?,?,?,?,(SELECT NOW()),?,(SELECT NOW()),1)";
+                        "VALUES (?,?,?,?,?,?,?,?,?,?,NOW(),?,NOW(),1)";
         jdbcTemplate.update(sql,
                 trxPartInModel.getTicket_no(),
                 trxPartInModel.getId_unit_parts(),
@@ -100,11 +100,7 @@ public class TrxPartInServiceImpl implements TrxPartInService{
     public boolean isPartsInExist(String ticket_no) {
         String sql = "SELECT count(*) from trx_part_stock_in WHERE ticket_no = ?";
         int count = jdbcTemplate.queryForObject(sql, Integer.class, ticket_no);
-        if(count == 0) {
-            return true;
-        } else {
-            return false;
-        }
+       return count == 0;
     }
 
     @Override

@@ -14,7 +14,7 @@ import java.util.List;
 
 @Repository
 @Transactional
-public class PrivilageServiceImpl implements PriviligeService{
+public class PrivilageServiceImpl implements PrivilageService{
 
     @PersistenceContext
     private EntityManager entityManager;

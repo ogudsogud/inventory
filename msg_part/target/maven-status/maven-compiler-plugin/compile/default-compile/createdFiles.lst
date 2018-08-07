@@ -29,7 +29,6 @@ MainParts.class
 com\msg\data\service\TrxPartInServiceImpl.class
 com\msg\data\controller\PrivilageController.class
 com\msg\data\model\InstitutionModel.class
-com\msg\data\security\UserDetailMsg.class
 com\msg\data\model\UserModel.class
 com\msg\data\controller\PartsController.class
 com\msg\data\service\UnitPartsServiceImpl.class

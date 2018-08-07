@@ -49,18 +49,18 @@
 
 
         <td>
-          <spring:url value="/msg/parts-update/${msg.id_part_number }" var="updateURL" />
+          <spring:url value="/stock/parts-update/${msg.id_part_number }" var="updateURL" />
           <a class="btn btn-primary" href="${updateURL }" role="button">Update</a>
         </td>
         <td>
-          <spring:url value="/msg/parts-delete/${msg.id_part_number }" var="deleteURL" />
+          <spring:url value="/stock/parts-delete/${msg.id_part_number }" var="deleteURL" />
           <a class="btn btn-primary" href="${deleteURL }" role="button">Delete</a>
         </td>
       </tr>
     </c:forEach>
     </tbody>
   </table>
-  <spring:url value="/msg/parts-add" var="addURL" />
+  <spring:url value="/stock/parts-add" var="addURL" />
   <a class="btn btn-primary" href="${addURL }" role="button">TAMBAH PARTS</a>
 </div>
 </body>
