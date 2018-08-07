@@ -33,7 +33,7 @@
 <div class="container">
   <spring:url value="/stock/parts-save" var="saveParts" />
   <h2>PARTS FORM</h2>
-  <form:form modelAttribute="partForm" method="post" action="${addParts }" cssClass="partform">
+  <form:form modelAttribute="partForm" method="post" action="${saveParts }" cssClass="partform">
     <form:hidden path="id_mtr_parts"/>
 
     <div class="form-group">

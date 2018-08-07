@@ -1,6 +1,6 @@
 package com.msg.data.controller;
 
-import com.msg.data.service.PriviligeService;
+import com.msg.data.service.PrivilageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class PrivilageController {
 
     @Autowired
-    private PriviligeService priviligeService;
+    private PrivilageService privilageService;
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String login(){

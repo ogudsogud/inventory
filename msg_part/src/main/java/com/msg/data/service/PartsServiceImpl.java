@@ -110,14 +110,14 @@ public class PartsServiceImpl implements PartsService {
 
     @Override
     public boolean isPartsExist(String id_part_number) {
-        String sql = "SELECT count(*) from mtr_parts WHERE id_part_number = ? ";
+        String sql = "SELECT count(*) from mtr_parts WHERE id_part_number = ? AND status = 1";
         int count = jdbcTemplate.queryForObject(sql, Integer.class, id_part_number);
         return count == 0;
     }
 
     @Override
     public PartsModel getByUnitName(String unit_parts_name) {
-        String sql = "SELECT * FROM mtr_parts WHERE unit_parts_name = ?";
+        String sql = "SELECT * FROM mtr_parts WHERE unit_parts_name = ? AND status = 1";
         RowMapper<PartsModel> rowMapper = new PartsRowMapp();
         PartsModel partsModel = jdbcTemplate.queryForObject(sql, rowMapper, unit_parts_name);
         return partsModel;
@@ -126,7 +126,7 @@ public class PartsServiceImpl implements PartsService {
 
     @Override
     public PartsModel getByIdPartNumb(String id_part_number) {
-        String sql = "SELECT * FROM mtr_parts WHERE id_part_number = ?";
+        String sql = "SELECT * FROM mtr_parts WHERE id_part_number = ? AND status = 1";
         RowMapper<PartsModel> rowMapper = new PartsRowMapp();
         PartsModel partsModel = jdbcTemplate.queryForObject(sql, rowMapper, id_part_number);
         return partsModel;

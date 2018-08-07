@@ -41,7 +41,6 @@
           <td>${msg.part_name }</td>
           <td>${msg.brand_name }</td>
           <td>${msg.specification }</td>
-          <%--<td>${msg.bad_part }</td>--%>
           <td>${msg.created_by }</td>
           <td>${msg.created_on }</td>
           <td>${msg.updated_by }</td>
