@@ -30,11 +30,13 @@
 <%Connection connection = DriverManager.getConnection("jdbc:mysql://localhost/msg_parts?user=root&password=msg123");%>
 <%Statement statement = connection.createStatement();%>
 
+
 <div class="container">
-  <spring:url value="/stock/save-update" var="partUpdate" />
+  <spring:url value="/stock/save-update/" var="partUpdate" />
   <h2>UPDATE PARTS</h2>
-  <form:form modelAttribute="partUpdate" method="get" action="${updateURL }" cssClass="form">
+  <form:form modelAttribute="partUpdate" method="post" action="${updateURL }" cssClass="form">
     <form:hidden path="id_part_number"/>
+
 
     <%--<div class="form-group">--%>
       <%--<lable for="id_part_number">Id Part Number</lable>--%>
@@ -43,14 +45,12 @@
 
     <div class="form-group select-validation">
       <label class="control-label">Unit Kategori</label>
-
       <%
         try{
-
-          resultset =statement.executeQuery("SELECT unit_parts_name from mtr_stock_unit_parts") ;
+          resultset = statement.executeQuery("SELECT unit_parts_name from mtr_stock_unit_parts") ;
       %>
       <select class="form-control select2me no-first-option" name="unit_parts_name">
-        <option value="">Pilih...
+        <option value="unit_parts_name">
               <%  while(resultset.next()){
               String unitName = resultset.getString(1);
               %>
@@ -69,6 +69,7 @@
     <div class="form-group">
       <lable for="part_name">Nama Part</lable>
       <form:input path="part_name" cssClass="form-control" id="part_name" />
+
     </div>
 
     <div class="form-group select-validation">
@@ -78,9 +79,9 @@
           resultset = statement.executeQuery("SELECT brand_name FROM mtr_brand") ;
       %>
       <select class="form-control select2me no-first-option" name="brand_name">
-        <option value="brand_name">Pilih...
+        <option value="brand_name">
               <%  while(resultset.next()){
-              String brandName =  resultset.getString(1);
+              String brandName =  resultset.getString("brand_name");
               %>
         <option value="<%= brandName%>"><%= brandName%></option>
         <% } %>
@@ -97,6 +98,7 @@
     <div class="form-group">
       <lable for="specification">Spesifikasi</lable>
       <form:input path="specification" cssClass="form-text" id="specification"/>
+
     </div>
 
     <%--<div class="form-group">--%>
@@ -112,9 +114,9 @@
       <lable for="updated_by">Updated By</lable>
       <form:input path="created_by" cssClass="form-text" id="created_by" />
     </div>
-
     <button type="submit" class="btn btn-primary">Update</button>
   </form:form>
 </div>
+
 </body>
 </html>
