@@ -49,13 +49,13 @@ public class PartsController {
         return new ResponseEntity(new ErrCode("201", "Data PO berhasil Dihapus"), HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/parts-number={partnum}", method = RequestMethod.GET)
-    public ResponseEntity<PartsModel> getByPartNum(@PathVariable("partnum") String partnum) {
-        if (partsService.getByIdPartNumb(partnum) != null) {
-            PartsModel partsModel = partsService.getByIdPartNumb(partnum);
-            return new ResponseEntity<PartsModel>(partsModel, HttpStatus.OK);
+    @RequestMapping(value = "/parts-number={partnumber}", method = RequestMethod.GET)
+    public ResponseEntity getByPartNum(@PathVariable("partnumber") String partnumber) {
+        if (partsService.getByIdPartNumb(partnumber) == null) {
+            return new ResponseEntity(new ErrCode("409", "Data Parts Kosong"), HttpStatus.NOT_FOUND);
         }
-        return new ResponseEntity(new ErrCode("409", "Data Parts Kosong"), HttpStatus.NOT_FOUND);
+        PartsModel partsModel = partsService.getByIdPartNumb(partnumber);
+        return new ResponseEntity<PartsModel>(partsModel, HttpStatus.OK);
     }
 
 }
