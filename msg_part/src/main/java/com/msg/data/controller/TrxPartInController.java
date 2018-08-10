@@ -17,14 +17,14 @@ import java.util.List;
  */
 
 @RestController
-@RequestMapping("msg/parts/stock-in")
+@RequestMapping("/stock-in")
 public class TrxPartInController {
 
     @Autowired
     private TrxPartInService trxPartInService;
 
     //menambahkan data stock-in baru
-    @RequestMapping(value = "/insert-part-in", method = RequestMethod.POST)
+    @RequestMapping(value = "/insert", method = RequestMethod.POST)
     public ResponseEntity<Void> createCluster(@RequestBody TrxPartInModel partInModel, UriComponentsBuilder uriComponentsBuilder) {
         if (trxPartInService.isPartsInExist(partInModel.getTicket_no()) == true) {
             trxPartInService.insertPartsStock(partInModel);
@@ -34,7 +34,7 @@ public class TrxPartInController {
     }
 
     //menampilkan data stock yg masuk
-    @RequestMapping(value = "/get-parts-in", method = RequestMethod.GET)
+    @RequestMapping(value = "/list", method = RequestMethod.GET)
     public ResponseEntity<List<TrxPartInModel>> getDataParts(){
         List<TrxPartInModel> list = trxPartInService.getPartsStockIn();
         return new ResponseEntity<List<TrxPartInModel>>(list, HttpStatus.OK);

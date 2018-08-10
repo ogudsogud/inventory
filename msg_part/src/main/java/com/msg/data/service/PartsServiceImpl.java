@@ -102,8 +102,7 @@ public class PartsServiceImpl implements PartsService {
                 partsModel.getUpdated_by()
 //                stockPartsModel.getUpdated_on(),
 //                stockPartsModel.getStatus()
- );
-
+         );
         return false;
     }
 

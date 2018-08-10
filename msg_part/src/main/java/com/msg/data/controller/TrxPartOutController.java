@@ -16,14 +16,14 @@ import java.util.List;
  */
 
 @RestController
-@RequestMapping("msg/parts/stock-out")
+@RequestMapping("/stock-out")
 public class TrxPartOutController {
 
     @Autowired
     private TrxPartOutService partOutService;
 
     //menambahkan data stock-out baru
-    @RequestMapping(value = "/insert-part-out", method = RequestMethod.POST)
+    @RequestMapping(value = "/insert", method = RequestMethod.POST)
     public ResponseEntity<Void> createCluster(@RequestBody TrxPartOutModel partOutModel, UriComponentsBuilder uriComponentsBuilder) {
         if (partOutService.isPartsOutExist(partOutModel.getTicket_no()) == true) {
             partOutService.insertPartsOut(partOutModel);
@@ -33,7 +33,7 @@ public class TrxPartOutController {
     }
 
     //menampilkan data stock yg keluar
-    @RequestMapping(value = "/get-out-parts", method = RequestMethod.GET)
+    @RequestMapping(value = "/list", method = RequestMethod.GET)
     public ResponseEntity<List<TrxPartOutModel>> getDataParts(){
         List<TrxPartOutModel> list = partOutService.getPartsStockOut();
         return new ResponseEntity<List<TrxPartOutModel>>(list, HttpStatus.OK);

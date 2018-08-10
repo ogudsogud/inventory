@@ -1,12 +1,13 @@
 package com.msg.data.controller;
 
+import com.msg.data.model.ErrCode;
 import com.msg.data.model.PartsModel;
 import com.msg.data.service.PartsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import java.util.List;
 
@@ -14,83 +15,41 @@ import java.util.List;
  * Created by Ogudsogud on 7/7/2018.
  */
 @RestController
-@RequestMapping("/stock")
+@RequestMapping("/stock-parts")
 public class PartsController {
 
     @Autowired
     private PartsService partsService;
 
-
-    @RequestMapping(value="/parts-add", method=RequestMethod.GET)
-    public ModelAndView addParts() {
-        ModelAndView model = new ModelAndView();
-        PartsModel partsModel = new PartsModel();
-        model.addObject("partForm", partsModel);
-        model.setViewName("part_form");
-        return model;
-    }
-
-
-    @RequestMapping(value="/parts-save", method=RequestMethod.POST)
-    public ModelAndView saveNew(@ModelAttribute("partForm") PartsModel partsModel) {
-        if(partsService.isPartsExist(partsModel.getId_part_number()) == true) {
-            partsService.insertPartsNew(partsModel);
-        } else {
-            System.out.println("Data Part Number Sudah ada");
-        }
-        return new ModelAndView("redirect:/stock/parts-list");
-    }
-
-
-    @RequestMapping(value="/save-update", method=RequestMethod.POST)
-    public ModelAndView saveUpdate(@ModelAttribute("partUpdate") PartsModel partsModel) {
-        partsService.updatePart(partsModel);
-        return new ModelAndView("redirect:/stock/parts-list");
-    }
-
-
-
-    //menampilkan data parts
-    @RequestMapping(value = "/parts-list", method = RequestMethod.GET)
-    public ModelAndView getModelAndView(){
-        ModelAndView modelAndView = new ModelAndView();
+    @RequestMapping("/list")
+    public ResponseEntity<List<PartsModel>> getAllPrts(){
         List<PartsModel> list = partsService.getDataParts();
-        modelAndView.addObject("partList", list);
-        modelAndView.setViewName("part_list");
-        return modelAndView;
+        return new ResponseEntity<List<PartsModel>>(list, HttpStatus.OK);
+    }
 
+    @RequestMapping(value = "/insert-new", method = RequestMethod.POST)
+    public ResponseEntity<Void> createCluster(@RequestBody PartsModel partsModel, UriComponentsBuilder uriComponentsBuilder) {
+        if (partsService.isPartsExist(partsModel.getId_part_number()) == true) {
+            partsService.insertPartsNew(partsModel);
+            return new ResponseEntity(new ErrCode("201", "Data PO berhasil Disimpan"), HttpStatus.CREATED);
+        }
+        return  new ResponseEntity(new ErrCode("409", "Data PO sudah ada"), HttpStatus.CONFLICT);
     }
 
 
-//    @RequestMapping("/getallparts")
-//    public ResponseEntity<List<PartsModel>> getAllPrts(){
-//        List<PartsModel> list = partsService.getDataParts();
-//        return new ResponseEntity<List<PartsModel>>(list, HttpStatus.OK);
-//    }
-
-    @RequestMapping(value="/parts-update/{id_parts_number}", method=RequestMethod.GET)
-    public ModelAndView editParts(PartsModel partsModel) {
-        ModelAndView model = new ModelAndView();
-
-        model.addObject("partUpdate", partsModel);
-
-        model.setViewName("part_update");
-
-        return model;
+    @PostMapping("/update")
+    public ResponseEntity<PartsModel> updateUser(@RequestBody PartsModel partsModel) {
+        partsService.updatePart(partsModel);
+        return new ResponseEntity<PartsModel>(partsModel, HttpStatus.OK);
     }
 
-
-    @RequestMapping(value="/parts-delete/{id_parts_number}", method=RequestMethod.GET)
-    public ModelAndView deleteEmployee(@PathVariable("id_parts_number") String id_parts_number) {
-        partsService.deletePartNumber(id_parts_number);
-
-        return new ModelAndView("redirect:/stock/parts-list");
+    @DeleteMapping("/delete={partnumber}")
+    public ResponseEntity<Void> deletePartNumber(@PathVariable("partnumber") String partnumber) {
+        partsService.deletePartNumber(partnumber);
+        return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
     }
 
-
-
-    //mancari data parts berdasarkan parameter
-    @RequestMapping(value = "/parts-number={partnum}", method = RequestMethod.GET)
+    @RequestMapping(value = "/partsnumber={partnum}", method = RequestMethod.GET)
     public ResponseEntity<PartsModel> getByPartNum(@PathVariable("partnum") String partnum) {
         PartsModel partsModel = partsService.getByIdPartNumb(partnum);
         return new ResponseEntity<PartsModel>(partsModel, HttpStatus.OK);
