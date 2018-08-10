@@ -8,7 +8,6 @@ com\msg\data\service\UnitPartsServiceImpl$PartsRowMapp.class
 com\msg\data\service\TrxPartOutServiceImpl$PartsRowMapp.class
 com\msg\data\service\BrandServiceImpl$PartsRowMapp.class
 com\msg\data\service\TrxPartOutServiceImpl.class
-com\msg\data\security\SecConfig.class
 com\msg\data\service\PrivilageServiceImpl.class
 com\msg\data\model\ErrCode.class
 com\msg\data\service\BrandServiceImpl.class

@@ -33,13 +33,11 @@ public class PartsServiceImpl implements PartsService {
             partsModel.setPart_name(rs.getString("part_name"));
             partsModel.setBrand_name(rs.getString("brand_name"));
             partsModel.setSpecification(rs.getString("specification"));
-//            partsModel.setBad_part(rs.getString("bad_part"));
             partsModel.setCreated_by(rs.getString("created_by"));
             partsModel.setCreated_on(rs.getString("created_on"));
             partsModel.setUpdated_by(rs.getString("updated_by"));
             partsModel.setUpdated_on(rs.getString("updated_on"));
             partsModel.setStatus(rs.getInt("status"));
-
             return partsModel;
         }
     }
@@ -72,7 +70,6 @@ public class PartsServiceImpl implements PartsService {
 //    }
 
 
-
     @Override
     public boolean insertPartsNew(PartsModel partsModel) {
 
@@ -82,8 +79,6 @@ public class PartsServiceImpl implements PartsService {
                 "                part_name," +
                 "                brand_name," +
                 "                specification," +
-//                "                bad_part," +
-//                "                quantity_unit," +
                 "                created_by," +
                 "                created_on," +
                 "                updated_by," +
@@ -96,12 +91,8 @@ public class PartsServiceImpl implements PartsService {
                 partsModel.getPart_name(),
                 partsModel.getBrand_name(),
                 partsModel.getSpecification(),
-//                partsModel.getBad_part(),
                 partsModel.getCreated_by(),
-//                stockPartsModel.getCreated_on(),
                 partsModel.getUpdated_by()
-//                stockPartsModel.getUpdated_on(),
-//                stockPartsModel.getStatus()
          );
         return false;
     }
@@ -140,41 +131,28 @@ public class PartsServiceImpl implements PartsService {
         return partsModel;
     }
 
-
-
     @Override
     public void updatePart(PartsModel partsModel) {
         String sql = "UPDATE mtr_parts SET " +
-//                "id_part_number = ? , " +
                 "unit_parts_name = ?, " +
                 "part_name = ?, " +
                 "brand_name = ?, " +
                 "specification = ?, " +
-//                "bad_part = ?, " +
-//                "created_by = ?, " +
-//                "created_on = now(), " +
                 "updated_by = ?, " +
                 "updated_on = now() WHERE " +
-                "id_part_number = ?";
+                "id_part_number = ? AND status = 1";
         jdbcTemplate.update(sql,
-
                 partsModel.getUnit_parts_name(),
                 partsModel.getPart_name(),
                 partsModel.getBrand_name(),
                 partsModel.getSpecification(),
-//                partsModel.getBad_part(),
-//                stockPartsModel.getCreated_by(),
-//                stockPartsModel.getCreated_on(),
                 partsModel.getUpdated_by(),
-//                stockPartsModel.getUpdated_on(),
-//                partsModel.getStatus(),
-//                partsModel.getId_mtr_parts(),
                 partsModel.getId_part_number());
     }
 
     @Override
     public void deletePartNumber(String id_part_number) {
-        String sql = "UPDATE mtr_parts SET status = 0 where id_part_number = ?";
+        String sql = "UPDATE mtr_parts SET status = 0 where id_part_number = ? ";
         jdbcTemplate.update(sql, id_part_number);
     }
 }

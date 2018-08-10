@@ -40,19 +40,22 @@ public class PartsController {
     @PostMapping("/update")
     public ResponseEntity<PartsModel> updateUser(@RequestBody PartsModel partsModel) {
         partsService.updatePart(partsModel);
-        return new ResponseEntity<PartsModel>(partsModel, HttpStatus.OK);
+        return new ResponseEntity(new ErrCode("201", "Data Parts berhasil diubah"), HttpStatus.OK);
     }
 
     @DeleteMapping("/delete={partnumber}")
     public ResponseEntity<Void> deletePartNumber(@PathVariable("partnumber") String partnumber) {
         partsService.deletePartNumber(partnumber);
-        return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
+        return new ResponseEntity(new ErrCode("201", "Data PO berhasil Dihapus"), HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/partsnumber={partnum}", method = RequestMethod.GET)
+    @RequestMapping(value = "/parts-number={partnum}", method = RequestMethod.GET)
     public ResponseEntity<PartsModel> getByPartNum(@PathVariable("partnum") String partnum) {
-        PartsModel partsModel = partsService.getByIdPartNumb(partnum);
-        return new ResponseEntity<PartsModel>(partsModel, HttpStatus.OK);
+        if (partsService.getByIdPartNumb(partnum) != null) {
+            PartsModel partsModel = partsService.getByIdPartNumb(partnum);
+            return new ResponseEntity<PartsModel>(partsModel, HttpStatus.OK);
+        }
+        return new ResponseEntity(new ErrCode("409", "Data Parts Kosong"), HttpStatus.NOT_FOUND);
     }
 
 }
