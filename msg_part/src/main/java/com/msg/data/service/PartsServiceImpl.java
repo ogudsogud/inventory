@@ -28,9 +28,9 @@ public class PartsServiceImpl implements PartsService {
         public PartsModel mapRow(ResultSet rs, int i) throws SQLException {
             PartsModel partsModel = new PartsModel();
             partsModel.setId_mtr_parts(rs.getInt("id_mtr_parts"));
-            partsModel.setId_part_number(rs.getString("id_part_number"));
+            partsModel.setId_parts_number(rs.getString("id_parts_number"));
             partsModel.setUnit_parts_name(rs.getString("unit_parts_name"));
-            partsModel.setPart_name(rs.getString("part_name"));
+            partsModel.setParts_name(rs.getString("parts_name"));
             partsModel.setBrand_name(rs.getString("brand_name"));
             partsModel.setSpecification(rs.getString("specification"));
             partsModel.setCreated_by(rs.getString("created_by"));
@@ -74,9 +74,9 @@ public class PartsServiceImpl implements PartsService {
     public boolean insertPartsNew(PartsModel partsModel) {
 
         String sql = "INSERT INTO mtr_parts (" +
-                "                id_part_number," +
+                "                id_parts_number," +
                 "                unit_parts_name," +
-                "                part_name," +
+                "                parts_name," +
                 "                brand_name," +
                 "                specification," +
                 "                created_by," +
@@ -86,9 +86,9 @@ public class PartsServiceImpl implements PartsService {
                 "                status)" +
                 "                VALUES ( ?,?,?,?,?,?,NOW(),?,NOW(),1)";
         jdbcTemplate.update(sql,
-                partsModel.getId_part_number(),
+                partsModel.getId_parts_number(),
                 partsModel.getUnit_parts_name(),
-                partsModel.getPart_name(),
+                partsModel.getParts_name(),
                 partsModel.getBrand_name(),
                 partsModel.getSpecification(),
                 partsModel.getCreated_by(),
@@ -100,7 +100,7 @@ public class PartsServiceImpl implements PartsService {
 
     @Override
     public boolean isPartsExist(String id_part_number) {
-        String sql = "SELECT count(*) from mtr_parts WHERE id_part_number = ? AND status = 1";
+        String sql = "SELECT count(*) from mtr_parts WHERE id_parts_number = ? AND status = 1";
         int count = jdbcTemplate.queryForObject(sql, Integer.class, id_part_number);
         return count == 0;
     }
@@ -115,10 +115,10 @@ public class PartsServiceImpl implements PartsService {
 
 
     @Override
-    public PartsModel getByIdPartNumb(String id_part_number) {
-        String sql = "SELECT * FROM mtr_parts WHERE id_part_number = ? AND status = 1";
+    public PartsModel getByIdPartNumb(String id_parts_number) {
+        String sql = "SELECT * FROM mtr_parts WHERE id_parts_number = ? AND status = 1";
         RowMapper<PartsModel> rowMapper = new PartsRowMapp();
-        PartsModel partsModel = jdbcTemplate.queryForObject(sql, rowMapper, id_part_number);
+        PartsModel partsModel = jdbcTemplate.queryForObject(sql, rowMapper, id_parts_number);
         return partsModel;
     }
 
@@ -135,19 +135,19 @@ public class PartsServiceImpl implements PartsService {
     public void updatePart(PartsModel partsModel) {
         String sql = "UPDATE mtr_parts SET " +
                 "unit_parts_name = ?, " +
-                "part_name = ?, " +
+                "parts_name = ?, " +
                 "brand_name = ?, " +
                 "specification = ?, " +
                 "updated_by = ?, " +
                 "updated_on = now() WHERE " +
-                "id_part_number = ? AND status = 1";
+                "id_parts_number = ? AND status = 1";
         jdbcTemplate.update(sql,
                 partsModel.getUnit_parts_name(),
-                partsModel.getPart_name(),
+                partsModel.getParts_name(),
                 partsModel.getBrand_name(),
                 partsModel.getSpecification(),
                 partsModel.getUpdated_by(),
-                partsModel.getId_part_number());
+                partsModel.getId_parts_number());
     }
 
     @Override

@@ -5,9 +5,9 @@ package com.msg.data.model;
  */
 public class PartsModel {
     private int id_mtr_parts;
-    private String id_part_number;
+    private String id_parts_number;
     private String unit_parts_name;
-    private String part_name;
+    private String parts_name;
     private String brand_name;
     private String specification;
     private String created_by;
@@ -17,11 +17,11 @@ public class PartsModel {
     private int status;
 
 
-    public PartsModel(int id_mtr_parts,  String id_part_number, String unit_parts_name, String part_name, String brand_name, String specification, String bad_part, String created_by, String created_on, String updated_by, String updated_on, int status) {
+    public PartsModel(int id_mtr_parts,  String id_parts_number, String unit_parts_name, String parts_name, String brand_name, String specification, String created_by, String created_on, String updated_by, String updated_on, int status) {
         this.id_mtr_parts = id_mtr_parts;
-        this.id_part_number = id_part_number;
+        this.id_parts_number = id_parts_number;
         this.unit_parts_name = unit_parts_name;
-        this.part_name = part_name;
+        this.parts_name = parts_name;
         this.brand_name = brand_name;
         this.specification = specification;
         this.created_by = created_by;
@@ -43,12 +43,12 @@ public class PartsModel {
         this.id_mtr_parts = id_mtr_parts;
     }
 
-    public String getId_part_number() {
-        return id_part_number;
+    public String getId_parts_number() {
+        return id_parts_number;
     }
 
-    public void setId_part_number(String id_part_number) {
-        this.id_part_number = id_part_number;
+    public void setId_parts_number(String id_parts_number) {
+        this.id_parts_number = id_parts_number;
     }
 
     public String getUnit_parts_name() {
@@ -59,12 +59,12 @@ public class PartsModel {
         this.unit_parts_name = unit_parts_name;
     }
 
-    public String getPart_name() {
-        return part_name;
+    public String getParts_name() {
+        return parts_name;
     }
 
-    public void setPart_name(String part_name) {
-        this.part_name = part_name;
+    public void setParts_name(String parts_name) {
+        this.parts_name = parts_name;
     }
 
     public String getBrand_name() {

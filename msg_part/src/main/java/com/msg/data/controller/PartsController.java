@@ -29,7 +29,7 @@ public class PartsController {
 
     @RequestMapping(value = "/insert-new", method = RequestMethod.POST)
     public ResponseEntity<Void> createCluster(@RequestBody PartsModel partsModel, UriComponentsBuilder uriComponentsBuilder) {
-        if (partsService.isPartsExist(partsModel.getId_part_number()) == true) {
+        if (partsService.isPartsExist(partsModel.getId_parts_number()) == true) {
             partsService.insertPartsNew(partsModel);
             return new ResponseEntity(new ErrCode("201", "Data PO berhasil Disimpan"), HttpStatus.CREATED);
         }
