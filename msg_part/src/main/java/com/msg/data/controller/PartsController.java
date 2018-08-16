@@ -37,7 +37,7 @@ public class PartsController {
     }
 
 
-    @PostMapping("/update")
+    @RequestMapping(value = "/update", method = RequestMethod.POST)
     public ResponseEntity<PartsModel> updateUser(@RequestBody PartsModel partsModel) {
         partsService.updatePart(partsModel);
         return new ResponseEntity(new ErrCode("201", "Data Parts berhasil diubah"), HttpStatus.OK);
@@ -46,7 +46,7 @@ public class PartsController {
     @DeleteMapping("/delete={partnumber}")
     public ResponseEntity<Void> deletePartNumber(@PathVariable("partnumber") String partnumber) {
         partsService.deletePartNumber(partnumber);
-        return new ResponseEntity(new ErrCode("201", "Data PO berhasil Dihapus"), HttpStatus.OK);
+        return new ResponseEntity(new ErrCode("201", "Data Parts berhasil Dihapus"), HttpStatus.OK);
     }
 
     @RequestMapping(value = "/parts-number={partnumber}", method = RequestMethod.GET)
