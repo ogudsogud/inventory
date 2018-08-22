@@ -4,7 +4,9 @@ import com.msg.data.model.StockUnitModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Repository;
 
+import javax.transaction.Transactional;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
@@ -12,6 +14,9 @@ import java.util.List;
 /**
  * Created by Ogudsogud on 8/22/2018.
  */
+
+@Transactional
+@Repository
 public class StockUnitServiceImpl implements StockUnitService {
 
     @Autowired

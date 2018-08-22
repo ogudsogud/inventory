@@ -31,6 +31,7 @@ public class TrxPartInServiceImpl implements TrxPartInService{
             trxPartInModel.setId_parts_number(rs.getString("id_parts_number"));
             trxPartInModel.setParts_name(rs.getString("parts_name"));
             trxPartInModel.setUnit_parts_name(rs.getString("unit_parts_name"));
+            trxPartInModel.setBrand_name(rs.getString("brand_name"));
             trxPartInModel.setSpecification(rs.getString("specification"));
             trxPartInModel.setQuantity_unit(rs.getInt("quantity_unit"));
             trxPartInModel.setCreated_by(rs.getString("created_by"));
@@ -44,7 +45,7 @@ public class TrxPartInServiceImpl implements TrxPartInService{
 
     @Override
     public List<TrxPartInModel> getPartsIn() {
-        String sql = "SELECT * FROM trx_part_stock_in";
+        String sql = "SELECT * FROM trx_parts_stock_in";
         RowMapper<TrxPartInModel> rowMapper = new PartsRowMapp();
         return this.jdbcTemplate.query(sql,rowMapper);
     }
@@ -52,22 +53,24 @@ public class TrxPartInServiceImpl implements TrxPartInService{
     @Override
     public boolean insertPartsStock(TrxPartInModel trxPartInModel) {
 
-        String sql = "INSERT INTO trx_part_stock_in (" +
+        String sql = "INSERT INTO trx_parts_stock_in (" +
                                 "id_parts_number," +
                                 "parts_name," +
                                 "unit_parts_name," +
-                                "description," +
+                                "brand_name," +
+                                "specification," +
                                 "quantity_unit," +
                                 "created_by," +
                                 "created_on," +
                                 "updated_by," +
                                 "updated_on," +
                                 "status)" +
-                        "VALUES (?,?,?,?,?,?,NOW(),?,NOW(),1)";
+                        "VALUES (?,?,?,?,?,?,?,NOW(),?,NOW(),1)";
         jdbcTemplate.update(sql,
                 trxPartInModel.getId_parts_number(),
                 trxPartInModel.getParts_name(),
                 trxPartInModel.getUnit_parts_name(),
+                trxPartInModel.getBrand_name(),
                 trxPartInModel.getSpecification(),
                 trxPartInModel.getQuantity_unit(),
                 trxPartInModel.getCreated_by(),
@@ -78,14 +81,14 @@ public class TrxPartInServiceImpl implements TrxPartInService{
 
    @Override
     public boolean isPartsInExist(String id_parts_number) {
-        String sql = "SELECT count(*) from trx_part_stock_in WHERE id_parts_number = ?";
+        String sql = "SELECT count(*) from trx_parts_stock_in WHERE id_parts_number = ?";
         int count = jdbcTemplate.queryForObject(sql, Integer.class, id_parts_number);
        return count == 0;
     }
 
     @Override
     public TrxPartInModel getPartsNumber(String id_parts_number) {
-        String sql = "SELECT * FROM trx_part_stock_in WHERE id_parts_number = ?";
+        String sql = "SELECT * FROM trx_parts_stock_in WHERE id_parts_number = ?";
         RowMapper<TrxPartInModel> rowMapper = new PartsRowMapp();
         TrxPartInModel trxPartInModel = jdbcTemplate.queryForObject(sql, rowMapper, id_parts_number);
         return trxPartInModel;
@@ -93,7 +96,7 @@ public class TrxPartInServiceImpl implements TrxPartInService{
 
     @Override
     public void updateTrxPart(TrxPartInModel trxPartInModel) {
-        String sql = "UPDATE trx_part_stock_in SET " +
+        String sql = "UPDATE trx_parts_stock_in SET " +
                 "id_parts_number = ?, " +
                 "parts_name = ?, " +
                 "unit_parts_name = ?, " +

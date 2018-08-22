@@ -9,6 +9,5 @@ import java.util.List;
  */
 public interface StockUnitService {
 
-
     List<StockUnitModel> getStockUnit();
 }
