@@ -10,7 +10,7 @@ import java.util.List;
 public interface TrxPartInService {
 
 
-    List<TrxPartInModel> getPartsStockIn();
+    List<TrxPartInModel> getPartsIn();
 
     boolean insertPartsStock(TrxPartInModel trxPartInModel);
 

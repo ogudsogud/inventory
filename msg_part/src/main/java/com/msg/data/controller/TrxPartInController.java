@@ -23,7 +23,6 @@ public class TrxPartInController {
     @Autowired
     private TrxPartInService trxPartInService;
 
-    //menambahkan data stock-in baru
     @RequestMapping(value = "/insert-new", method = RequestMethod.POST)
     public ResponseEntity<Void> createCluster(@RequestBody TrxPartInModel partInModel, UriComponentsBuilder uriComponentsBuilder) {
         if (trxPartInService.isPartsInExist(partInModel.getId_parts_number()) == true) {
@@ -33,16 +32,15 @@ public class TrxPartInController {
             return  new ResponseEntity(new ErrCode("409", "Data PO sudah ada"), HttpStatus.CONFLICT);
     }
 
-    //menampilkan data stock yg masuk
     @RequestMapping(value = "/list", method = RequestMethod.GET)
-    public ResponseEntity<List<TrxPartInModel>> getDataParts(){
-        List<TrxPartInModel> list = trxPartInService.getPartsStockIn();
+    public ResponseEntity<List<TrxPartInModel>> getDataPartsIn(){
+        List<TrxPartInModel> list = trxPartInService.getPartsIn();
         return new ResponseEntity<List<TrxPartInModel>>(list, HttpStatus.OK);
     }
 
     @PostMapping("/update")
-    public ResponseEntity<TrxPartInModel> updateUser(@RequestBody TrxPartInModel partsModel) {
-        trxPartInService.updateTrxPart(partsModel);
+    public ResponseEntity<TrxPartInModel> updateUser(@RequestBody TrxPartInModel trxPartInModel) {
+        trxPartInService.updateTrxPart(trxPartInModel);
         return new ResponseEntity(new ErrCode("201", "Data Parts berhasil diubah"), HttpStatus.OK);
     }
 
@@ -52,7 +50,6 @@ public class TrxPartInController {
         return new ResponseEntity(new ErrCode("201", "Data PO berhasil Dihapus"), HttpStatus.OK);
     }
 
-    //mancari data parts berdasarkan parameter
     @RequestMapping(value = "/parts-number={partnum}", method = RequestMethod.GET)
     public ResponseEntity<TrxPartInModel> getByPartNum(@PathVariable("partnum") String partsnumber) {
         TrxPartInModel partInModel = trxPartInService.getPartsNumber(partsnumber);

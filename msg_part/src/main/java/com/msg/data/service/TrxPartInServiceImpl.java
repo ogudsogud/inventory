@@ -43,7 +43,7 @@ public class TrxPartInServiceImpl implements TrxPartInService{
     }
 
     @Override
-    public List<TrxPartInModel> getPartsStockIn() {
+    public List<TrxPartInModel> getPartsIn() {
         String sql = "SELECT * FROM trx_part_stock_in";
         RowMapper<TrxPartInModel> rowMapper = new PartsRowMapp();
         return this.jdbcTemplate.query(sql,rowMapper);
