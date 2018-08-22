@@ -9,13 +9,16 @@ import java.util.List;
  */
 public interface TrxPartInService {
 
+
     List<TrxPartInModel> getPartsStockIn();
 
     boolean insertPartsStock(TrxPartInModel trxPartInModel);
 
-    boolean isPartsInExist(String ticket_no);
+    boolean isPartsInExist(String id_parts_number);
 
-    TrxPartInModel getTicketNo(String ticket_no);
+    TrxPartInModel getPartsNumber(String id_parts_number);
 
-    TrxPartInModel getByPartNumb(String id_part_number);
+    void updateTrxPart(TrxPartInModel trxPartInModel);
+
+    void deletePartNumber(String id_part_number);
 }

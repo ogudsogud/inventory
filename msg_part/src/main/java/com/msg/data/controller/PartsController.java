@@ -15,7 +15,7 @@ import java.util.List;
  * Created by Ogudsogud on 7/7/2018.
  */
 @RestController
-@RequestMapping("/stock-parts")
+@RequestMapping("/parts")
 public class PartsController {
 
     @Autowired

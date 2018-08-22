@@ -152,7 +152,7 @@ public class PartsServiceImpl implements PartsService {
 
     @Override
     public void deletePartNumber(String id_part_number) {
-        String sql = "UPDATE mtr_parts SET status = 0 where id_part_number = ? ";
+        String sql = "UPDATE mtr_parts SET status = 0 where id_parts_number = ? ";
         jdbcTemplate.update(sql, id_part_number);
     }
 }
