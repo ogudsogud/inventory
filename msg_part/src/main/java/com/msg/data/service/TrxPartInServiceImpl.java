@@ -27,29 +27,25 @@ public class TrxPartInServiceImpl implements TrxPartInService{
         @Override
         public TrxPartInModel mapRow(ResultSet rs, int i) throws SQLException {
             TrxPartInModel trxPartInModel = new TrxPartInModel();
-            trxPartInModel.setTicket_no(rs.getString("ticket_no"));
-            trxPartInModel.setId_unit_parts(rs.getString("id_unit_parts"));
-            trxPartInModel.setId_unit_institution(rs.getString("id_unit_institution"));
-            trxPartInModel.setId_part_number(rs.getString("id_part_number"));
-            trxPartInModel.setPart_name(rs.getString("part_name"));
-            trxPartInModel.setInstitution_name(rs.getString("institution_name"));
-            trxPartInModel.setIns_unit_name(rs.getString("ins_unit_name"));
+            trxPartInModel.setId_trx_parts_stock_in(rs.getInt("id_trx_parts_stock_in"));
+            trxPartInModel.setId_parts_number(rs.getString("id_parts_number"));
+            trxPartInModel.setParts_name(rs.getString("parts_name"));
             trxPartInModel.setUnit_parts_name(rs.getString("unit_parts_name"));
-            trxPartInModel.setDescription(rs.getString("description"));
+            trxPartInModel.setBrand_name(rs.getString("brand_name"));
+            trxPartInModel.setSpecification(rs.getString("specification"));
             trxPartInModel.setQuantity_unit(rs.getInt("quantity_unit"));
-            trxPartInModel.setBad_part(rs.getString("bad_part"));
-            trxPartInModel.setReturned_by(rs.getString("returned_by"));
-            trxPartInModel.setReturned_on(rs.getString("returned_on"));
-            trxPartInModel.setApproved_by(rs.getString("approved_by"));
-            trxPartInModel.setApproved_on(rs.getString("approved_on"));
+            trxPartInModel.setCreated_by(rs.getString("created_by"));
+            trxPartInModel.setCreated_on(rs.getString("created_on"));
+            trxPartInModel.setUpdated_by(rs.getString("updated_by"));
+            trxPartInModel.setUpdated_on(rs.getString("updated_on"));
             trxPartInModel.setStatus(rs.getInt("status"));
             return trxPartInModel;
         }
     }
 
     @Override
-    public List<TrxPartInModel> getPartsStockIn() {
-        String sql = "SELECT * FROM trx_part_stock_in";
+    public List<TrxPartInModel> getPartsIn() {
+        String sql = "SELECT * FROM trx_parts_stock_in";
         RowMapper<TrxPartInModel> rowMapper = new PartsRowMapp();
         return this.jdbcTemplate.query(sql,rowMapper);
     }
@@ -57,66 +53,73 @@ public class TrxPartInServiceImpl implements TrxPartInService{
     @Override
     public boolean insertPartsStock(TrxPartInModel trxPartInModel) {
 
-        String sql = "INSERT INTO trx_part_stock_in (" +
-                                "ticket_no," +
-//                                "id_unit_parts," +
-//                                "id_unit_institution," +
-                                "id_part_number," +
-                                "part_name," +
-                                "institution_name," +
-                                "ins_unit_name," +
+        String sql = "INSERT INTO trx_parts_stock_in (" +
+                                "id_parts_number," +
+                                "parts_name," +
                                 "unit_parts_name," +
-                                "description," +
+                                "brand_name," +
+                                "specification," +
                                 "quantity_unit," +
-                                "bad_part," +
-                                "returned_by," +
-                                "returned_on," +
-                                "approved_by," +
-                                "approved_on," +
+                                "created_by," +
+                                "created_on," +
+                                "updated_by," +
+                                "updated_on," +
                                 "status)" +
-                        "VALUES (?,?,?,?,?,?,?,?,?,?,NOW(),?,NOW(),1)";
+                        "VALUES (?,?,?,?,?,?,?,NOW(),?,NOW(),1)";
         jdbcTemplate.update(sql,
-                trxPartInModel.getTicket_no(),
-                trxPartInModel.getId_unit_parts(),
-                trxPartInModel.getId_unit_institution(),
-                trxPartInModel.getId_part_number(),
-                trxPartInModel.getPart_name(),
-                trxPartInModel.getInstitution_name(),
-                trxPartInModel.getIns_unit_name(),
+                trxPartInModel.getId_parts_number(),
+                trxPartInModel.getParts_name(),
                 trxPartInModel.getUnit_parts_name(),
-                trxPartInModel.getDescription(),
+                trxPartInModel.getBrand_name(),
+                trxPartInModel.getSpecification(),
                 trxPartInModel.getQuantity_unit(),
-                trxPartInModel.getBad_part(),
-                trxPartInModel.getReturned_by(),
-//                trxPartInModel.getReturned_on(),
-                trxPartInModel.getApproved_by()
-//                trxPartInModel.getApproved_on(),
-//                trxPartInModel.getStatus()
+                trxPartInModel.getCreated_by(),
+                trxPartInModel.getUpdated_by()
         );
         return false;
     }
 
    @Override
-    public boolean isPartsInExist(String ticket_no) {
-        String sql = "SELECT count(*) from trx_part_stock_in WHERE ticket_no = ?";
-        int count = jdbcTemplate.queryForObject(sql, Integer.class, ticket_no);
+    public boolean isPartsInExist(String id_parts_number) {
+        String sql = "SELECT count(*) from trx_parts_stock_in WHERE id_parts_number = ?";
+        int count = jdbcTemplate.queryForObject(sql, Integer.class, id_parts_number);
        return count == 0;
     }
 
     @Override
-    public TrxPartInModel getTicketNo(String ticket_no) {
-        String sql = "SELECT * FROM trx_part_stock_in WHERE ticket_no = ?";
+    public TrxPartInModel getPartsNumber(String id_parts_number) {
+        String sql = "SELECT * FROM trx_parts_stock_in WHERE id_parts_number = ?";
         RowMapper<TrxPartInModel> rowMapper = new PartsRowMapp();
-        TrxPartInModel trxPartInModel = jdbcTemplate.queryForObject(sql, rowMapper, ticket_no);
+        TrxPartInModel trxPartInModel = jdbcTemplate.queryForObject(sql, rowMapper, id_parts_number);
         return trxPartInModel;
     }
 
     @Override
-    public TrxPartInModel getByPartNumb(String id_part_number) {
-        String sql = "SELECT * FROM trx_part_stock_in WHERE id_part_number = ?";
-        RowMapper<TrxPartInModel> rowMapper = new PartsRowMapp();
-        TrxPartInModel trxPartInModel = jdbcTemplate.queryForObject(sql, rowMapper, id_part_number);
-        return trxPartInModel;
+    public void updateTrxPart(TrxPartInModel trxPartInModel) {
+        String sql = "UPDATE trx_parts_stock_in SET " +
+                "id_parts_number = ?, " +
+                "parts_name = ?, " +
+                "unit_parts_name = ?, " +
+                "brand_name = ?, " +
+                "specification = ?, " +
+                "updated_by = ?, " +
+                "updated_on = now() WHERE " +
+                "id_trx_parts_stock_in = ?";
+        jdbcTemplate.update(sql,
+                trxPartInModel.getId_parts_number(),
+                trxPartInModel.getUnit_parts_name(),
+                trxPartInModel.getParts_name(),
+                trxPartInModel.getUnit_parts_name(),
+                trxPartInModel.getBrand_name(),
+                trxPartInModel.getSpecification(),
+                trxPartInModel.getUpdated_by(),
+                trxPartInModel.getId_parts_number());
+    }
+
+    @Override
+    public void deletePartNumber(String id_part_number) {
+        String sql = "UPDATE trx_parts_stock_in SET status = 0 where id_parts_number = ? ";
+        jdbcTemplate.update(sql, id_part_number);
     }
 
 }
