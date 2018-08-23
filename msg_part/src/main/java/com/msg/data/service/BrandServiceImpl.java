@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import javax.transaction.Transactional;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 /**
  * Created by Ogudsogud on 7/21/2018.
@@ -36,6 +37,13 @@ public class BrandServiceImpl implements BrandService {
             brandModel.setStatus(rs.getInt("status"));
             return brandModel;
         }
+    }
+
+    @Override
+    public List<BrandModel> getDataBrand() {
+        String sql = "SELECT * FROM mtr_parts WHERE status = 1";
+        RowMapper<BrandModel> rowMapper = new PartsRowMapp();
+        return this.jdbcTemplate.query(sql,rowMapper);
     }
 
     //untuk insert brand
@@ -69,6 +77,44 @@ public class BrandServiceImpl implements BrandService {
         RowMapper<BrandModel> rowMapper = new PartsRowMapp();
         BrandModel brandModel = jdbcTemplate.queryForObject(sql, rowMapper, id_brand);
         return brandModel;
+    }
+
+
+    @Override
+    public boolean isBrandExist(String brand_name) {
+        String sql = "SELECT count(*) from mtr_parts WHERE brand_name = ? AND status = 1";
+        int count = jdbcTemplate.queryForObject(sql, Integer.class, brand_name);
+        return count == 0;
+    }
+
+    @Override
+    public BrandModel getByBrandName(String brand_name) {
+        String sql = "SELECT * FROM mtr_brand WHERE brand_name = ? AND status = 1";
+        RowMapper<BrandModel> rowMapper = new PartsRowMapp();
+        BrandModel brandModel = jdbcTemplate.queryForObject(sql, rowMapper, brand_name);
+        return brandModel;
+    }
+
+
+    @Override
+    public void updateBrand(BrandModel brandModel) {
+        String sql = "UPDATE mtr_brand SET " +
+                "brand_name = ?, " +
+                "base_country = ?, " +
+                "updated_by = ?, " +
+                "updated_on = now() WHERE " +
+                "id_brand = ? AND status = 1";
+        jdbcTemplate.update(sql,
+                brandModel.getBrand_name(),
+                brandModel.getBase_country(),
+                brandModel.getUpdated_by(),
+                brandModel.getId_brand());
+    }
+
+    @Override
+    public void deleteBrand(String id_brand) {
+        String sql = "UPDATE mtr_parts SET status = 0 where id_brand = ? ";
+        jdbcTemplate.update(sql, id_brand);
     }
 
 }

@@ -42,7 +42,6 @@ public class PartsServiceImpl implements PartsService {
         }
     }
 
-    //untuk menampilkan data parts
     @Override
     public List<PartsModel> getDataParts() {
         String sql = "SELECT * FROM mtr_parts WHERE status = 1";
