@@ -41,7 +41,7 @@ public class BrandServiceImpl implements BrandService {
 
     @Override
     public List<BrandModel> getDataBrand() {
-        String sql = "SELECT * FROM mtr_parts WHERE status = 1";
+        String sql = "SELECT * FROM mtr_brand WHERE status = 1";
         RowMapper<BrandModel> rowMapper = new PartsRowMapp();
         return this.jdbcTemplate.query(sql,rowMapper);
     }

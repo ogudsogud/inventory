@@ -31,5 +31,6 @@ D:\APPS\inventory\msg_part\src\main\java\com\msg\data\model\InstitutionModel.jav
 D:\APPS\inventory\msg_part\src\main\java\com\msg\data\controller\PrivilageController.java
 D:\APPS\inventory\msg_part\src\main\java\com\msg\data\service\PartsServiceImpl.java
 D:\APPS\inventory\msg_part\src\main\java\com\msg\data\service\UnitPartsServiceImpl.java
+D:\APPS\inventory\msg_part\src\main\java\com\msg\data\controller\BrandController.java
 D:\APPS\inventory\msg_part\src\main\java\com\msg\data\service\StockUnitService.java
 D:\APPS\inventory\msg_part\src\main\java\com\msg\data\model\PrivilageModel.java

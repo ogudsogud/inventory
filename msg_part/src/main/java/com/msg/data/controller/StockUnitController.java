@@ -26,5 +26,4 @@ public class StockUnitController {
         return new ResponseEntity<List<StockUnitModel>>(list, HttpStatus.OK);
     }
 
-
 }

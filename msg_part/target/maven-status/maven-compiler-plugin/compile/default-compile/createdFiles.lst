@@ -3,6 +3,7 @@ com\msg\data\model\LogUserLoginModel.class
 com\msg\data\service\BrandService.class
 com\msg\data\controller\TrxPartOutController.class
 com\msg\data\service\PartsService.class
+com\msg\data\controller\BrandController.class
 com\msg\data\service\TrxPartInService.class
 com\msg\data\service\UnitPartsServiceImpl$PartsRowMapp.class
 com\msg\data\service\TrxPartOutServiceImpl$PartsRowMapp.class

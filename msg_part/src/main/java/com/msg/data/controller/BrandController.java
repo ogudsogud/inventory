@@ -23,7 +23,7 @@ public class BrandController {
     private BrandService brandService;
 
     @RequestMapping("/list")
-    public ResponseEntity<List<BrandModel>> getAllPrts(){
+    public ResponseEntity<List<BrandModel>> getAllBrand(){
         List<BrandModel> list = brandService.getDataBrand();
         return new ResponseEntity<List<BrandModel>>(list, HttpStatus.OK);
     }
