@@ -6,6 +6,8 @@ package com.msg.data.model;
 public class PartsModel {
     private int id_mtr_parts;
     private String id_parts_number;
+    private int id_unit_parts;
+    private int id_brand;
     private String unit_parts_name;
     private String parts_name;
     private String brand_name;
@@ -17,9 +19,11 @@ public class PartsModel {
     private int status;
 
 
-    public PartsModel(int id_mtr_parts,  String id_parts_number, String unit_parts_name, String parts_name, String brand_name, String specification, String created_by, String created_on, String updated_by, String updated_on, int status) {
+    public PartsModel(int id_mtr_parts, String id_parts_number, int id_unit_parts, int id_brand, String unit_parts_name, String parts_name, String brand_name, String specification, String created_by, String created_on, String updated_by, String updated_on, int status) {
         this.id_mtr_parts = id_mtr_parts;
         this.id_parts_number = id_parts_number;
+        this.id_unit_parts = id_unit_parts;
+        this.id_brand = id_brand;
         this.unit_parts_name = unit_parts_name;
         this.parts_name = parts_name;
         this.brand_name = brand_name;
@@ -49,6 +53,22 @@ public class PartsModel {
 
     public void setId_parts_number(String id_parts_number) {
         this.id_parts_number = id_parts_number;
+    }
+
+    public int getId_unit_parts() {
+        return id_unit_parts;
+    }
+
+    public void setId_unit_parts(int id_unit_parts) {
+        this.id_unit_parts = id_unit_parts;
+    }
+
+    public int getId_brand() {
+        return id_brand;
+    }
+
+    public void setId_brand(int id_brand) {
+        this.id_brand = id_brand;
     }
 
     public String getUnit_parts_name() {

@@ -27,11 +27,10 @@ public class StockUnitServiceImpl implements StockUnitService {
         @Override
         public StockUnitModel mapRow(ResultSet rs, int i) throws SQLException {
             StockUnitModel stockUnitModel = new StockUnitModel();
+            stockUnitModel.setId_stock_unit_parts(rs.getInt("id_stock_unit_parts"));
             stockUnitModel.setId_unit_parts(rs.getInt("id_unit_parts"));
             stockUnitModel.setUnit_parts_name(rs.getString("unit_parts_name"));
             stockUnitModel.setQuantity_unit(rs.getInt("quantity_unit"));
-            stockUnitModel.setCreated_by(rs.getString("created_by"));
-            stockUnitModel.setCreated_on(rs.getString("created_on"));
             stockUnitModel.setUpdated_by(rs.getString("updated_by"));
             stockUnitModel.setUpdated_on(rs.getString("updated_on"));
             stockUnitModel.setStatus(rs.getInt("status"));
@@ -41,7 +40,16 @@ public class StockUnitServiceImpl implements StockUnitService {
 
     @Override
     public List<StockUnitModel> getStockUnit() {
-        String sql = "SELECT * FROM mtr_stock_unit_parts";
+        String sql = "SELECT " +
+                "mstok.id_stock_unit_parts," +
+                "mstok.id_unit_parts, "+
+                "munit.unit_parts_name, " +
+                "mstok.quantity_unit, " +
+                "mstok.updated_by, " +
+                "mstok.updated_on " +
+                "FROM mtr_stock_unit_parts mstok " +
+                "LEFT JOIN mtr_unit_parts munit ON mstok.id_unit_parts = munit.id_unit_parts " +
+                "WHERE mstok.status = 1";
         RowMapper<StockUnitModel> rowMapper = new PartsRowMapp();
         return this.jdbcTemplate.query(sql,rowMapper);
     }

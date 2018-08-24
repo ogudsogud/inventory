@@ -29,6 +29,8 @@ public class PartsServiceImpl implements PartsService {
             PartsModel partsModel = new PartsModel();
             partsModel.setId_mtr_parts(rs.getInt("id_mtr_parts"));
             partsModel.setId_parts_number(rs.getString("id_parts_number"));
+            partsModel.setId_mtr_parts(rs.getInt("id_unit_parts"));
+            partsModel.setId_mtr_parts(rs.getInt("id_brand"));
             partsModel.setUnit_parts_name(rs.getString("unit_parts_name"));
             partsModel.setParts_name(rs.getString("parts_name"));
             partsModel.setBrand_name(rs.getString("brand_name"));
@@ -44,7 +46,24 @@ public class PartsServiceImpl implements PartsService {
 
     @Override
     public List<PartsModel> getDataParts() {
-        String sql = "SELECT * FROM mtr_parts WHERE status = 1";
+        String sql = "SELECT " +
+                "mparts.id_mtr_parts, " +
+                "mparts.id_unit_parts, " +
+                "mparts.id_brand, " +
+                "mparts.id_parts_number, " +
+                "munit.unit_parts_name, " +
+                "mparts.parts_name, " +
+                "mbrand.brand_name, " +
+                "mparts.specification, " +
+                "mparts.created_by, " +
+                "mparts.created_on, " +
+                "mparts.updated_by, " +
+                "mparts.updated_on, " +
+                "mparts.status " +
+                "FROM mtr_parts mparts " +
+                "LEFT JOIN mtr_unit_parts munit ON munit.id_unit_parts = mparts.id_unit_parts " +
+                "LEFT JOIN mtr_brand mbrand ON mbrand.id_brand = mparts.id_brand " +
+                "WHERE mparts.status = 1";
         RowMapper<PartsModel> rowMapper = new PartsRowMapp();
         return this.jdbcTemplate.query(sql,rowMapper);
     }
@@ -73,22 +92,22 @@ public class PartsServiceImpl implements PartsService {
     public boolean insertPartsNew(PartsModel partsModel) {
 
         String sql = "INSERT INTO mtr_parts (" +
-                "                id_parts_number," +
-                "                unit_parts_name," +
-                "                parts_name," +
-                "                brand_name," +
-                "                specification," +
-                "                created_by," +
-                "                created_on," +
-                "                updated_by," +
-                "                updated_on," +
-                "                status)" +
-                "                VALUES ( ?,?,?,?,?,?,NOW(),?,NOW(),1)";
+                "id_parts_number," +
+                "id_unit_parts," +
+                "id_brand," +
+                "parts_name," +
+                "specification," +
+                "created_by," +
+                "created_on," +
+                "updated_by," +
+                "updated_on," +
+                "status)" +
+                "VALUES ( ?,?,?,?,?,?,NOW(),?,NOW(),1)";
         jdbcTemplate.update(sql,
                 partsModel.getId_parts_number(),
-                partsModel.getUnit_parts_name(),
+                partsModel.getId_unit_parts(),
+                partsModel.getId_brand(),
                 partsModel.getParts_name(),
-                partsModel.getBrand_name(),
                 partsModel.getSpecification(),
                 partsModel.getCreated_by(),
                 partsModel.getUpdated_by()
@@ -133,16 +152,16 @@ public class PartsServiceImpl implements PartsService {
     @Override
     public void updatePart(PartsModel partsModel) {
         String sql = "UPDATE mtr_parts SET " +
-                "unit_parts_name = ?, " +
-                "parts_name = ?, " +
+                "id_unit_parts = ?, " +
+                "id_brand = ?, " +
                 "brand_name = ?, " +
                 "specification = ?, " +
                 "updated_by = ?, " +
                 "updated_on = now() WHERE " +
                 "id_parts_number = ? AND status = 1";
         jdbcTemplate.update(sql,
-                partsModel.getUnit_parts_name(),
-                partsModel.getParts_name(),
+                partsModel.getId_unit_parts(),
+                partsModel.getId_brand(),
                 partsModel.getBrand_name(),
                 partsModel.getSpecification(),
                 partsModel.getUpdated_by(),
