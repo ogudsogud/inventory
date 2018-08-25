@@ -44,10 +44,10 @@ public class BrandController {
         return new ResponseEntity(new ErrCode("201", "Data Brand berhasil diubah"), HttpStatus.OK);
     }
 
-    @DeleteMapping("/delete={brandname}")
-    public ResponseEntity<Void> deletePartNumber(@PathVariable("brandname") String brandname) {
-        brandService.deleteBrand(brandname);
-        return new ResponseEntity(new ErrCode("201", "Data Parts berhasil Dihapus"), HttpStatus.OK);
+    @DeleteMapping("/delete={id_brand}")
+    public ResponseEntity<Void> deleteIdBrand(@PathVariable("id_brand") int idbrand) {
+        brandService.deleteBrand(idbrand);
+        return new ResponseEntity(new ErrCode("201", "Data Brand berhasil Dihapus"), HttpStatus.OK);
     }
 
 }

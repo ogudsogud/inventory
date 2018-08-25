@@ -46,7 +46,8 @@ public class StockUnitServiceImpl implements StockUnitService {
                 "munit.unit_parts_name, " +
                 "mstok.quantity_unit, " +
                 "mstok.updated_by, " +
-                "mstok.updated_on " +
+                "mstok.updated_on, " +
+                "mstok.status " +
                 "FROM mtr_stock_unit_parts mstok " +
                 "LEFT JOIN mtr_unit_parts munit ON mstok.id_unit_parts = munit.id_unit_parts " +
                 "WHERE mstok.status = 1";

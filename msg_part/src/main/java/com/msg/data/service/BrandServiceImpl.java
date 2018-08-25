@@ -82,7 +82,7 @@ public class BrandServiceImpl implements BrandService {
 
     @Override
     public boolean isBrandExist(String brand_name) {
-        String sql = "SELECT count(*) from mtr_parts WHERE brand_name = ? AND status = 1";
+        String sql = "SELECT count(*) from mtr_brand WHERE brand_name = ? AND status = 1";
         int count = jdbcTemplate.queryForObject(sql, Integer.class, brand_name);
         return count == 0;
     }
@@ -112,7 +112,7 @@ public class BrandServiceImpl implements BrandService {
     }
 
     @Override
-    public void deleteBrand(String id_brand) {
+    public void deleteBrand(int id_brand) {
         String sql = "UPDATE mtr_parts SET status = 0 where id_brand = ? ";
         jdbcTemplate.update(sql, id_brand);
     }

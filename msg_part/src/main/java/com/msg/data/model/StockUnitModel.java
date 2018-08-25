@@ -23,11 +23,10 @@ public class StockUnitModel {
         this.updated_by = updated_by;
         this.updated_on = updated_on;
         this.status = status;
-
-
     }
 
     public StockUnitModel() {
+
     }
 
 

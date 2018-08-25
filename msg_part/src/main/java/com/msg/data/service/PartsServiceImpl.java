@@ -154,7 +154,7 @@ public class PartsServiceImpl implements PartsService {
         String sql = "UPDATE mtr_parts SET " +
                 "id_unit_parts = ?, " +
                 "id_brand = ?, " +
-                "brand_name = ?, " +
+                "parts_name = ?, " +
                 "specification = ?, " +
                 "updated_by = ?, " +
                 "updated_on = now() WHERE " +
@@ -162,7 +162,7 @@ public class PartsServiceImpl implements PartsService {
         jdbcTemplate.update(sql,
                 partsModel.getId_unit_parts(),
                 partsModel.getId_brand(),
-                partsModel.getBrand_name(),
+                partsModel.getParts_name(),
                 partsModel.getSpecification(),
                 partsModel.getUpdated_by(),
                 partsModel.getId_parts_number());
