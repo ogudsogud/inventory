@@ -14,9 +14,11 @@ public interface TrxPartOutService {
 
     boolean insertPartsOut(TrxPartOutModel trxPartOutModel);
 
+    void updateTrxPart(TrxPartOutModel trxPartInModel);
+
     boolean isPartsOutExist(String po_number);
 
-    TrxPartOutModel getByPoNumb(String ticket_no);
+    TrxPartOutModel getByTiknoNumb(String ticket_no);
 
     void deleteByTicket(String ticket_no);
 }

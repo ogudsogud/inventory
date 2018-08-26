@@ -114,6 +114,25 @@ public class TrxPartOutServiceImpl implements TrxPartOutService {
         return false;
     }
 
+    @Override
+    public void updateTrxPart(TrxPartOutModel trxPartInModel) {
+        String sql = "UPDATE trx_parts_stock_in SET " +
+                "id_stock_unit_parts," +
+                "ticket_no," +
+                "id_mtr_parts," +
+                "id_unit_institution," +
+                "updated_by = ?, " +
+                "updated_on = now() WHERE " +
+                "id_trx_parts_stock_out = ? AND status = 1";
+        jdbcTemplate.update(sql,
+                trxPartInModel.getId_stock_unit_parts(),
+                trxPartInModel.getTicket_no(),
+                trxPartInModel.getId_mtr_parts(),
+                trxPartInModel.getId_unit_institution(),
+                trxPartInModel.getUpdated_by(),
+                trxPartInModel.getId_trx_parts_stock_out());
+    }
+
 
     @Override
     public boolean isPartsOutExist(String po_number) {
@@ -128,7 +147,7 @@ public class TrxPartOutServiceImpl implements TrxPartOutService {
 
 
     @Override
-    public TrxPartOutModel getByPoNumb(String ticket_no) {
+    public TrxPartOutModel getByTiknoNumb(String ticket_no) {
         String sql = "SELECT * FROM trx_part_stock_out WHERE ticket_no = ?";
         RowMapper<TrxPartOutModel> rowMapper = new PartsRowMapp();
         TrxPartOutModel trxPartOutModel = jdbcTemplate.queryForObject(sql, rowMapper, ticket_no);

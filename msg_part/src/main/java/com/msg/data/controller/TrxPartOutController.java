@@ -23,7 +23,7 @@ public class TrxPartOutController {
     private TrxPartOutService partOutService;
 
     //menambahkan data stock-out baru
-    @RequestMapping(value = "/insert", method = RequestMethod.POST)
+    @RequestMapping(value = "/insert-new", method = RequestMethod.POST)
     public ResponseEntity<Void> createCluster(@RequestBody TrxPartOutModel partOutModel, UriComponentsBuilder uriComponentsBuilder) {
         if (partOutService.isPartsOutExist(partOutModel.getTicket_no()) == true) {
             partOutService.insertPartsOut(partOutModel);
@@ -39,10 +39,17 @@ public class TrxPartOutController {
         return new ResponseEntity<List<TrxPartOutModel>>(list, HttpStatus.OK);
     }
 
+
+    @PostMapping("/update")
+    public ResponseEntity<TrxPartOutModel> updateUser(@RequestBody TrxPartOutModel trxPartOutModel) {
+        partOutService.updateTrxPart(trxPartOutModel);
+        return new ResponseEntity(new ErrCode("201", "Data Stock Out berhasil diubah"), HttpStatus.OK);
+    }
+
     //mancari data parts berdasarkan parameter
-    @RequestMapping(value = "/po-number={po}", method = RequestMethod.GET)
-    public ResponseEntity<TrxPartOutModel> getByPartNum(@PathVariable("partnum") String po) {
-        TrxPartOutModel partOutModelModel = partOutService.getByPoNumb(po);
+    @RequestMapping(value = "/ticket-number={tikno}", method = RequestMethod.GET)
+    public ResponseEntity<TrxPartOutModel> getByPartNum(@PathVariable("tikno") String ticket_no) {
+        TrxPartOutModel partOutModelModel = partOutService.getByTiknoNumb(ticket_no);
         return new ResponseEntity<TrxPartOutModel>(partOutModelModel, HttpStatus.OK);
     }
 
