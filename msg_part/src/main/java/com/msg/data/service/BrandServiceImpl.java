@@ -72,15 +72,6 @@ public class BrandServiceImpl implements BrandService {
     }
 
     @Override
-    public BrandModel getByIdBrand(String id_brand) {
-        String sql = "SELECT * FROM mtr_brand WHERE id_brand = ?";
-        RowMapper<BrandModel> rowMapper = new PartsRowMapp();
-        BrandModel brandModel = jdbcTemplate.queryForObject(sql, rowMapper, id_brand);
-        return brandModel;
-    }
-
-
-    @Override
     public boolean isBrandExist(String brand_name) {
         String sql = "SELECT count(*) from mtr_brand WHERE brand_name = ? AND status = 1";
         int count = jdbcTemplate.queryForObject(sql, Integer.class, brand_name);
@@ -113,7 +104,7 @@ public class BrandServiceImpl implements BrandService {
 
     @Override
     public void deleteBrand(int id_brand) {
-        String sql = "UPDATE mtr_parts SET status = 0 where id_brand = ? ";
+        String sql = "UPDATE mtr_brand SET status = 0 where id_brand = ? ";
         jdbcTemplate.update(sql, id_brand);
     }
 

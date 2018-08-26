@@ -13,8 +13,6 @@ public interface BrandService {
 
     boolean insertBrand(BrandModel brandModel);
 
-    BrandModel getByIdBrand(String id_brand);
-
     boolean isBrandExist(String brand_name);
 
     BrandModel getByBrandName(String brand_name);

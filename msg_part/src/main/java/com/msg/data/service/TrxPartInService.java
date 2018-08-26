@@ -14,11 +14,9 @@ public interface TrxPartInService {
 
     boolean insertPartsStock(TrxPartInModel trxPartInModel);
 
-    boolean isPartsInExist(String id_parts_number);
-
-    TrxPartInModel getPartsNumber(String id_parts_number);
+    boolean isPartsInExist(String id_trx_parts_stock_in);
 
     void updateTrxPart(TrxPartInModel trxPartInModel);
 
-    void deletePartNumber(String id_part_number);
+    void deleteId(String trx_parts_stock_in);
 }

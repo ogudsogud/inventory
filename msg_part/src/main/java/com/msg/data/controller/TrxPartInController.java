@@ -27,9 +27,9 @@ public class TrxPartInController {
     public ResponseEntity<Void> createCluster(@RequestBody TrxPartInModel partInModel, UriComponentsBuilder uriComponentsBuilder) {
         if (trxPartInService.isPartsInExist(partInModel.getId_parts_number()) == true) {
             trxPartInService.insertPartsStock(partInModel);
-            return new ResponseEntity(new ErrCode("201", "Data PO berhasil Disimpan"), HttpStatus.CREATED);
+            return new ResponseEntity(new ErrCode("201", "Data Stock berhasil Disimpan"), HttpStatus.CREATED);
         }
-            return  new ResponseEntity(new ErrCode("409", "Data PO sudah ada"), HttpStatus.CONFLICT);
+            return  new ResponseEntity(new ErrCode("409", "Data Stock sudah ada"), HttpStatus.CONFLICT);
     }
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)
@@ -41,19 +41,13 @@ public class TrxPartInController {
     @PostMapping("/update")
     public ResponseEntity<TrxPartInModel> updateUser(@RequestBody TrxPartInModel trxPartInModel) {
         trxPartInService.updateTrxPart(trxPartInModel);
-        return new ResponseEntity(new ErrCode("201", "Data Parts berhasil diubah"), HttpStatus.OK);
+        return new ResponseEntity(new ErrCode("201", "Data Stock berhasil diubah"), HttpStatus.OK);
     }
 
     @DeleteMapping("/delete={partnumber}")
-    public ResponseEntity<Void> deletePartNumber(@PathVariable("partnumber") String partnumber) {
-        trxPartInService.deletePartNumber(partnumber);
-        return new ResponseEntity(new ErrCode("201", "Data PO berhasil Dihapus"), HttpStatus.OK);
-    }
-
-    @RequestMapping(value = "/parts-number={partnum}", method = RequestMethod.GET)
-    public ResponseEntity<TrxPartInModel> getByPartNum(@PathVariable("partnum") String partsnumber) {
-        TrxPartInModel partInModel = trxPartInService.getPartsNumber(partsnumber);
-        return new ResponseEntity<TrxPartInModel>(partInModel, HttpStatus.OK);
+    public ResponseEntity<Void> deletePartNumber(@PathVariable("partnumber") String trx_parts_stock_in) {
+        trxPartInService.deleteId(trx_parts_stock_in);
+        return new ResponseEntity(new ErrCode("201", "Data Stock berhasil Dihapus"), HttpStatus.OK);
     }
 
 }
