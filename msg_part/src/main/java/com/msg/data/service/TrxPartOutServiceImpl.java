@@ -27,22 +27,25 @@ public class TrxPartOutServiceImpl implements TrxPartOutService {
         @Override
         public TrxPartOutModel mapRow(ResultSet rs, int i) throws SQLException {
             TrxPartOutModel trxPartOutModel = new TrxPartOutModel();
+            trxPartOutModel.setId_trx_parts_stock_out(rs.getInt("id_trx_parts_stock_out"));
+            trxPartOutModel.setId_stock_unit_parts(rs.getInt("id_stock_unit_parts"));
             trxPartOutModel.setTicket_no(rs.getString("ticket_no"));
-            trxPartOutModel.setPart_name(rs.getString("id_unit_parts"));
-            trxPartOutModel.setPart_name(rs.getString("id_unit_institution"));
-            trxPartOutModel.setPart_name(rs.getString("id_part_number"));
-            trxPartOutModel.setPart_name(rs.getString("part_name"));
-            trxPartOutModel.setPart_name(rs.getString("institution_name"));
-            trxPartOutModel.setIns_unit_name(rs.getString("ins_unit_name"));
+            trxPartOutModel.setId_mtr_parts(rs.getInt("id_mtr_parts"));
+            trxPartOutModel.setId_unit_institution(rs.getInt("id_unit_institution"));
+            trxPartOutModel.setId_unit_parts(rs.getInt("id_unit_parts"));
+            trxPartOutModel.setId_brand(rs.getInt("id_brand"));
             trxPartOutModel.setUnit_parts_name(rs.getString("unit_parts_name"));
+            trxPartOutModel.setIns_unit_name(rs.getString("id_parts_number"));
+            trxPartOutModel.setParts_name(rs.getString("parts_name"));
+            trxPartOutModel.setBrand_name(rs.getString("brand_name"));
+            trxPartOutModel.setInstitution_name(rs.getString("institution_name"));
+            trxPartOutModel.setIns_unit_name(rs.getString("ins_unit_name"));
             trxPartOutModel.setDescription(rs.getString("description"));
             trxPartOutModel.setQuantity_unit(rs.getInt("quantity_unit"));
             trxPartOutModel.setRequested_by(rs.getString("requested_by"));
             trxPartOutModel.setRequested_on(rs.getString("requested_on"));
             trxPartOutModel.setApproved_by(rs.getString("approved_by"));
             trxPartOutModel.setApproved_on(rs.getString("approved_on"));
-            trxPartOutModel.setUpdated_by(rs.getString("updated_by"));
-            trxPartOutModel.setUpdated_on(rs.getString("updated_on"));
             trxPartOutModel.setStatus(rs.getInt("status"));
             return trxPartOutModel;
         }
@@ -50,7 +53,26 @@ public class TrxPartOutServiceImpl implements TrxPartOutService {
 
     @Override
     public List<TrxPartOutModel> getPartsStockOut() {
-        String sql = "SELECT * FROM trx_part_stock_out WHERE status = 1";
+        String sql = "SELECT  stokot.ticket_no," +
+                "unit.unit_parts_name," +
+                "parts.id_parts_number," +
+                "parts.parts_name," +
+                "brand.brand_name," +
+                "ins.institution_name," +
+                "uninst.ins_unit_name," +
+                "stokot.description," +
+                "stokot.quantity_unit," +
+                "stokot.requested_by," +
+                "stokot.requested_on," +
+                "stokot.approved_by," +
+                "stokot.approved_on " +
+                "FROM trx_parts_stock_out stokot " +
+                "LEFT JOIN mtr_parts parts ON stokot.id_mtr_parts = parts.id_mtr_parts " +
+                "LEFT JOIN mtr_unit_parts unit ON stokot.id_mtr_parts = parts.id_mtr_parts " +
+                "LEFT JOIN mtr_brand brand ON parts.id_brand = brand.id_brand " +
+                "LEFT JOIN mtr_unit_institution uninst ON stokot.id_unit_institution = uninst.id_unit_institution " +
+                "LEFT JOIN mtr_institution ins ON uninst.id_institution = ins.id_institution " +
+                "WHERE stokot.status = 1";
         RowMapper<TrxPartOutModel> rowMapper = new PartsRowMapp();
         return this.jdbcTemplate.query(sql,rowMapper);
     }
@@ -59,12 +81,10 @@ public class TrxPartOutServiceImpl implements TrxPartOutService {
     public boolean insertPartsOut(TrxPartOutModel trxPartOutModel) {
 
         String sql = "INSERT INTO trx_part_stock_out (" +
-                "ticket_no," +
-                "id_part_number, " +
-                "part_name, " +
-                "institution_name, " +
-                "ins_unit_name,  " +
-                "unit_parts_name, " +
+                "id_stock_unit_parts," +
+                "ticket_no, " +
+                "id_mtr_parts, " +
+                "id_unit_institution, " +
                 "description, " +
                 "quantity_unit, " +
                 "requested_by, " +
@@ -75,14 +95,12 @@ public class TrxPartOutServiceImpl implements TrxPartOutService {
                 "updated_on, " +
                 "status) " +
 
-                "VALUES (?,?,?,?,?,?,?,?,?,NOW(),?,NOW(),?,NOW(),1)";
+                "VALUES (?,?,?,?,?,?,?,NOW(),?,NOW(),?,NOW(),1)";
         jdbcTemplate.update(sql,
+                trxPartOutModel.getId_stock_unit_parts(),
                 trxPartOutModel.getTicket_no(),
-                trxPartOutModel.getId_part_number(),
-                trxPartOutModel.getPart_name(),
-                trxPartOutModel.getInstitution_name(),
-                trxPartOutModel.getIns_unit_name(),
-                trxPartOutModel.getUnit_parts_name(),
+                trxPartOutModel.getId_mtr_parts(),
+                trxPartOutModel.getId_unit_institution(),
                 trxPartOutModel.getDescription(),
                 trxPartOutModel.getQuantity_unit(),
                 trxPartOutModel.getRequested_by(),

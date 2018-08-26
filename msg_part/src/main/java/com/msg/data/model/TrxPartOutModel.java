@@ -5,14 +5,19 @@ package com.msg.data.model;
  */
 public class TrxPartOutModel {
 
+    private int id_trx_parts_stock_out;
+    private int id_stock_unit_parts;
     private String ticket_no;
-    private int id_unit_parts;
+    private int id_mtr_parts;
     private int id_unit_institution;
-    private String id_part_number;
-    private String part_name;
+    private int id_unit_parts;
+    private int id_brand;
+    private String unit_parts_name;
+    private String id_parts_number;
+    private String parts_name;
+    private String brand_name;
     private String institution_name;
     private String ins_unit_name;
-    private String unit_parts_name;
     private String description;
     private int quantity_unit;
     private String requested_by;
@@ -23,19 +28,26 @@ public class TrxPartOutModel {
     private String updated_on;
     private int status;
 
-
-    public TrxPartOutModel(String ticket_no, int id_unit_parts, int id_unit_institution, String id_part_number,
-                        String part_name, String institution_name, String ins_unit_name, String unit_parts_name,
-                        String description, int quantity_unit, String requested_by, String requested_on,
-                        String approved_by, String approved_on, String updated_by, String updated_on, int status) {
+    public TrxPartOutModel(int id_trx_parts_stock_out, int id_stock_unit_parts, String ticket_no,
+                           int id_mtr_parts, int id_unit_institution, int id_unit_parts, int id_brand,
+                           String unit_parts_name, String id_parts_number, String parts_name,
+                           String brand_name, String institution_name, String ins_unit_name,
+                           String description, int quantity_unit, String requested_by,
+                           String requested_on, String approved_by, String approved_on,
+                           String updated_by, String updated_on, int status) {
+        this.id_trx_parts_stock_out = id_trx_parts_stock_out;
+        this.id_stock_unit_parts = id_stock_unit_parts;
         this.ticket_no = ticket_no;
-        this.id_unit_parts = id_unit_parts;
+        this.id_mtr_parts = id_mtr_parts;
         this.id_unit_institution = id_unit_institution;
-        this.id_part_number = id_part_number;
-        this.part_name = part_name;
+        this.id_unit_parts = id_unit_parts;
+        this.id_brand = id_brand;
+        this.unit_parts_name = unit_parts_name;
+        this.id_parts_number = id_parts_number;
+        this.parts_name = parts_name;
+        this.brand_name = brand_name;
         this.institution_name = institution_name;
         this.ins_unit_name = ins_unit_name;
-        this.unit_parts_name = unit_parts_name;
         this.description = description;
         this.quantity_unit = quantity_unit;
         this.requested_by = requested_by;
@@ -52,6 +64,22 @@ public class TrxPartOutModel {
     }
 
 
+    public int getId_trx_parts_stock_out() {
+        return id_trx_parts_stock_out;
+    }
+
+    public void setId_trx_parts_stock_out(int id_trx_parts_stock_out) {
+        this.id_trx_parts_stock_out = id_trx_parts_stock_out;
+    }
+
+    public int getId_stock_unit_parts() {
+        return id_stock_unit_parts;
+    }
+
+    public void setId_stock_unit_parts(int id_stock_unit_parts) {
+        this.id_stock_unit_parts = id_stock_unit_parts;
+    }
+
     public String getTicket_no() {
         return ticket_no;
     }
@@ -60,12 +88,12 @@ public class TrxPartOutModel {
         this.ticket_no = ticket_no;
     }
 
-    public int getId_unit_parts() {
-        return id_unit_parts;
+    public int getId_mtr_parts() {
+        return id_mtr_parts;
     }
 
-    public void setId_unit_parts(int id_unit_parts) {
-        this.id_unit_parts = id_unit_parts;
+    public void setId_mtr_parts(int id_mtr_parts) {
+        this.id_mtr_parts = id_mtr_parts;
     }
 
     public int getId_unit_institution() {
@@ -76,20 +104,52 @@ public class TrxPartOutModel {
         this.id_unit_institution = id_unit_institution;
     }
 
-    public String getId_part_number() {
-        return id_part_number;
+    public int getId_unit_parts() {
+        return id_unit_parts;
     }
 
-    public void setId_part_number(String id_part_number) {
-        this.id_part_number = id_part_number;
+    public void setId_unit_parts(int id_unit_parts) {
+        this.id_unit_parts = id_unit_parts;
     }
 
-    public String getPart_name() {
-        return part_name;
+    public int getId_brand() {
+        return id_brand;
     }
 
-    public void setPart_name(String part_name) {
-        this.part_name = part_name;
+    public void setId_brand(int id_brand) {
+        this.id_brand = id_brand;
+    }
+
+    public String getUnit_parts_name() {
+        return unit_parts_name;
+    }
+
+    public void setUnit_parts_name(String unit_parts_name) {
+        this.unit_parts_name = unit_parts_name;
+    }
+
+    public String getId_parts_number() {
+        return id_parts_number;
+    }
+
+    public void setId_parts_number(String id_parts_number) {
+        this.id_parts_number = id_parts_number;
+    }
+
+    public String getParts_name() {
+        return parts_name;
+    }
+
+    public String getBrand_name() {
+        return brand_name;
+    }
+
+    public void setBrand_name(String brand_name) {
+        this.brand_name = brand_name;
+    }
+
+    public void setParts_name(String parts_name) {
+        this.parts_name = parts_name;
     }
 
     public String getInstitution_name() {
@@ -106,14 +166,6 @@ public class TrxPartOutModel {
 
     public void setIns_unit_name(String ins_unit_name) {
         this.ins_unit_name = ins_unit_name;
-    }
-
-    public String getUnit_parts_name() {
-        return unit_parts_name;
-    }
-
-    public void setUnit_parts_name(String unit_parts_name) {
-        this.unit_parts_name = unit_parts_name;
     }
 
     public String getDescription() {
