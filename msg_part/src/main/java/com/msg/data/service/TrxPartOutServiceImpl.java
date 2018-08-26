@@ -27,15 +27,9 @@ public class TrxPartOutServiceImpl implements TrxPartOutService {
         @Override
         public TrxPartOutModel mapRow(ResultSet rs, int i) throws SQLException {
             TrxPartOutModel trxPartOutModel = new TrxPartOutModel();
-            trxPartOutModel.setId_trx_parts_stock_out(rs.getInt("id_trx_parts_stock_out"));
-            trxPartOutModel.setId_stock_unit_parts(rs.getInt("id_stock_unit_parts"));
             trxPartOutModel.setTicket_no(rs.getString("ticket_no"));
-            trxPartOutModel.setId_mtr_parts(rs.getInt("id_mtr_parts"));
-            trxPartOutModel.setId_unit_institution(rs.getInt("id_unit_institution"));
-            trxPartOutModel.setId_unit_parts(rs.getInt("id_unit_parts"));
-            trxPartOutModel.setId_brand(rs.getInt("id_brand"));
             trxPartOutModel.setUnit_parts_name(rs.getString("unit_parts_name"));
-            trxPartOutModel.setIns_unit_name(rs.getString("id_parts_number"));
+            trxPartOutModel.setId_parts_number(rs.getString("id_parts_number"));
             trxPartOutModel.setParts_name(rs.getString("parts_name"));
             trxPartOutModel.setBrand_name(rs.getString("brand_name"));
             trxPartOutModel.setInstitution_name(rs.getString("institution_name"));
@@ -46,7 +40,6 @@ public class TrxPartOutServiceImpl implements TrxPartOutService {
             trxPartOutModel.setRequested_on(rs.getString("requested_on"));
             trxPartOutModel.setApproved_by(rs.getString("approved_by"));
             trxPartOutModel.setApproved_on(rs.getString("approved_on"));
-            trxPartOutModel.setStatus(rs.getInt("status"));
             return trxPartOutModel;
         }
     }
@@ -67,11 +60,11 @@ public class TrxPartOutServiceImpl implements TrxPartOutService {
                 "stokot.approved_by," +
                 "stokot.approved_on " +
                 "FROM trx_parts_stock_out stokot " +
-                "LEFT JOIN mtr_parts parts ON stokot.id_mtr_parts = parts.id_mtr_parts " +
-                "LEFT JOIN mtr_unit_parts unit ON stokot.id_mtr_parts = parts.id_mtr_parts " +
-                "LEFT JOIN mtr_brand brand ON parts.id_brand = brand.id_brand " +
-                "LEFT JOIN mtr_unit_institution uninst ON stokot.id_unit_institution = uninst.id_unit_institution " +
-                "LEFT JOIN mtr_institution ins ON uninst.id_institution = ins.id_institution " +
+                "LEFT JOIN mtr_parts parts ON parts.id_mtr_parts = stokot.id_mtr_parts " +
+                "LEFT JOIN mtr_unit_parts unit ON unit.id_unit_parts = parts.id_unit_parts " +
+                "LEFT JOIN mtr_brand brand ON brand.id_brand = parts.id_brand " +
+                "LEFT JOIN mtr_unit_institution uninst ON uninst.id_unit_institution = stokot.id_unit_institution " +
+                "LEFT JOIN mtr_institution ins ON ins.id_institution = uninst.id_institution " +
                 "WHERE stokot.status = 1";
         RowMapper<TrxPartOutModel> rowMapper = new PartsRowMapp();
         return this.jdbcTemplate.query(sql,rowMapper);
@@ -80,7 +73,7 @@ public class TrxPartOutServiceImpl implements TrxPartOutService {
     @Override
     public boolean insertPartsOut(TrxPartOutModel trxPartOutModel) {
 
-        String sql = "INSERT INTO trx_part_stock_out (" +
+        String sql = "INSERT INTO trx_parts_stock_out (" +
                 "id_stock_unit_parts," +
                 "ticket_no, " +
                 "id_mtr_parts, " +
@@ -136,7 +129,7 @@ public class TrxPartOutServiceImpl implements TrxPartOutService {
 
     @Override
     public boolean isPartsOutExist(String po_number) {
-        String sql = "SELECT count(*) from trx_part_stock_out WHERE ticket_no = ?";
+        String sql = "SELECT count(*) from trx_parts_stock_out WHERE ticket_no = ?";
         int count = jdbcTemplate.queryForObject(sql, Integer.class, po_number);
         if(count == 0) {
             return true;
@@ -147,7 +140,7 @@ public class TrxPartOutServiceImpl implements TrxPartOutService {
 
 
     @Override
-    public TrxPartOutModel getByTiknoNumb(String ticket_no) {
+    public TrxPartOutModel getByTikno(String ticket_no) {
         String sql = "SELECT * FROM trx_part_stock_out WHERE ticket_no = ?";
         RowMapper<TrxPartOutModel> rowMapper = new PartsRowMapp();
         TrxPartOutModel trxPartOutModel = jdbcTemplate.queryForObject(sql, rowMapper, ticket_no);

@@ -75,14 +75,13 @@ public class TrxPartInServiceImpl implements TrxPartInService{
                                 "created_by," +
                                 "created_on," +
                                 "status) " +
-                        "VALUES (?,?,?,?,NOW(),?,NOW(),1)";
+                        "VALUES (?,?,?,?,NOW(),1)";
         jdbcTemplate.update(sql,
                 trxPartInModel.getId_stock_unit_parts(),
                 trxPartInModel.getId_mtr_parts(),
                 trxPartInModel.getQuantity_unit(),
-                trxPartInModel.getCreated_by(),
-                trxPartInModel.getCreated_on()
-        );
+                trxPartInModel.getCreated_by()
+       );
         return false;
     }
 

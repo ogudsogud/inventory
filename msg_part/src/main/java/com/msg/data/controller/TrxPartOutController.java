@@ -49,7 +49,7 @@ public class TrxPartOutController {
     //mancari data parts berdasarkan parameter
     @RequestMapping(value = "/ticket-number={tikno}", method = RequestMethod.GET)
     public ResponseEntity<TrxPartOutModel> getByPartNum(@PathVariable("tikno") String ticket_no) {
-        TrxPartOutModel partOutModelModel = partOutService.getByTiknoNumb(ticket_no);
+        TrxPartOutModel partOutModelModel = partOutService.getByTikno(ticket_no);
         return new ResponseEntity<TrxPartOutModel>(partOutModelModel, HttpStatus.OK);
     }
 
