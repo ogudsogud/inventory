@@ -18,7 +18,6 @@ com\msg\data\model\PartsModel.class
 com\msg\data\model\TrxPartOutModel.class
 com\msg\data\model\UnitInstitutionModel.class
 com\msg\data\service\TrxPartInServiceImpl$PartsRowMapp.class
-com\msg\data\model\UserManModel.class
 com\msg\data\service\StockUnitServiceImpl.class
 com\msg\data\service\PartsServiceImpl.class
 com\msg\data\controller\UnitPartsController.class

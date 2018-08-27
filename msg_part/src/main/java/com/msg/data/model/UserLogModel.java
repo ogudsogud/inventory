@@ -3,22 +3,24 @@ package com.msg.data.model;
 /**
  * Created by yoga.wiguna on 16/07/2018.
  */
-public class UserModel {
+public class UserLogModel {
 
     private int id_mtr_user;
     private String nik;
     private String name;
     private String position;
     private String email;
-    private String password;
+    private String passwd;
+    private String role_access;
+    private int id_role;
     private String created_by;
     private String created_on;
     private String updated_by;
     private String updated_on;
     private int status;
 
-    public UserModel(int id_mtr_user, String nik, String name, String position,
-                     String email, String password,
+    public UserLogModel(int id_mtr_user, String nik, String name, String position,
+                     String email, String passwd, int id_role,
                      String created_by, String created_on,
                      String updated_by, String updated_on, int status) {
         this.id_mtr_user = id_mtr_user;
@@ -26,7 +28,9 @@ public class UserModel {
         this.name = name;
         this.position = position;
         this.email = email;
-        this.password = password;
+        this.passwd = passwd;
+        this.role_access = role_access;
+        this.id_role = id_role;
         this.created_by = created_by;
         this.created_on = created_on;
         this.updated_by = updated_by;
@@ -34,7 +38,7 @@ public class UserModel {
         this.status = status;
     }
 
-    public UserModel() {
+    public UserLogModel() {
 
     }
 
@@ -78,12 +82,28 @@ public class UserModel {
         this.email = email;
     }
 
-    public String getPassword() {
-        return password;
+    public String getPasswd() {
+        return passwd;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setPasswd(String passwd) {
+        this.passwd = passwd;
+    }
+
+    public String getRole_access() {
+        return role_access;
+    }
+
+    public void setRole_access(String role_access) {
+        this.role_access = role_access;
+    }
+
+    public int getId_role() {
+        return id_role;
+    }
+
+    public void setId_role(int id_role) {
+        this.id_role = id_role;
     }
 
     public String getCreated_by() {

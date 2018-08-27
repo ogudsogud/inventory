@@ -68,26 +68,6 @@ public class PartsServiceImpl implements PartsService {
         return this.jdbcTemplate.query(sql,rowMapper);
     }
 
-//    //get data nama unit
-//    @Override
-//    public List<UnitPartsModel> getUnitName() {
-//        class PartsRowMapp implements RowMapper<UnitPartsModel> {
-//
-//            @Override
-//            public UnitPartsModel mapRow(ResultSet rs, int i) throws SQLException {
-//                UnitPartsModel unitPartsModel = new UnitPartsModel();
-//                unitPartsModel.setUnit_parts_name(rs.getString("unit_parts_name"));
-//
-//                return unitPartsModel;
-//            }
-//        }
-//
-//        String sql = "SELECT unit_parts_name FROM mtr_stock_unit_parts WHERE status = 1";
-//        RowMapper<UnitPartsModel> rowMapper = new PartsRowMapp();
-//        return this.jdbcTemplate.query(sql,rowMapper);
-//    }
-
-
     @Override
     public boolean insertPartsNew(PartsModel partsModel) {
 
