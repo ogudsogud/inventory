@@ -26,7 +26,7 @@ public class UserLogController {
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public ResponseEntity<Void> nikPasswd(@RequestBody UserLogModel userLogModel, UriComponentsBuilder uriComponentsBuilder) {
         if (userLogService.isNikExist(userLogModel.getNik(), userLogModel.getPasswd()) == true) {
-            return new ResponseEntity(new ErrCode("201", "Berhasil Login : " ), HttpStatus.CREATED);
+            return new ResponseEntity(new ErrCode("201", "Berhasil Login" ), HttpStatus.CREATED);
         }
         return new ResponseEntity(new ErrCode("404", "Data Kosong "), HttpStatus.NOT_FOUND);
     }

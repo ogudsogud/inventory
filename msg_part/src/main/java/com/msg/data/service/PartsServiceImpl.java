@@ -31,9 +31,7 @@ public class PartsServiceImpl implements PartsService {
             partsModel.setId_parts_number(rs.getString("id_parts_number"));
             partsModel.setId_mtr_parts(rs.getInt("id_unit_parts"));
             partsModel.setId_mtr_parts(rs.getInt("id_brand"));
-            partsModel.setUnit_parts_name(rs.getString("unit_parts_name"));
             partsModel.setParts_name(rs.getString("parts_name"));
-            partsModel.setBrand_name(rs.getString("brand_name"));
             partsModel.setSpecification(rs.getString("specification"));
             partsModel.setCreated_by(rs.getString("created_by"));
             partsModel.setCreated_on(rs.getString("created_on"));
@@ -96,22 +94,15 @@ public class PartsServiceImpl implements PartsService {
     }
 
 
-    @Override
-    public boolean isPartsExist(String id_part_number) {
-        String sql = "SELECT count(*) from mtr_parts WHERE id_parts_number = ? AND status = 1";
-        int count = jdbcTemplate.queryForObject(sql, Integer.class, id_part_number);
-        return count == 0;
-    }
-
-    @Override
-    public PartsModel getByUnitName(String unit_parts_name) {
-        String sql = "SELECT * FROM mtr_parts WHERE unit_parts_name = ? AND status = 1";
-        RowMapper<PartsModel> rowMapper = new PartsRowMapp();
-        PartsModel partsModel = jdbcTemplate.queryForObject(sql, rowMapper, unit_parts_name);
-        return partsModel;
-    }
+//    @Override
+//    public boolean isPartsExist(String id_part_number) {
+//        String sql = "SELECT count(*) from mtr_parts WHERE id_parts_number = ? AND status = 1";
+//        int count = jdbcTemplate.queryForObject(sql, Integer.class, id_part_number);
+//        return count == 0;
+//    }
 
 
+    //get by parameter
     @Override
     public PartsModel getByIdPartNumb(String id_parts_number) {
         String sql = "SELECT * FROM mtr_parts WHERE id_parts_number = ? AND status = 1";
@@ -120,14 +111,22 @@ public class PartsServiceImpl implements PartsService {
         return partsModel;
     }
 
-
     @Override
-    public PartsModel getByIdPart(String id_mtr_parts) {
-        String sql = "SELECT * FROM mtr_parts WHERE id_mtr_parts = ?";
+    public PartsModel getByPartsName(String parts_name) {
+        String sql = "SELECT * FROM mtr_parts WHERE parts_name = ?  AND status = 1";
         RowMapper<PartsModel> rowMapper = new PartsRowMapp();
-        PartsModel partsModel = jdbcTemplate.queryForObject(sql, rowMapper, id_mtr_parts);
+        PartsModel partsModel = jdbcTemplate.queryForObject(sql, rowMapper,parts_name);
         return partsModel;
     }
+
+    @Override
+    public PartsModel getBySpek(String specification) {
+        String sql = "SELECT * FROM mtr_parts WHERE specification = ? AND status = 1";
+        RowMapper<PartsModel> rowMapper = new PartsRowMapp();
+        PartsModel partsModel = jdbcTemplate.queryForObject(sql, rowMapper, specification);
+        return partsModel;
+    }
+
 
     @Override
     public void updatePart(PartsModel partsModel) {

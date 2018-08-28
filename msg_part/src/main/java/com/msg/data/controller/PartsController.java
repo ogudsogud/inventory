@@ -29,11 +29,11 @@ public class PartsController {
 
     @RequestMapping(value = "/insert-new", method = RequestMethod.POST)
     public ResponseEntity<Void> createCluster(@RequestBody PartsModel partsModel, UriComponentsBuilder uriComponentsBuilder) {
-        if (partsService.isPartsExist(partsModel.getId_parts_number()) == true) {
+//        if (partsService.isPartsExist(partsModel.getId_parts_number()) == true) {
             partsService.insertPartsNew(partsModel);
             return new ResponseEntity(new ErrCode("201", "Data PO berhasil Disimpan"), HttpStatus.CREATED);
-        }
-        return  new ResponseEntity(new ErrCode("409", "Data PO sudah ada"), HttpStatus.CONFLICT);
+//        }
+//        return  new ResponseEntity(new ErrCode("409", "Data PO sudah ada"), HttpStatus.CONFLICT);
     }
 
 
@@ -49,7 +49,7 @@ public class PartsController {
         return new ResponseEntity(new ErrCode("201", "Data Parts berhasil Dihapus"), HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/parts-number={partnumber}", method = RequestMethod.GET)
+    @RequestMapping(value = "/cari={partnumber}", method = RequestMethod.GET)
     public ResponseEntity getByPartNum(@PathVariable("partnumber") String partnumber) {
         if (partsService.getByIdPartNumb(partnumber) == null) {
             return new ResponseEntity(new ErrCode("409", "Data Parts Kosong"), HttpStatus.NOT_FOUND);
@@ -57,5 +57,8 @@ public class PartsController {
         PartsModel partsModel = partsService.getByIdPartNumb(partnumber);
         return new ResponseEntity<PartsModel>(partsModel, HttpStatus.OK);
     }
+
+
+
 
 }

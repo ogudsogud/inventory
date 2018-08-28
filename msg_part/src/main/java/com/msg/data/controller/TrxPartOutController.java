@@ -25,11 +25,11 @@ public class TrxPartOutController {
     //menambahkan data stock-out baru
     @RequestMapping(value = "/insert-new", method = RequestMethod.POST)
     public ResponseEntity<Void> createCluster(@RequestBody TrxPartOutModel partOutModel, UriComponentsBuilder uriComponentsBuilder) {
-        if (partOutService.isPartsOutExist(partOutModel.getTicket_no()) == true) {
+//        if (partOutService.isPartsOutExist(partOutModel.getTicket_no()) == true) {
             partOutService.insertPartsOut(partOutModel);
             return new ResponseEntity(new ErrCode("201", "Data Stock Out berhasil Disimpan"), HttpStatus.CREATED);
-        }
-        return  new ResponseEntity(new ErrCode("409", "Data Stock Out sudah ada"), HttpStatus.CONFLICT);
+//        }
+//        return  new ResponseEntity(new ErrCode("409", "Data Stock Out sudah ada"), HttpStatus.CONFLICT);
     }
 
     //menampilkan data stock yg keluar

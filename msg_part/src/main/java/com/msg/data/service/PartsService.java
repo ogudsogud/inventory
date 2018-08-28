@@ -13,13 +13,14 @@ public interface PartsService {
 
     boolean insertPartsNew(PartsModel partsModel);
 
-    boolean isPartsExist(String id_part_number);
-
-    PartsModel getByUnitName(String unit_parts_name);
+//    boolean isPartsExist(String id_part_number);
 
     PartsModel getByIdPartNumb(String id_part_number);
 
-    PartsModel getByIdPart(String id_mtr_parts);
+
+    PartsModel getByPartsName(String parts_name);
+
+    PartsModel getBySpek(String specification);
 
     void updatePart(PartsModel partsModel);
 
