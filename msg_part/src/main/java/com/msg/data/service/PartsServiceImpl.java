@@ -104,6 +104,14 @@ public class PartsServiceImpl implements PartsService {
 
     //get by parameter
     @Override
+    public PartsModel getParam(String parts_name, String specification) {
+        String sql = "SELECT * FROM mtr_parts WHERE parts_name LIKE %'"+parts_name+"'% OR specification LIKE %'"+specification+"'% AND status = 1";
+        RowMapper<PartsModel> rowMapper = new PartsRowMapp();
+        PartsModel partsModel = jdbcTemplate.queryForObject(sql, rowMapper, parts_name, specification);
+        return partsModel;
+    }
+
+    @Override
     public PartsModel getByIdPartNumb(String id_parts_number) {
         String sql = "SELECT * FROM mtr_parts WHERE id_parts_number = ? AND status = 1";
         RowMapper<PartsModel> rowMapper = new PartsRowMapp();

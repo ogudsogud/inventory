@@ -15,6 +15,9 @@ public interface PartsService {
 
 //    boolean isPartsExist(String id_part_number);
 
+    //get by parameter
+    PartsModel getParam(String parts_name, String specification);
+
     PartsModel getByIdPartNumb(String id_part_number);
 
 

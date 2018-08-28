@@ -58,6 +58,16 @@ public class PartsController {
         return new ResponseEntity<PartsModel>(partsModel, HttpStatus.OK);
     }
 
+    @RequestMapping(value = "/cari={param}", method = RequestMethod.GET)
+    public ResponseEntity getByParam(@PathVariable("param") String partname, String spek) {
+        if (partsService.getParam(partname, spek) == null) {
+            return new ResponseEntity(new ErrCode("409", "Data Parts Kosong"), HttpStatus.NOT_FOUND);
+        }
+
+        PartsModel partsModel = partsService.getParam(partname, spek);
+        return new ResponseEntity<PartsModel>(partsModel, HttpStatus.OK);
+    }
+
 
 
 
