@@ -94,45 +94,36 @@ public class PartsServiceImpl implements PartsService {
     }
 
 
-//    @Override
-//    public boolean isPartsExist(String id_part_number) {
-//        String sql = "SELECT count(*) from mtr_parts WHERE id_parts_number = ? AND status = 1";
-//        int count = jdbcTemplate.queryForObject(sql, Integer.class, id_part_number);
-//        return count == 0;
-//    }
-
-
     //get by parameter
     @Override
-    public PartsModel getParam(String parts_name) {
-        String sql = "SELECT * FROM mtr_parts WHERE parts_name LIKE '%"+parts_name+"%' AND status = 1";
+    public List<PartsModel> getParam(String id_parts_number, String parts_name, String spek) {
+        String sql = "SELECT * FROM mtr_parts WHERE id_parts_number LIKE '"+id_parts_number+"' OR " +
+                "parts_name LIKE '"+parts_name+"' OR " +
+                "specification LIKE '"+spek+"' AND status = 1";
         RowMapper<PartsModel> rowMapper = new PartsRowMapp();
-        PartsModel partsModel = jdbcTemplate.queryForObject(sql, rowMapper);
-        return partsModel;
+        return this.jdbcTemplate.query(sql,rowMapper);
     }
 
     @Override
-    public PartsModel getByIdPartNumb(String id_parts_number) {
-        String sql = "SELECT * FROM mtr_parts WHERE id_parts_number = ? AND status = 1";
+    public List<PartsModel> getByIdPartNumb(String id_parts_number) {
+        String sql = "SELECT * FROM mtr_parts WHERE id_parts_number LIKE '"+id_parts_number+"' AND status = 1";
         RowMapper<PartsModel> rowMapper = new PartsRowMapp();
-        PartsModel partsModel = jdbcTemplate.queryForObject(sql, rowMapper, id_parts_number);
-        return partsModel;
+        return this.jdbcTemplate.query(sql,rowMapper);
+    }
+
+
+    @Override
+    public List<PartsModel> getBySpek(String specification) {
+        String sql = "SELECT * FROM mtr_parts WHERE specification LIKE '"+specification+"' AND status = 1";
+        RowMapper<PartsModel> rowMapper = new PartsRowMapp();
+        return this.jdbcTemplate.query(sql,rowMapper);
     }
 
     @Override
-    public PartsModel getByPartsName(String parts_name) {
-        String sql = "SELECT * FROM mtr_parts WHERE parts_name = ?  AND status = 1";
+    public List<PartsModel> getPartsName(String partsname) {
+        String sql = "SELECT * FROM mtr_parts WHERE parts_name LIKE '"+partsname+"' AND status = 1";
         RowMapper<PartsModel> rowMapper = new PartsRowMapp();
-        PartsModel partsModel = jdbcTemplate.queryForObject(sql, rowMapper,parts_name);
-        return partsModel;
-    }
-
-    @Override
-    public PartsModel getBySpek(String specification) {
-        String sql = "SELECT * FROM mtr_parts WHERE specification = ? AND status = 1";
-        RowMapper<PartsModel> rowMapper = new PartsRowMapp();
-        PartsModel partsModel = jdbcTemplate.queryForObject(sql, rowMapper, specification);
-        return partsModel;
+        return this.jdbcTemplate.query(sql,rowMapper);
     }
 
 

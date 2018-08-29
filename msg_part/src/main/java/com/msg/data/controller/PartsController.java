@@ -43,32 +43,45 @@ public class PartsController {
         return new ResponseEntity(new ErrCode("201", "Data Parts berhasil diubah"), HttpStatus.OK);
     }
 
+
+
     @DeleteMapping("/delete={partnumber}")
     public ResponseEntity<Void> deletePartNumber(@PathVariable("partnumber") String partnumber) {
         partsService.deletePartNumber(partnumber);
         return new ResponseEntity(new ErrCode("201", "Data Parts berhasil Dihapus"), HttpStatus.OK);
     }
 
+
+
     @RequestMapping(value = "/cari={partnumber}", method = RequestMethod.GET)
     public ResponseEntity getByPartNum(@PathVariable("partnumber") String partnumber) {
         if (partsService.getByIdPartNumb(partnumber) == null) {
             return new ResponseEntity(new ErrCode("409", "Data Parts Kosong"), HttpStatus.NOT_FOUND);
         }
-        PartsModel partsModel = partsService.getByIdPartNumb(partnumber);
-        return new ResponseEntity<PartsModel>(partsModel, HttpStatus.OK);
+        List<PartsModel> list = partsService.getByIdPartNumb(partnumber);
+        return new ResponseEntity<List<PartsModel>>(list, HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/cari-param={param}", method = RequestMethod.GET)
-    public ResponseEntity getByParam(@PathVariable("param") String partname) {
-        if (partsService.getParam(partname) == null) {
+
+
+
+    @RequestMapping(value = "/cari-partname={partsname}", method = RequestMethod.GET)
+    public ResponseEntity getByParam(@PathVariable("partsname") String partsname) {
+        if (partsService.getPartsName(partsname) == null){
             return new ResponseEntity(new ErrCode("409", "Data Parts Kosong"), HttpStatus.NOT_FOUND);
         }
-
-        PartsModel partsModel = partsService.getParam(partname);
-        return new ResponseEntity<PartsModel>(partsModel, HttpStatus.OK);
+        List<PartsModel> list = partsService.getPartsName(partsname);
+        return new ResponseEntity<List<PartsModel>>(list, HttpStatus.OK);
     }
 
 
-
+    @RequestMapping(value = "/cari-spec={spek}", method = RequestMethod.GET)
+    public ResponseEntity getByspek(@PathVariable("spek") String spek) {
+        if (partsService.getBySpek(spek) == null){
+            return new ResponseEntity(new ErrCode("409", "Data Parts Kosong"), HttpStatus.NOT_FOUND);
+        }
+        List<PartsModel> list = partsService.getBySpek(spek);
+        return new ResponseEntity<List<PartsModel>>(list, HttpStatus.OK);
+    }
 
 }
