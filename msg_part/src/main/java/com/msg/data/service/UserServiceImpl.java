@@ -71,25 +71,25 @@ public class UserServiceImpl implements UserService{
     public boolean insertUser(UserModel userModel) {
 
         String sql = "INSERT INTO mtr_user (" +
-                "                nik," +
                 "                name," +
+                "                nik," +
                 "                position," +
                 "                email," +
                 "                passwd," +
-                "                id_role," +
+//                "                id_role," +
                 "                created_by," +
                 "                created_on," +
                 "                updated_by," +
                 "                updated_on," +
                 "                status)" +
-                "                VALUES ( ?,?,?,?,?,?,?,NOW(),?,NOW(),1)";
+                "                VALUES ( ?,?,?,?,?,?,NOW(),?,NOW(),1)";
         jdbcTemplate.update(sql,
-                userModel.getNik(),
                 userModel.getName(),
+                userModel.getNik(),
                 userModel.getPosition(),
                 userModel.getEmail(),
                 userModel.getPasswd(),
-                userModel.getId_role(),
+//                userModel.getId_role(),
                 userModel.getCreated_by(),
 //                userModel.getCreated_on(),
                 userModel.getUpdated_by()
@@ -106,7 +106,7 @@ public class UserServiceImpl implements UserService{
     public boolean isNikExist(String nik, String passwd) {
         String sql = "SELECT COUNT(*) FROM mtr_user WHERE nik = ? AND passwd = ?";
         int count = jdbcTemplate.queryForObject(sql, Integer.class, nik, passwd);
-        if(count == 1) {
+        if(count == 0) {
             return true;
         } else {
             return false;
@@ -115,7 +115,7 @@ public class UserServiceImpl implements UserService{
 
 
         @Override
-    public List<UserModel> getNik(String nik) {
+        public List<UserModel> getNik(String nik) {
         String sql = "SELECT nik FROM mtr_user WHERE nik = ?  AND status = 1";
         RowMapper<UserModel> rowMapper = new PartsRowMapp();
         return this.jdbcTemplate.query(sql,rowMapper);

@@ -17,18 +17,27 @@ import org.springframework.web.util.UriComponentsBuilder;
  */
 
 @RestController
-@RequestMapping("/")
+@RequestMapping("/login")
 public class UserLogController {
 
     @Autowired
     private UserService userService;
 
-    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    @RequestMapping(value = "/", method = RequestMethod.POST)
     public ResponseEntity<Void> nikPasswd(@RequestBody UserModel userModel, UriComponentsBuilder uriComponentsBuilder) {
         if (userService.isNikExist(userModel.getNik(), userModel.getPasswd()) == true) {
             return new ResponseEntity(new ErrCode("201", "Berhasil Login" ), HttpStatus.CREATED);
         }
-        return new ResponseEntity(new ErrCode("404", "Data Kosong "), HttpStatus.NOT_FOUND);
+        return new ResponseEntity(new ErrCode("404", "Silahkan Registrasi "), HttpStatus.NOT_FOUND);
     }
 
+
+    @RequestMapping(value = "/registrasi", method = RequestMethod.POST)
+    public ResponseEntity<Void> createCluster(@RequestBody UserModel userModel, UriComponentsBuilder uriComponentsBuilder) {
+        if (userService.isNikExist(userModel.getNik(), userModel.getPasswd()) == true) {
+            userService.insertUser(userModel);
+        return new ResponseEntity(new ErrCode("201", "User berhasil Disimpan"), HttpStatus.CREATED);
+        }
+        return  new ResponseEntity(new ErrCode("409", "Data user sudah ada"), HttpStatus.CONFLICT);
+    }
 }
