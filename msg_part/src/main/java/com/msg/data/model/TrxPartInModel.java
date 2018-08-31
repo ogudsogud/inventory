@@ -8,10 +8,10 @@ public class TrxPartInModel {
     private int id_trx_parts_stock_in;
     private String id_parts_number;
     private String id_stock_unit_parts;
-    private String id_mtr_parts;
+    private String id_mtr_sub_parts;
     private String id_unit_parts;
     private String id_brand;
-    private String parts_name;
+    private String sub_parts_name;
     private String unit_parts_name;
     private String brand_name;
     private String specification;
@@ -24,14 +24,14 @@ public class TrxPartInModel {
     private int status;
 
 
-    public TrxPartInModel(int id_trx_parts_stock_in, String id_parts_number, String id_stock_unit_parts, String id_mtr_parts, String id_unit_parts, String id_brand, String parts_name, String unit_parts_name, String brand_name, String specification, String base_country, int quantity_unit, String created_by, String created_on, String updated_by, String updated_on, int status) {
+    public TrxPartInModel(int id_trx_parts_stock_in, String id_parts_number, String id_stock_unit_parts, String id_mtr_sub_parts, String id_unit_parts, String id_brand, String parts_name, String unit_parts_name, String brand_name, String specification, String base_country, int quantity_unit, String created_by, String created_on, String updated_by, String updated_on, int status) {
         this.id_trx_parts_stock_in = id_trx_parts_stock_in;
         this.id_parts_number = id_parts_number;
         this.id_stock_unit_parts = id_stock_unit_parts;
-        this.id_mtr_parts = id_mtr_parts;
+        this.id_mtr_sub_parts = id_mtr_sub_parts;
         this.id_unit_parts = id_unit_parts;
         this.id_brand = id_brand;
-        this.parts_name = parts_name;
+        this.sub_parts_name = sub_parts_name;
         this.unit_parts_name = unit_parts_name;
         this.brand_name = brand_name;
         this.specification = specification;
@@ -73,12 +73,13 @@ public class TrxPartInModel {
         this.id_stock_unit_parts = id_stock_unit_parts;
     }
 
-    public String getId_mtr_parts() {
-        return id_mtr_parts;
+
+    public String getId_mtr_sub_parts() {
+        return id_mtr_sub_parts;
     }
 
-    public void setId_mtr_parts(String id_mtr_parts) {
-        this.id_mtr_parts = id_mtr_parts;
+    public void setId_mtr_sub_parts(String id_mtr_sub_parts) {
+        this.id_mtr_sub_parts = id_mtr_sub_parts;
     }
 
     public String getId_unit_parts() {
@@ -97,12 +98,13 @@ public class TrxPartInModel {
         this.id_brand = id_brand;
     }
 
-    public String getParts_name() {
-        return parts_name;
+
+    public String getSub_parts_name() {
+        return sub_parts_name;
     }
 
-    public void setParts_name(String parts_name) {
-        this.parts_name = parts_name;
+    public void setSub_parts_name(String sub_parts_name) {
+        this.sub_parts_name = sub_parts_name;
     }
 
     public String getUnit_parts_name() {

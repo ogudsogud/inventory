@@ -4,12 +4,12 @@ package com.msg.data.model;
  * Created by Ogudsogud on 7/7/2018.
  */
 public class PartsModel {
-    private int id_mtr_parts;
+    private int id_mtr_sub_parts;
     private String id_parts_number;
     private int id_unit_parts;
     private int id_brand;
     private String unit_parts_name;
-    private String parts_name;
+    private String sub_parts_name;
     private String brand_name;
     private String specification;
     private String created_by;
@@ -19,13 +19,13 @@ public class PartsModel {
     private int status;
 
 
-    public PartsModel(int id_mtr_parts, String id_parts_number, int id_unit_parts, int id_brand, String unit_parts_name, String parts_name, String brand_name, String specification, String created_by, String created_on, String updated_by, String updated_on, int status) {
-        this.id_mtr_parts = id_mtr_parts;
+    public PartsModel(int id_mtr_sub_parts, String id_parts_number, int id_unit_parts, int id_brand, String unit_parts_name, String sub_parts_name, String brand_name, String specification, String created_by, String created_on, String updated_by, String updated_on, int status) {
+        this.id_mtr_sub_parts = id_mtr_sub_parts;
         this.id_parts_number = id_parts_number;
         this.id_unit_parts = id_unit_parts;
         this.id_brand = id_brand;
         this.unit_parts_name = unit_parts_name;
-        this.parts_name = parts_name;
+        this.sub_parts_name = sub_parts_name;
         this.brand_name = brand_name;
         this.specification = specification;
         this.created_by = created_by;
@@ -39,12 +39,12 @@ public class PartsModel {
     }
 
 
-    public int getId_mtr_parts() {
-        return id_mtr_parts;
+    public int getId_mtr_sub_parts() {
+        return id_mtr_sub_parts;
     }
 
-    public void setId_mtr_parts(int id_mtr_parts) {
-        this.id_mtr_parts = id_mtr_parts;
+    public void setId_mtr_sub_parts(int id_mtr_sub_parts) {
+        this.id_mtr_sub_parts = id_mtr_sub_parts;
     }
 
     public String getId_parts_number() {
@@ -79,12 +79,13 @@ public class PartsModel {
         this.unit_parts_name = unit_parts_name;
     }
 
-    public String getParts_name() {
-        return parts_name;
+
+    public String getSub_parts_name() {
+        return sub_parts_name;
     }
 
-    public void setParts_name(String parts_name) {
-        this.parts_name = parts_name;
+    public void setSub_parts_name(String sub_parts_name) {
+        this.sub_parts_name = sub_parts_name;
     }
 
     public String getBrand_name() {

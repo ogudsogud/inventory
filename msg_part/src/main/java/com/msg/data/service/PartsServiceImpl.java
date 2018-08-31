@@ -27,11 +27,10 @@ public class PartsServiceImpl implements PartsService {
         @Override
         public PartsModel mapRow(ResultSet rs, int i) throws SQLException {
             PartsModel partsModel = new PartsModel();
-            partsModel.setId_mtr_parts(rs.getInt("id_mtr_parts"));
             partsModel.setId_parts_number(rs.getString("id_parts_number"));
-            partsModel.setId_mtr_parts(rs.getInt("id_unit_parts"));
-            partsModel.setId_mtr_parts(rs.getInt("id_brand"));
-            partsModel.setParts_name(rs.getString("parts_name"));
+            partsModel.setUnit_parts_name(rs.getString("unit_parts_name"));
+            partsModel.setSub_parts_name(rs.getString("sub_parts_name"));
+            partsModel.setBrand_name(rs.getString("brand_name"));
             partsModel.setSpecification(rs.getString("specification"));
             partsModel.setCreated_by(rs.getString("created_by"));
             partsModel.setCreated_on(rs.getString("created_on"));
@@ -45,12 +44,9 @@ public class PartsServiceImpl implements PartsService {
     @Override
     public List<PartsModel> getDataParts() {
         String sql = "SELECT " +
-                "mparts.id_mtr_parts, " +
-                "mparts.id_unit_parts, " +
-                "mparts.id_brand, " +
                 "mparts.id_parts_number, " +
                 "munit.unit_parts_name, " +
-                "mparts.parts_name, " +
+                "mparts.sub_parts_name, " +
                 "mbrand.brand_name, " +
                 "mparts.specification, " +
                 "mparts.created_by, " +
@@ -58,7 +54,7 @@ public class PartsServiceImpl implements PartsService {
                 "mparts.updated_by, " +
                 "mparts.updated_on, " +
                 "mparts.status " +
-                "FROM mtr_parts mparts " +
+                "FROM mtr_sub_parts mparts " +
                 "LEFT JOIN mtr_unit_parts munit ON munit.id_unit_parts = mparts.id_unit_parts " +
                 "LEFT JOIN mtr_brand mbrand ON mbrand.id_brand = mparts.id_brand " +
                 "WHERE mparts.status = 1";
@@ -69,11 +65,11 @@ public class PartsServiceImpl implements PartsService {
     @Override
     public boolean insertPartsNew(PartsModel partsModel) {
 
-        String sql = "INSERT INTO mtr_parts (" +
+        String sql = "INSERT INTO mtr_sub_parts (" +
                 "id_parts_number," +
                 "id_unit_parts," +
                 "id_brand," +
-                "parts_name," +
+                "sub_parts_name," +
                 "specification," +
                 "created_by," +
                 "created_on," +
@@ -85,7 +81,7 @@ public class PartsServiceImpl implements PartsService {
                 partsModel.getId_parts_number(),
                 partsModel.getId_unit_parts(),
                 partsModel.getId_brand(),
-                partsModel.getParts_name(),
+                partsModel.getSub_parts_name(),
                 partsModel.getSpecification(),
                 partsModel.getCreated_by(),
                 partsModel.getUpdated_by()
@@ -95,44 +91,44 @@ public class PartsServiceImpl implements PartsService {
 
 
     //get by parameter
-    @Override
-    public List<PartsModel> getParam(String id_parts_number, String parts_name, String spek) {
-        String sql = "SELECT * FROM mtr_parts WHERE id_parts_number LIKE '"+id_parts_number+"' OR " +
-                "parts_name LIKE '"+parts_name+"' OR " +
-                "specification LIKE '"+spek+"' AND status = 1";
-        RowMapper<PartsModel> rowMapper = new PartsRowMapp();
-        return this.jdbcTemplate.query(sql,rowMapper);
-    }
+//    @Override
+//    public List<PartsModel> getParam(String id_parts_number, String sub_parts_name, String spek) {
+//        String sql = "SELECT * FROM mtr_sub_parts WHERE id_parts_number LIKE '"+id_parts_number+"' OR " +
+//                "sub_parts_name LIKE '"+sub_parts_name+"' OR " +
+//                "specification LIKE '"+spek+"' AND status = 1";
+//        RowMapper<PartsModel> rowMapper = new PartsRowMapp();
+//        return this.jdbcTemplate.query(sql,rowMapper);
+//    }
 
-    @Override
-    public List<PartsModel> getByIdPartNumb(String id_parts_number) {
-        String sql = "SELECT * FROM mtr_parts WHERE id_parts_number LIKE '"+id_parts_number+"' AND status = 1";
-        RowMapper<PartsModel> rowMapper = new PartsRowMapp();
-        return this.jdbcTemplate.query(sql,rowMapper);
-    }
-
-
-    @Override
-    public List<PartsModel> getBySpek(String specification) {
-        String sql = "SELECT * FROM mtr_parts WHERE specification LIKE '"+specification+"' AND status = 1";
-        RowMapper<PartsModel> rowMapper = new PartsRowMapp();
-        return this.jdbcTemplate.query(sql,rowMapper);
-    }
-
-    @Override
-    public List<PartsModel> getPartsName(String partsname) {
-        String sql = "SELECT * FROM mtr_parts WHERE parts_name LIKE '"+partsname+"' AND status = 1";
-        RowMapper<PartsModel> rowMapper = new PartsRowMapp();
-        return this.jdbcTemplate.query(sql,rowMapper);
-    }
+//    @Override
+//    public List<PartsModel> getByIdPartNumb(String id_parts_number) {
+//        String sql = "SELECT * FROM mtr_sub_parts WHERE id_parts_number LIKE '"+id_parts_number+"' AND status = 1";
+//        RowMapper<PartsModel> rowMapper = new PartsRowMapp();
+//        return this.jdbcTemplate.query(sql,rowMapper);
+//    }
+//
+//
+//    @Override
+//    public List<PartsModel> getBySpek(String specification) {
+//        String sql = "SELECT * FROM mtr_sub_parts WHERE specification LIKE '"+specification+"' AND status = 1";
+//        RowMapper<PartsModel> rowMapper = new PartsRowMapp();
+//        return this.jdbcTemplate.query(sql,rowMapper);
+//    }
+//
+//    @Override
+//    public List<PartsModel> getPartsName(String partsname) {
+//        String sql = "SELECT * FROM mtr_sub_parts WHERE parts_name LIKE '"+partsname+"' AND status = 1";
+//        RowMapper<PartsModel> rowMapper = new PartsRowMapp();
+//        return this.jdbcTemplate.query(sql,rowMapper);
+//    }
 
 
     @Override
     public void updatePart(PartsModel partsModel) {
-        String sql = "UPDATE mtr_parts SET " +
+        String sql = "UPDATE mtr_sub_parts SET " +
                 "id_unit_parts = ?, " +
                 "id_brand = ?, " +
-                "parts_name = ?, " +
+                "sub_parts_name = ?, " +
                 "specification = ?, " +
                 "updated_by = ?, " +
                 "updated_on = now() WHERE " +
@@ -140,7 +136,7 @@ public class PartsServiceImpl implements PartsService {
         jdbcTemplate.update(sql,
                 partsModel.getId_unit_parts(),
                 partsModel.getId_brand(),
-                partsModel.getParts_name(),
+                partsModel.getSub_parts_name(),
                 partsModel.getSpecification(),
                 partsModel.getUpdated_by(),
                 partsModel.getId_parts_number());
@@ -148,7 +144,7 @@ public class PartsServiceImpl implements PartsService {
 
     @Override
     public void deletePartNumber(String id_parts_number) {
-        String sql = "UPDATE mtr_parts SET status = 0 where id_parts_number = ? ";
+        String sql = "UPDATE mtr_sub_parts SET status = 0 where id_parts_number = ? ";
         jdbcTemplate.update(sql, id_parts_number);
     }
 }
