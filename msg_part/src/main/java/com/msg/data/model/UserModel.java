@@ -3,7 +3,7 @@ package com.msg.data.model;
 /**
  * Created by yoga.wiguna on 16/07/2018.
  */
-public class UserLogModel {
+public class UserModel {
 
     private int id_mtr_user;
     private String nik;
@@ -19,7 +19,7 @@ public class UserLogModel {
     private String updated_on;
     private int status;
 
-    public UserLogModel(int id_mtr_user, String nik, String name, String position,
+    public UserModel(int id_mtr_user, String nik, String name, String position,
                      String email, String passwd, int id_role,
                      String created_by, String created_on,
                      String updated_by, String updated_on, int status) {
@@ -38,7 +38,7 @@ public class UserLogModel {
         this.status = status;
     }
 
-    public UserLogModel() {
+    public UserModel() {
 
     }
 
