@@ -2,6 +2,7 @@ package com.msg.data.controller;
 
 import com.msg.data.model.ErrCode;
 import com.msg.data.model.UserModel;
+import com.msg.data.service.LogUserLoginService;
 import com.msg.data.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,18 +18,31 @@ import org.springframework.web.util.UriComponentsBuilder;
  */
 
 @RestController
-@RequestMapping("/login")
+@RequestMapping("/")
 public class UserLogController {
+
+    @Autowired
+    private LogUserLoginService logUserLoginService;
 
     @Autowired
     private UserService userService;
 
-    @RequestMapping(value = "/", method = RequestMethod.POST)
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
     public ResponseEntity<Void> nikPasswd(@RequestBody UserModel userModel, UriComponentsBuilder uriComponentsBuilder) {
-        if (userService.isNikExist(userModel.getNik(), userModel.getPasswd()) == true) {
+        if (logUserLoginService.isNikExist(userModel.getNik()) == true) {
             return new ResponseEntity(new ErrCode("201", "Berhasil Login" ), HttpStatus.CREATED);
         }
         return new ResponseEntity(new ErrCode("404", "Silahkan Registrasi "), HttpStatus.NOT_FOUND);
+    }
+
+
+    @RequestMapping(value = "/logout", method = RequestMethod.POST)
+    public ResponseEntity<Void> logout(@RequestBody UserModel userModel, UriComponentsBuilder uriComponentsBuilder) {
+        if (logUserLoginService.isNikExist(userModel.getNik()) == true) {
+            logUserLoginService.updateLog(userModel.getNik());
+
+        }
+        return new ResponseEntity(new ErrCode("201", "Berhasil Logut" ), HttpStatus.OK);
     }
 
 

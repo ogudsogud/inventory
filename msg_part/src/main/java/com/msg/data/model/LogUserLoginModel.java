@@ -23,6 +23,10 @@ public class LogUserLoginModel {
         this.status = status;
     }
 
+    public LogUserLoginModel() {
+
+    }
+
 
     public int getId_login() {
         return id_login;
