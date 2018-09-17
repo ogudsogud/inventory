@@ -27,7 +27,7 @@ public class TrxPartOutController {
     public ResponseEntity<Void> createCluster(@RequestBody TrxPartOutModel partOutModel, UriComponentsBuilder uriComponentsBuilder) {
 //        if (partOutService.isPartsOutExist(partOutModel.getTicket_no()) == true) {
             partOutService.insertPartsOut(partOutModel);
-            return new ResponseEntity(new ErrCode("201", "Data Stock Out berhasil Disimpan"), HttpStatus.CREATED);
+            return new ResponseEntity(new ErrCode("201", "Data berhasil Disimpan"), HttpStatus.CREATED);
 //        }
 //        return  new ResponseEntity(new ErrCode("409", "Data Stock Out sudah ada"), HttpStatus.CONFLICT);
     }
@@ -43,7 +43,7 @@ public class TrxPartOutController {
     @PostMapping("/update")
     public ResponseEntity<TrxPartOutModel> updateUser(@RequestBody TrxPartOutModel trxPartOutModel) {
         partOutService.updateTrxPart(trxPartOutModel);
-        return new ResponseEntity(new ErrCode("201", "Data Stock Out berhasil diubah"), HttpStatus.OK);
+        return new ResponseEntity(new ErrCode("201", "Data berhasil diubah"), HttpStatus.OK);
     }
 
     //mancari data parts berdasarkan parameter
