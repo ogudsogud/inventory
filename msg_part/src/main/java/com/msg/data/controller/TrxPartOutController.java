@@ -23,7 +23,7 @@ public class TrxPartOutController {
     private TrxPartOutService partOutService;
 
     //menambahkan data stock-out baru
-    @RequestMapping(value = "/insert-new", method = RequestMethod.POST)
+    @RequestMapping(value = "/insert", method = RequestMethod.POST)
     public ResponseEntity<Void> createCluster(@RequestBody TrxPartOutModel partOutModel, UriComponentsBuilder uriComponentsBuilder) {
 //        if (partOutService.isPartsOutExist(partOutModel.getTicket_no()) == true) {
             partOutService.insertPartsOut(partOutModel);

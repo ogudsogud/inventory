@@ -4,14 +4,17 @@ E:\APLIKASI\inventory\msg_part\src\main\java\com\msg\data\model\LogUserLoginMode
 E:\APLIKASI\inventory\msg_part\src\main\java\com\msg\data\model\PartsModel.java
 E:\APLIKASI\inventory\msg_part\src\main\java\com\msg\data\service\PartsServiceImpl.java
 E:\APLIKASI\inventory\msg_part\src\main\java\com\msg\data\controller\BrandController.java
+E:\APLIKASI\inventory\msg_part\src\main\java\com\msg\data\controller\SubPartsController.java
 E:\APLIKASI\inventory\msg_part\src\main\java\MainParts.java
 E:\APLIKASI\inventory\msg_part\src\main\java\com\msg\data\model\TrxPartOutModel.java
 E:\APLIKASI\inventory\msg_part\src\main\java\com\msg\data\controller\PartsController.java
 E:\APLIKASI\inventory\msg_part\src\main\java\com\msg\data\service\TrxPartInServiceImpl.java
+E:\APLIKASI\inventory\msg_part\src\main\java\com\msg\data\service\SubPartsService.java
 E:\APLIKASI\inventory\msg_part\src\main\java\com\msg\data\service\UnitPartsService.java
 E:\APLIKASI\inventory\msg_part\src\main\java\com\msg\data\model\TrxPartInModel.java
 E:\APLIKASI\inventory\msg_part\src\main\java\com\msg\data\controller\TrxPartInController.java
 E:\APLIKASI\inventory\msg_part\src\main\java\com\msg\data\service\StockUnitService.java
+E:\APLIKASI\inventory\msg_part\src\main\java\com\msg\data\model\SubPartsModel.java
 E:\APLIKASI\inventory\msg_part\src\main\java\com\msg\data\service\TrxPartOutService.java
 E:\APLIKASI\inventory\msg_part\src\main\java\com\msg\data\model\ErrCode.java
 E:\APLIKASI\inventory\msg_part\src\main\java\com\msg\data\model\UserRoleModel.java
@@ -21,6 +24,7 @@ E:\APLIKASI\inventory\msg_part\src\main\java\com\msg\data\controller\StockUnitCo
 E:\APLIKASI\inventory\msg_part\src\main\java\com\msg\data\model\UnitPartsModel.java
 E:\APLIKASI\inventory\msg_part\src\main\java\com\msg\data\model\StockUnitModel.java
 E:\APLIKASI\inventory\msg_part\src\main\java\com\msg\data\service\PartsService.java
+E:\APLIKASI\inventory\msg_part\src\main\java\com\msg\data\service\SubPartsServiceImpl.java
 E:\APLIKASI\inventory\msg_part\src\main\java\com\msg\data\service\UserService.java
 E:\APLIKASI\inventory\msg_part\src\main\java\com\msg\data\service\UnitPartsServiceImpl.java
 E:\APLIKASI\inventory\msg_part\src\main\java\com\msg\data\model\UserModel.java

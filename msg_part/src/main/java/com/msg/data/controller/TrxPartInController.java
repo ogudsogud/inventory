@@ -23,7 +23,7 @@ public class TrxPartInController {
     @Autowired
     private TrxPartInService trxPartInService;
 
-    @RequestMapping(value = "/insert-new", method = RequestMethod.POST)
+    @RequestMapping(value = "/insert", method = RequestMethod.POST)
     public ResponseEntity<Void> createCluster(@RequestBody TrxPartInModel partInModel, UriComponentsBuilder uriComponentsBuilder) {
         if (trxPartInService.isPartsInExist(partInModel.getId_parts_number()) == true) {
             trxPartInService.insertPartsStock(partInModel);
