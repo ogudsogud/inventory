@@ -17,7 +17,6 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/sub-parts")
-
 public class SubPartsController {
 
         @Autowired
@@ -29,11 +28,11 @@ public class SubPartsController {
             return new ResponseEntity<List<SubPartsModel>>(list, HttpStatus.OK);
         }
 
-        @RequestMapping(value = "/insert-new", method = RequestMethod.POST)
+        @RequestMapping(value = "/insert", method = RequestMethod.POST)
         public ResponseEntity<Void> createCluster(@RequestBody SubPartsModel subPartsModel, UriComponentsBuilder uriComponentsBuilder) {
 //        if (partsService.isPartsExist(partsModel.getId_parts_number()) == true) {
             subPartsService.insertPartsNew(subPartsModel);
-            return new ResponseEntity(new ErrCode("201", "Data PO berhasil Disimpan"), HttpStatus.CREATED);
+            return new ResponseEntity(new ErrCode("201", "Data berhasil Disimpan"), HttpStatus.CREATED);
 //        }
 //        return  new ResponseEntity(new ErrCode("409", "Data PO sudah ada"), HttpStatus.CONFLICT);
         }
@@ -42,15 +41,15 @@ public class SubPartsController {
         @RequestMapping(value = "/update", method = RequestMethod.POST)
         public ResponseEntity<PartsModel> updateUser(@RequestBody SubPartsModel subPartsModel) {
             subPartsService.updatePart(subPartsModel);
-            return new ResponseEntity(new ErrCode("201", "Data Parts berhasil diubah"), HttpStatus.OK);
+            return new ResponseEntity(new ErrCode("201", "Data berhasil diubah"), HttpStatus.OK);
         }
 
 
 
-        @DeleteMapping("/delete={partnumber}")
-        public ResponseEntity<Void> deletePartNumber(@PathVariable("partnumber") String partnumber) {
-            subPartsService.deletePartNumber(partnumber);
-            return new ResponseEntity(new ErrCode("201", "Data Parts berhasil Dihapus"), HttpStatus.OK);
+        @DeleteMapping("/delete={idsubparts}")
+        public ResponseEntity<Void> deletePartNumber(@PathVariable("idsubparts") int idsubparts) {
+            subPartsService.deletePartNumber(idsubparts);
+            return new ResponseEntity(new ErrCode("201", "Data berhasil Dihapus"), HttpStatus.OK);
         }
 
 

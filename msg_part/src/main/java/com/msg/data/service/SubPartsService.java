@@ -15,5 +15,5 @@ public interface SubPartsService {
 
     void updatePart(SubPartsModel subPartsModel);
 
-    void deletePartNumber(String id_parts_number);
+    void deletePartNumber(int id_mtr_sub_parts);
 }

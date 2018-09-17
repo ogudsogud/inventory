@@ -27,6 +27,7 @@ public class SubPartsServiceImpl implements SubPartsService {
         @Override
         public SubPartsModel mapRow(ResultSet rs, int i) throws SQLException {
             SubPartsModel subPartsModel = new SubPartsModel();
+            subPartsModel.setId_mtr_sub_parts(rs.getInt("id_mtr_sub_parts"));
             subPartsModel.setId_parts_number(rs.getString("id_parts_number"));
             subPartsModel.setUnit_parts_name(rs.getString("unit_parts_name"));
             subPartsModel.setSub_parts_name(rs.getString("sub_parts_name"));
@@ -44,6 +45,7 @@ public class SubPartsServiceImpl implements SubPartsService {
     @Override
     public List<SubPartsModel> getDataParts() {
         String sql = "SELECT " +
+                "mparts.id_mtr_sub_parts, " +
                 "mparts.id_parts_number, " +
                 "munit.unit_parts_name, " +
                 "mparts.sub_parts_name, " +
@@ -132,20 +134,20 @@ public class SubPartsServiceImpl implements SubPartsService {
                 "specification = ?, " +
                 "updated_by = ?, " +
                 "updated_on = now() WHERE " +
-                "id_parts_number = ? AND status = 1";
+                "id_mtr_sub_parts = ? AND status = 1";
         jdbcTemplate.update(sql,
                 subPartsModel.getId_unit_parts(),
                 subPartsModel.getId_brand(),
                 subPartsModel.getSub_parts_name(),
                 subPartsModel.getSpecification(),
                 subPartsModel.getUpdated_by(),
-                subPartsModel.getId_parts_number());
+                subPartsModel.getId_mtr_sub_parts());
     }
 
     @Override
-    public void deletePartNumber(String id_parts_number) {
-        String sql = "UPDATE mtr_sub_parts SET status = 0 where id_parts_number = ? ";
-        jdbcTemplate.update(sql, id_parts_number);
+    public void deletePartNumber(int id_mtr_sub_parts) {
+        String sql = "UPDATE mtr_sub_parts SET status = 0 where id_mtr_sub_parts = ?";
+        jdbcTemplate.update(sql, id_mtr_sub_parts);
     }
 
 }
