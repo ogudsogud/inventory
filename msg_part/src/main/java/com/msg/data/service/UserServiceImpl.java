@@ -106,13 +106,12 @@ public class UserServiceImpl implements UserService{
     public boolean isNikExist(String nik, String passwd) {
         String sql = "SELECT COUNT(*) FROM mtr_user WHERE nik = ? AND passwd = ?";
         int count = jdbcTemplate.queryForObject(sql, Integer.class, nik, passwd);
-        if(count == 0) {
+        if(count == 1) {
             return true;
         } else {
             return false;
         }
     }
-
 
         @Override
         public List<UserModel> getNik(String nik) {

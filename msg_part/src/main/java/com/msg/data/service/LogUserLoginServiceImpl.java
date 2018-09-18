@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 /**
  * Created by yoga.wiguna on 17/09/2018.
@@ -35,6 +36,13 @@ public class LogUserLoginServiceImpl implements LogUserLoginService {
         }
     }
 
+
+    @Override
+    public List<LogUserLoginModel> getDataLogin() {
+        String sql = "SELECT * FROM log_user_login WHERE status = 1";
+        RowMapper<LogUserLoginModel> rowMapper = new PartsRowMapp();
+        return this.jdbcTemplate.query(sql,rowMapper);
+    }
 
 
     @Override
