@@ -1,6 +1,5 @@
 com\msg\data\service\BrandService.class
 com\msg\data\controller\TrxPartOutController.class
-com\msg\data\controller\UserLogController.class
 com\msg\data\controller\BrandController.class
 com\msg\data\service\UnitPartsServiceImpl$PartsRowMapp.class
 com\msg\data\service\StockUnitService.class
@@ -18,6 +17,7 @@ com\msg\data\service\SubPartsServiceImpl.class
 com\msg\data\controller\TrxPartInController.class
 com\msg\data\model\UnitPartsModel.class
 com\msg\data\service\UserServiceImpl$PartsRowMapp.class
+com\msg\data\service\LogUserLoginServiceImpl$PartsRowMapp.class
 MainParts.class
 com\msg\data\model\SubPartsModel.class
 com\msg\data\model\UserModel.class
@@ -27,7 +27,9 @@ com\msg\data\service\SubPartsService.class
 com\msg\data\model\BrandModel.class
 com\msg\data\model\LogUserLoginModel.class
 com\msg\data\service\UserService.class
+com\msg\data\service\LogUserLoginService.class
 com\msg\data\service\PartsService.class
+com\msg\data\service\LogUserLoginServiceImpl.class
 com\msg\data\service\TrxPartInService.class
 com\msg\data\service\TrxPartOutServiceImpl$PartsRowMapp.class
 com\msg\data\model\PartsModel.class
@@ -43,3 +45,4 @@ com\msg\data\service\UnitPartsServiceImpl.class
 com\msg\data\model\StockUnitModel.class
 com\msg\data\model\UserRoleModel.class
 com\msg\data\service\TrxPartOutService.class
+com\msg\data\controller\LogUserController.class

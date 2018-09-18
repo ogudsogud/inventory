@@ -19,17 +19,16 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 @RestController
 @RequestMapping("/")
-public class UserLogController {
-
-    @Autowired
-    private LogUserLoginService logUserLoginService;
+public class LogUserController {
 
     @Autowired
     private UserService userService;
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public ResponseEntity<Void> nikPasswd(@RequestBody UserModel userModel, UriComponentsBuilder uriComponentsBuilder) {
-        if (logUserLoginService.isNikExist(userModel.getNik()) == true) {
+    public ResponseEntity<Void> nikPasswd(@RequestBody UserModel userModel, LogUserLoginService userLoginService, UriComponentsBuilder uriComponentsBuilder) {
+        if (userLoginService.isNikExist(userModel.getNik()) == true) {
+            userLoginService.insertLog(userModel.getNik());
+            System.out.println(userModel.getNik());
             return new ResponseEntity(new ErrCode("201", "Berhasil Login" ), HttpStatus.CREATED);
         }
         return new ResponseEntity(new ErrCode("404", "Silahkan Registrasi "), HttpStatus.NOT_FOUND);
@@ -37,9 +36,9 @@ public class UserLogController {
 
 
     @RequestMapping(value = "/logout", method = RequestMethod.POST)
-    public ResponseEntity<Void> logout(@RequestBody UserModel userModel, UriComponentsBuilder uriComponentsBuilder) {
-        if (logUserLoginService.isNikExist(userModel.getNik()) == true) {
-            logUserLoginService.updateLog(userModel.getNik());
+    public ResponseEntity<Void> logout(@RequestBody UserModel userModel, LogUserLoginService userLoginService, UriComponentsBuilder uriComponentsBuilder) {
+        if (userLoginService.isNikExist(userModel.getNik()) == true) {
+            userLoginService.updateLog(userModel.getNik());
 
         }
         return new ResponseEntity(new ErrCode("201", "Berhasil Logut" ), HttpStatus.OK);
