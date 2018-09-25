@@ -19,6 +19,11 @@ import java.util.List;
 @Repository
 public class BrandServiceImpl implements BrandService {
 
+//    String time = "1351504294";
+//    long t = Long.parseLong(time);
+//    Timestamp ts = new Timestamp(t*1000);
+//    String date = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(ts);
+
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
@@ -58,14 +63,14 @@ public class BrandServiceImpl implements BrandService {
                 "updated_by," +
                 "updated_on," +
                 "status)" +
-                "VALUES (?,?,?,NOW(),?,NOW(),1)";
+                "VALUES (?,?,?,now(),?,now(),1)";
         jdbcTemplate.update(sql,
                 brandModel.getBrand_name(),
                 brandModel.getBase_country(),
                 brandModel.getCreated_by(),
 //                brandModel.getCreated_on(),
                 brandModel.getUpdated_by()
-//                brandModel.getUpdated_on(),
+//                brandModel.getUpdated_on()
 //                brandModel.getStatus()
         );
         return false;
@@ -93,7 +98,7 @@ public class BrandServiceImpl implements BrandService {
                 "brand_name = ?, " +
                 "base_country = ?, " +
                 "updated_by = ?, " +
-                "updated_on = now() WHERE " +
+                "updated_on = ? WHERE " +
                 "id_brand = ? AND status = 1";
         jdbcTemplate.update(sql,
                 brandModel.getBrand_name(),

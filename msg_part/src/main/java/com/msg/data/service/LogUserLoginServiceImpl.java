@@ -83,4 +83,15 @@ public class LogUserLoginServiceImpl implements LogUserLoginService {
             return false;
         }
     }
+
+    @Override
+    public boolean isNikExistLogin(String nik) {
+        String sql = "SELECT COUNT(*) FROM log_user_login WHERE nik = ? AND status = 1";
+        int count = jdbcTemplate.queryForObject(sql, Integer.class, nik);
+        if(count >= 1) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

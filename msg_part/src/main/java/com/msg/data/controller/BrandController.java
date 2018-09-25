@@ -28,7 +28,7 @@ public class BrandController {
         return new ResponseEntity<List<BrandModel>>(list, HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/insert-new", method = RequestMethod.POST)
+    @RequestMapping(value = "/insert", method = RequestMethod.POST)
     public ResponseEntity<Void> createCluster(@RequestBody BrandModel brandModel, UriComponentsBuilder uriComponentsBuilder) {
         if (brandService.isBrandExist(brandModel.getBrand_name()) == true) {
             brandService.insertBrand(brandModel);

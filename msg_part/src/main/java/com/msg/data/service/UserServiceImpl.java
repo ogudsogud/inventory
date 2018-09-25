@@ -29,11 +29,13 @@ public class UserServiceImpl implements UserService{
         public UserModel mapRow(ResultSet rs, int i) throws SQLException {
             UserModel userModel = new UserModel();
             userModel.setId_mtr_user(rs.getInt("id_mtr_user"));
-            userModel.setId_role(rs.getInt("id_role"));
+//            userModel.setId_role(rs.getInt("id_role"));
             userModel.setNik(rs.getString("nik"));
             userModel.setName(rs.getString("name"));
             userModel.setEmail(rs.getString("email"));
-            userModel.setRole_access(rs.getString("role_access"));
+            userModel.setPosition(rs.getString("position"));
+            userModel.setEmail(rs.getString("email"));
+            userModel.setPasswd(rs.getString("passwd"));
             userModel.setCreated_by(rs.getString("created_by"));
             userModel.setCreated_on(rs.getString("created_on"));
             userModel.setUpdated_by(rs.getString("updated_by"));
@@ -71,8 +73,8 @@ public class UserServiceImpl implements UserService{
     public boolean insertUser(UserModel userModel) {
 
         String sql = "INSERT INTO mtr_user (" +
-                "                name," +
                 "                nik," +
+                "                name," +
                 "                position," +
                 "                email," +
                 "                passwd," +
@@ -84,8 +86,8 @@ public class UserServiceImpl implements UserService{
                 "                status)" +
                 "                VALUES ( ?,?,?,?,?,?,NOW(),?,NOW(),1)";
         jdbcTemplate.update(sql,
-                userModel.getName(),
                 userModel.getNik(),
+                userModel.getName(),
                 userModel.getPosition(),
                 userModel.getEmail(),
                 userModel.getPasswd(),
@@ -117,7 +119,7 @@ public class UserServiceImpl implements UserService{
         public List<UserModel> getNik(String nik) {
         String sql = "SELECT nik FROM mtr_user WHERE nik = ?  AND status = 1";
         RowMapper<UserModel> rowMapper = new PartsRowMapp();
-        return this.jdbcTemplate.query(sql,rowMapper);
+        return this.jdbcTemplate.query(sql,rowMapper, nik);
     }
 
 
@@ -125,7 +127,7 @@ public class UserServiceImpl implements UserService{
     public List<UserModel> getPasswd(String passwd) {
         String sql = "SELECT * FROM mtr_user WHERE passwd = ? AND status = 1";
         RowMapper<UserModel> rowMapper = new PartsRowMapp();
-        return this.jdbcTemplate.query(sql,rowMapper);
+        return this.jdbcTemplate.query(sql,rowMapper, passwd);
     }
 
 }

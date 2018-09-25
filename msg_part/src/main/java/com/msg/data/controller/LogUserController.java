@@ -52,7 +52,7 @@ public class LogUserController {
 
     @RequestMapping(value = "/logout", method = RequestMethod.POST)
     public ResponseEntity<Void> logout(@RequestBody UserModel userModel, UriComponentsBuilder uriComponentsBuilder) {
-        if (logUserLoginService.isNikExist(userModel.getNik()) == true) {
+        if (logUserLoginService.isNikExistLogin(userModel.getNik()) == true) {
             logUserLoginService.updateLog(userModel.getNik());
 
         }

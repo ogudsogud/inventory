@@ -16,4 +16,6 @@ public interface LogUserLoginService {
     boolean updateLog(String nik);
 
     boolean isNikExist(String nik);
+
+    boolean isNikExistLogin(String nik);
 }
