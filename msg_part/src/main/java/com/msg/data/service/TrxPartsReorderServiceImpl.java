@@ -130,4 +130,11 @@ public class TrxPartsReorderServiceImpl implements TrxPartsReorderService {
                 trxPartsReorderModel.getAccepted_by(),
                 trxPartsReorderModel.getId_trx_parts_stock_in_reorder());
     }
+
+
+    @Override
+    public void deletePartsReorder(String id_trx_reorder) {
+        String sql = "UPDATE trx_parts_stock_in_reorder SET status = 0 WHERE id_trx_parts_stock_in_reorder = ?";
+        jdbcTemplate.update(sql, id_trx_reorder);
+    }
 }

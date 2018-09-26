@@ -13,4 +13,6 @@ public interface TrxPartsReorderService {
     boolean insertReorder(TrxPartsReorderModel trxPartsReorderModel);
 
     void updateTrxParteorder(TrxPartsReorderModel trxPartsReorderModel);
+
+    void deletePartsReorder(String id_trx_reorder);
 }
