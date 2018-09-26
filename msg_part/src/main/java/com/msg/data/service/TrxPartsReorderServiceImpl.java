@@ -62,11 +62,11 @@ public class TrxPartsReorderServiceImpl implements TrxPartsReorderService {
                 "reorder.accepted_by," +
                 "reorder.accepted_on " +
                 "FROM trx_parts_stock_in_reorder reorder " +
-                "LEFT JOIN mtr_sub_parts parts ON parts.id_mtr_sub_parts = reorder.id_mtr_sub_parts" +
-                "LEFT JOIN mtr_unit_parts unit ON unit.id_unit_parts = parts.id_unit_parts" +
-                "LEFT JOIN mtr_brand brand ON brand.id_brand = parts.id_brand" +
-                "LEFT JOIN mtr_unit_institution uninst ON uninst.id_unit_institution = reorder.id_unit_institution" +
-                "LEFT JOIN mtr_institution ins ON ins.id_institution = uninst.id_institution" +
+                "LEFT JOIN mtr_sub_parts parts ON parts.id_mtr_sub_parts = reorder.id_mtr_sub_parts " +
+                "LEFT JOIN mtr_unit_parts unit ON unit.id_unit_parts = parts.id_unit_parts " +
+                "LEFT JOIN mtr_brand brand ON brand.id_brand = parts.id_brand " +
+                "LEFT JOIN mtr_unit_institution uninst ON uninst.id_unit_institution = reorder.id_unit_institution " +
+                "LEFT JOIN mtr_institution ins ON ins.id_institution = uninst.id_institution " +
                 "WHERE reorder.status = 1";
         RowMapper<TrxPartsReorderModel> rowMapper = new TrxPartsReorderRowMapp();
         return this.jdbcTemplate.query(sql,rowMapper);
