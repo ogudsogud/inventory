@@ -57,10 +57,10 @@ public class TrxPartsReorderServiceImpl implements TrxPartsReorderService {
                 "uninst.ins_unit_name," +
                 "reorder.description," +
                 "reorder.quantity_unit," +
-                "reorder.created_by," +
-                "reorder.created_on," +
-                "reorder.updated_by," +
-                "reorder.updated_on " +
+                "reorder.returned_by," +
+                "reorder.returned_on," +
+                "reorder.accepted_by," +
+                "reorder.accepted_on " +
                 "FROM trx_parts_stock_in_reorder reorder " +
                 "LEFT JOIN mtr_sub_parts parts ON parts.id_mtr_sub_parts = reorder.id_mtr_sub_parts" +
                 "LEFT JOIN mtr_unit_parts unit ON unit.id_unit_parts = parts.id_unit_parts" +
@@ -103,6 +103,4 @@ public class TrxPartsReorderServiceImpl implements TrxPartsReorderService {
         );
         return false;
     }
-
-
 }
