@@ -103,4 +103,31 @@ public class TrxPartsReorderServiceImpl implements TrxPartsReorderService {
         );
         return false;
     }
+
+
+    @Override
+    public void updateTrxParteorder(TrxPartsReorderModel trxPartsReorderModel) {
+        String sql = "UPDATE trx_parts_stock_in_reorder SET " +
+                "id_mtr_sub_parts = ?," +
+                "id_unit_institution = ?," +
+                "id_mtr_sub_parts = ?," +
+                "bad_parts = ?," +
+                "description = ?," +
+                "quantity_unit = ?," +
+                "returned_by = ?," +
+                "returned_on = now()," +
+                "accepted_by = ?," +
+                "accepted_on = now() WHERE " +
+                "id_trx_parts_stock_in_reorder = ? AND status = 1";
+        jdbcTemplate.update(sql,
+                trxPartsReorderModel.getId_mtr_sub_parts(),
+                trxPartsReorderModel.getId_unit_institution(),
+                trxPartsReorderModel.getId_mtr_sub_parts(),
+                trxPartsReorderModel.getBad_parts(),
+                trxPartsReorderModel.getDescription(),
+                trxPartsReorderModel.getQuantity_unit(),
+                trxPartsReorderModel.getReturned_by(),
+                trxPartsReorderModel.getAccepted_by(),
+                trxPartsReorderModel.getId_trx_parts_stock_in_reorder());
+    }
 }

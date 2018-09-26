@@ -11,4 +11,6 @@ public interface TrxPartsReorderService {
     List<TrxPartsReorderModel> getPartsReorder();
 
     boolean insertReorder(TrxPartsReorderModel trxPartsReorderModel);
+
+    void updateTrxParteorder(TrxPartsReorderModel trxPartsReorderModel);
 }
