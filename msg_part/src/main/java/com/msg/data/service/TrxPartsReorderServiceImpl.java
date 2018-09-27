@@ -50,24 +50,26 @@ public class TrxPartsReorderServiceImpl implements TrxPartsReorderService {
     @Override
     public List<TrxPartsReorderModel> getPartsReorder() {
         String sql = "SELECT  reorder.id_trx_parts_stock_in_reorder," +
-                "parts.id_parts_number," +
-                "parts.sub_parts_name," +
-                "brand.brand_name," +
-                "ins.institution_name," +
-                "uninst.ins_unit_name," +
-                "reorder.description," +
-                "reorder.quantity_unit," +
-                "reorder.returned_by," +
-                "reorder.returned_on," +
-                "reorder.accepted_by," +
-                "reorder.accepted_on " +
-                "FROM trx_parts_stock_in_reorder reorder " +
-                "LEFT JOIN mtr_sub_parts parts ON parts.id_mtr_sub_parts = reorder.id_mtr_sub_parts " +
-                "LEFT JOIN mtr_unit_parts unit ON unit.id_unit_parts = parts.id_unit_parts " +
-                "LEFT JOIN mtr_brand brand ON brand.id_brand = parts.id_brand " +
-                "LEFT JOIN mtr_unit_institution uninst ON uninst.id_unit_institution = reorder.id_unit_institution " +
-                "LEFT JOIN mtr_institution ins ON ins.id_institution = uninst.id_institution " +
-                "WHERE reorder.status = 1";
+                "trxout.id_mtr_sub_parts," +
+                "                parts.sub_parts_name," +
+                "                brand.brand_name," +
+                "                ins.institution_name," +
+                "                uninst.ins_unit_name," +
+                "                reorder.bad_parts," +
+                "                reorder.description," +
+                "                reorder.quantity_unit," +
+                "                reorder.returned_by," +
+                "                reorder.returned_on," +
+                "                reorder.accepted_by," +
+                "                reorder.accepted_on " +
+                "                FROM trx_parts_stock_in_reorder reorder " +
+                "                LEFT JOIN trx_parts_stock_out trxout ON reorder.id_trx_parts_stock_out = trxout.id_trx_parts_stock_out " +
+                "                LEFT JOIN mtr_sub_parts parts ON parts.id_mtr_sub_parts = trxout.id_mtr_sub_parts " +
+                "                LEFT JOIN mtr_unit_parts unit ON unit.id_unit_parts = parts.id_unit_parts " +
+                "                LEFT JOIN mtr_brand brand ON brand.id_brand = parts.id_brand " +
+                "                LEFT JOIN mtr_unit_institution uninst ON uninst.id_unit_institution = trxout.id_unit_institution " +
+                "                LEFT JOIN mtr_institution ins ON ins.id_institution = uninst.id_institution " +
+                "                WHERE reorder.status = 1";
         RowMapper<TrxPartsReorderModel> rowMapper = new TrxPartsReorderRowMapp();
         return this.jdbcTemplate.query(sql,rowMapper);
     }
@@ -77,8 +79,7 @@ public class TrxPartsReorderServiceImpl implements TrxPartsReorderService {
     public boolean insertReorder(TrxPartsReorderModel trxPartsReorderModel) {
 
         String sql = "INSERT INTO trx_parts_stock_in_reorder (" +
-                "id_mtr_sub_parts, " +
-                "id_unit_institution, " +
+                "id_trx_parts_stock_out, " +
                 "bad_parts, " +
                 "description, " +
                 "quantity_unit, " +
@@ -88,10 +89,9 @@ public class TrxPartsReorderServiceImpl implements TrxPartsReorderService {
                 "accepted_on, " +
                 "status) " +
 
-                "VALUES (?,?,?,?,?,?,NOW(),?,NOW(),1)";
+                "VALUES (?,?,?,?,?,NOW(),?,NOW(),1)";
         jdbcTemplate.update(sql,
-                trxPartsReorderModel.getId_mtr_sub_parts(),
-                trxPartsReorderModel.getId_unit_institution(),
+                trxPartsReorderModel.getId_trx_parts_stock_out(),
                 trxPartsReorderModel.getBad_parts(),
                 trxPartsReorderModel.getDescription(),
                 trxPartsReorderModel.getQuantity_unit(),
@@ -108,9 +108,7 @@ public class TrxPartsReorderServiceImpl implements TrxPartsReorderService {
     @Override
     public void updateTrxParteorder(TrxPartsReorderModel trxPartsReorderModel) {
         String sql = "UPDATE trx_parts_stock_in_reorder SET " +
-                "id_mtr_sub_parts = ?," +
-                "id_unit_institution = ?," +
-                "id_mtr_sub_parts = ?," +
+                "id_trx_parts_stock_out = ?," +
                 "bad_parts = ?," +
                 "description = ?," +
                 "quantity_unit = ?," +
@@ -120,9 +118,7 @@ public class TrxPartsReorderServiceImpl implements TrxPartsReorderService {
                 "accepted_on = now() WHERE " +
                 "id_trx_parts_stock_in_reorder = ? AND status = 1";
         jdbcTemplate.update(sql,
-                trxPartsReorderModel.getId_mtr_sub_parts(),
-                trxPartsReorderModel.getId_unit_institution(),
-                trxPartsReorderModel.getId_mtr_sub_parts(),
+                trxPartsReorderModel.getId_trx_parts_stock_out(),
                 trxPartsReorderModel.getBad_parts(),
                 trxPartsReorderModel.getDescription(),
                 trxPartsReorderModel.getQuantity_unit(),
