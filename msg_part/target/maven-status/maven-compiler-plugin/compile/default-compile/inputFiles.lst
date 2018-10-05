@@ -15,6 +15,7 @@ D:\APPS\inventory\msg_part\src\main\java\com\msg\data\model\TrxPartInModel.java
 D:\APPS\inventory\msg_part\src\main\java\com\msg\data\model\LogUserLoginModel.java
 D:\APPS\inventory\msg_part\src\main\java\com\msg\data\service\BrandServiceImpl.java
 D:\APPS\inventory\msg_part\src\main\java\com\msg\data\controller\UnitPartsController.java
+D:\APPS\inventory\msg_part\src\main\java\com\msg\data\controller\UserController.java
 D:\APPS\inventory\msg_part\src\main\java\com\msg\data\controller\LogUserController.java
 D:\APPS\inventory\msg_part\src\main\java\com\msg\data\service\TrxPartInServiceImpl.java
 D:\APPS\inventory\msg_part\src\main\java\com\msg\data\service\UnitPartsService.java

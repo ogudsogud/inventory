@@ -29,6 +29,7 @@ com\msg\data\model\BrandModel.class
 com\msg\data\model\LogUserLoginModel.class
 com\msg\data\service\TrxPartsReorderServiceImpl.class
 com\msg\data\service\UserService.class
+com\msg\data\controller\UserController.class
 com\msg\data\service\LogUserLoginService.class
 com\msg\data\service\PartsService.class
 com\msg\data\service\LogUserLoginServiceImpl.class

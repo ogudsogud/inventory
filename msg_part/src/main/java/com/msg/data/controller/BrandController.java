@@ -32,16 +32,16 @@ public class BrandController {
     public ResponseEntity<Void> createCluster(@RequestBody BrandModel brandModel, UriComponentsBuilder uriComponentsBuilder) {
         if (brandService.isBrandExist(brandModel.getBrand_name()) == true) {
             brandService.insertBrand(brandModel);
-            return new ResponseEntity(new ErrCode("201", "Data Brand berhasil Disimpan"), HttpStatus.CREATED);
+            return new ResponseEntity(new ErrCode("201", "Data berhasil Disimpan"), HttpStatus.CREATED);
         }
-        return  new ResponseEntity(new ErrCode("409", "Data Brand sudah ada"), HttpStatus.CONFLICT);
+        return  new ResponseEntity(new ErrCode("409", "Data sudah ada"), HttpStatus.CONFLICT);
     }
 
 
     @RequestMapping(value = "/update", method = RequestMethod.POST)
     public ResponseEntity<BrandModel> updateUser(@RequestBody BrandModel brandModel) {
         brandService.updateBrand(brandModel);
-        return new ResponseEntity(new ErrCode("201", "Data Brand berhasil diubah"), HttpStatus.OK);
+        return new ResponseEntity(new ErrCode("201", "Data berhasil diubah"), HttpStatus.OK);
     }
 
     @DeleteMapping("/delete={id_brand}")
