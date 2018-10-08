@@ -30,12 +30,13 @@ public class TrxPartsReorderServiceImpl implements TrxPartsReorderService {
             TrxPartsReorderModel trxPartsReorderModel = new TrxPartsReorderModel();
             trxPartsReorderModel.setId_trx_parts_stock_in_reorder(rs.getInt("id_trx_parts_stock_in_reorder"));
             trxPartsReorderModel.setId_mtr_sub_parts(rs.getInt("id_mtr_sub_parts"));
-            trxPartsReorderModel.setId_unit_institution(rs.getInt("id_unit_institution"));
+            trxPartsReorderModel.setId_unit_institution(rs.getInt("unit_parts_name"));
+            trxPartsReorderModel.setId_unit_institution(rs.getInt("token_no"));
             trxPartsReorderModel.setId_parts_number(rs.getString("id_parts_number"));
             trxPartsReorderModel.setSub_parts_name(rs.getString("sub_parts_name"));
             trxPartsReorderModel.setBrand_name(rs.getString("brand_name"));
             trxPartsReorderModel.setInstitution_name(rs.getString("institution_name"));
-            trxPartsReorderModel.setUnit_ins_name(rs.getString("unit_ins_name"));
+            trxPartsReorderModel.setUnit_ins_name(rs.getString("ins_unit_name"));
             trxPartsReorderModel.setBad_parts(rs.getString("bad_parts"));
             trxPartsReorderModel.setDescription(rs.getString("description"));
             trxPartsReorderModel.setReturned_by(rs.getString("returned_by"));
@@ -52,7 +53,10 @@ public class TrxPartsReorderServiceImpl implements TrxPartsReorderService {
         String sql = "SELECT  reorder.id_trx_parts_stock_in_reorder," +
                 "trxout.id_mtr_sub_parts," +
                 "                parts.sub_parts_name," +
+                "                unit.unit_parts_name," +
+                "                trxout.ticket_no, " +
                 "                brand.brand_name," +
+                "                parts.id_parts_number, "+
                 "                ins.institution_name," +
                 "                uninst.ins_unit_name," +
                 "                reorder.bad_parts," +
@@ -61,7 +65,8 @@ public class TrxPartsReorderServiceImpl implements TrxPartsReorderService {
                 "                reorder.returned_by," +
                 "                reorder.returned_on," +
                 "                reorder.accepted_by," +
-                "                reorder.accepted_on " +
+                "                reorder.accepted_on, " +
+                "                reorder.status " +
                 "                FROM trx_parts_stock_in_reorder reorder " +
                 "                LEFT JOIN trx_parts_stock_out trxout ON reorder.id_trx_parts_stock_out = trxout.id_trx_parts_stock_out " +
                 "                LEFT JOIN mtr_sub_parts parts ON parts.id_mtr_sub_parts = trxout.id_mtr_sub_parts " +

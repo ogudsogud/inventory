@@ -8,6 +8,8 @@ public class TrxPartsReorderModel {
     private int id_trx_parts_stock_out;
     private  int id_mtr_sub_parts;
     private  int id_unit_institution;
+    private  String unit_parts_name;
+    private  String ticket_no;
     private  String id_parts_number;
     private  String sub_parts_name;
     private  String specification;
@@ -24,9 +26,11 @@ public class TrxPartsReorderModel {
     private  int status;
 
 
-    public TrxPartsReorderModel(int id_trx_parts_stock_in_reorder, int id_trx_parts_stock_out, int id_mtr_sub_parts, int id_unit_institution, String id_parts_number, String sub_parts_name, String specification, String brand_name, String institution_name, String unit_ins_name, String bad_parts, String description, int quantity_unit, String returned_by, String returned_on, String accepted_by, String accepted_on, int status) {
+    public TrxPartsReorderModel(int id_trx_parts_stock_in_reorder, int id_trx_parts_stock_out, String unit_parts_name, String ticket_no, int id_mtr_sub_parts, int id_unit_institution, String id_parts_number, String sub_parts_name, String specification, String brand_name, String institution_name, String unit_ins_name, String bad_parts, String description, int quantity_unit, String returned_by, String returned_on, String accepted_by, String accepted_on, int status) {
         this.id_trx_parts_stock_in_reorder = id_trx_parts_stock_in_reorder;
         this.id_trx_parts_stock_out = id_trx_parts_stock_out;
+        this.unit_parts_name = unit_parts_name;
+        this.ticket_no = ticket_no;
         this.id_mtr_sub_parts = id_mtr_sub_parts;
         this.id_unit_institution = id_unit_institution;
         this.id_parts_number = id_parts_number;
@@ -64,6 +68,22 @@ public class TrxPartsReorderModel {
 
     public void setId_trx_parts_stock_out(int id_trx_parts_stock_out) {
         this.id_trx_parts_stock_out = id_trx_parts_stock_out;
+    }
+
+    public String getUnit_parts_name() {
+        return unit_parts_name;
+    }
+
+    public void setUnit_parts_name(String unit_parts_name) {
+        this.unit_parts_name = unit_parts_name;
+    }
+
+    public String getTicket_no() {
+        return ticket_no;
+    }
+
+    public void setTicket_no(String ticket_no) {
+        this.ticket_no = ticket_no;
     }
 
     public int getId_mtr_sub_parts() {
