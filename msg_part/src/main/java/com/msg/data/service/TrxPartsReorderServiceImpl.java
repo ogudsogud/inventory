@@ -30,8 +30,8 @@ public class TrxPartsReorderServiceImpl implements TrxPartsReorderService {
             TrxPartsReorderModel trxPartsReorderModel = new TrxPartsReorderModel();
             trxPartsReorderModel.setId_trx_parts_stock_in_reorder(rs.getInt("id_trx_parts_stock_in_reorder"));
             trxPartsReorderModel.setId_mtr_sub_parts(rs.getInt("id_mtr_sub_parts"));
-            trxPartsReorderModel.setId_unit_institution(rs.getInt("unit_parts_name"));
-            trxPartsReorderModel.setId_unit_institution(rs.getInt("token_no"));
+            trxPartsReorderModel.setUnit_parts_name(rs.getString("unit_parts_name"));
+            trxPartsReorderModel.setTicket_no(rs.getString("ticket_no"));
             trxPartsReorderModel.setId_parts_number(rs.getString("id_parts_number"));
             trxPartsReorderModel.setSub_parts_name(rs.getString("sub_parts_name"));
             trxPartsReorderModel.setBrand_name(rs.getString("brand_name"));
