@@ -43,8 +43,6 @@ public class LogUserController {
         if (userService.isNikExist(userModel.getNik(), userModel.getPasswd()) == true) {
             logUserLoginService.insertLog(userModel.getNik());
             return new ResponseEntity(new ErrCode("201", "Berhasil Login" ), HttpStatus.OK);
-        } if (logUserLoginService.isNikExist(userModel.getNik()) == false) {
-            return new ResponseEntity(new ErrCode("201", "Silahkan logut"), HttpStatus.OK);
         }
         return new ResponseEntity(new ErrCode("404", "Silahkan Registrasi "), HttpStatus.NOT_FOUND);
     }

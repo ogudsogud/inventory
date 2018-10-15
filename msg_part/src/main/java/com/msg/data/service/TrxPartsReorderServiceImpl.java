@@ -29,6 +29,7 @@ public class TrxPartsReorderServiceImpl implements TrxPartsReorderService {
         public TrxPartsReorderModel mapRow(ResultSet rs, int i) throws SQLException {
             TrxPartsReorderModel trxPartsReorderModel = new TrxPartsReorderModel();
             trxPartsReorderModel.setId_trx_parts_stock_in_reorder(rs.getInt("id_trx_parts_stock_in_reorder"));
+            trxPartsReorderModel.setId_trx_parts_stock_out(rs.getInt("id_trx_parts_stock_out"));
             trxPartsReorderModel.setId_mtr_sub_parts(rs.getInt("id_mtr_sub_parts"));
             trxPartsReorderModel.setUnit_parts_name(rs.getString("unit_parts_name"));
             trxPartsReorderModel.setTicket_no(rs.getString("ticket_no"));
@@ -39,6 +40,7 @@ public class TrxPartsReorderServiceImpl implements TrxPartsReorderService {
             trxPartsReorderModel.setUnit_ins_name(rs.getString("ins_unit_name"));
             trxPartsReorderModel.setBad_parts(rs.getString("bad_parts"));
             trxPartsReorderModel.setDescription(rs.getString("description"));
+            trxPartsReorderModel.setQuantity_unit(rs.getInt("quantity_unit"));
             trxPartsReorderModel.setReturned_by(rs.getString("returned_by"));
             trxPartsReorderModel.setReturned_on(rs.getString("returned_on"));
             trxPartsReorderModel.setAccepted_by(rs.getString("accepted_by"));
@@ -52,6 +54,7 @@ public class TrxPartsReorderServiceImpl implements TrxPartsReorderService {
     public List<TrxPartsReorderModel> getPartsReorder() {
         String sql = "SELECT  reorder.id_trx_parts_stock_in_reorder," +
                 "trxout.id_mtr_sub_parts," +
+                "trxout.id_trx_parts_stock_out," +
                 "                parts.sub_parts_name," +
                 "                unit.unit_parts_name," +
                 "                trxout.ticket_no, " +
