@@ -8,7 +8,6 @@ D:\APPS\inventory\msg_part\src\main\java\com\msg\data\controller\TrxPartInContro
 D:\APPS\inventory\msg_part\src\main\java\com\msg\data\model\UnitPartsModel.java
 D:\APPS\inventory\msg_part\src\main\java\com\msg\data\service\LogUserLoginServiceImpl.java
 D:\APPS\inventory\msg_part\src\main\java\com\msg\data\service\TrxPartOutServiceImpl.java
-D:\APPS\inventory\msg_part\src\main\java\com\msg\data\security\EmployeeSecurityConfiguration.java
 D:\APPS\inventory\msg_part\src\main\java\com\msg\data\controller\TrxPartOutController.java
 D:\APPS\inventory\msg_part\src\main\java\com\msg\data\model\TrxPartOutModel.java
 D:\APPS\inventory\msg_part\src\main\java\com\msg\data\service\LogUserLoginService.java

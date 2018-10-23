@@ -4,7 +4,6 @@ com\msg\data\controller\BrandController.class
 com\msg\data\service\TrxPartsReorderService.class
 com\msg\data\service\UnitPartsServiceImpl$PartsRowMapp.class
 com\msg\data\service\StockUnitService.class
-com\msg\data\security\EmployeeSecurityConfiguration.class
 com\msg\data\service\BrandServiceImpl$PartsRowMapp.class
 com\msg\data\service\TrxPartOutServiceImpl.class
 com\msg\data\model\ErrCode.class
